@@ -1,14 +1,13 @@
 package main;
+import main.views.inventory.Inventory;
+
 import java.net.*;
 
 public class Main {
 
     public static void main(String[] args) {
-	    System.out.println("Welcome to logistics");
-
-        System.out.println("Hello World");
-
-        System.out.println("hello there ");
+        Inventory inventory = new Inventory();
+        inventory.create();
 
     }
 
