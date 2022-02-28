@@ -1,11 +1,12 @@
-public class Main {
+package main;
+
+public class ClientMain {
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_RESET = "\u001B[0m";
-
-    public static void main(String[] args) {
-        // Author:
-        // @Niyigena-Yves
-
+    public static void welcomeScreen(){
+        /**
+         * @author: Niyigena Yves
+         */
         System.out.println("\n");
 
         System.out.println(ANSI_BLUE +"\t\t __                __    __________    __             _________       _______       ___           ___   _________    "+ANSI_RESET);
@@ -44,5 +45,23 @@ public class Main {
 
         System.out.println("\n");
         System.out.println("\t\t\t\t ---------------------- OFFERING EXCELLENT LOGISTIC SERVICES --------------------");
+
+    }
+    public static void main(String[] args) {
+        welcomeScreen();
+        int choice;
+        System.out.println("\n");
+        System.out.println("\t\t\tLogin");
+        System.out.println("\t\t\tRegister");
+
+        switch (choice){
+            case 1:
+//                login;
+                break;
+            case 2:
+//                register;
+                break;
+        }
     }
 }
+
