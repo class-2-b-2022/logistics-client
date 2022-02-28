@@ -58,7 +58,7 @@ public class NewCompanyView {
                 if (companyDescription.equals("00"))
                     break;
                 NewCompanyFormat format = new NewCompanyFormat(companyOwner, companyName, companyEmail, companyPhone, companyType, companyDescription);
-
+                System.out.println(format.toString());
                 CompanyService companyService = new CompanyService(this.socket);
                 companyService.create(format);
             }catch (InputMismatchException e){

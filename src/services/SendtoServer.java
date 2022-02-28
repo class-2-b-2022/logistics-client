@@ -9,8 +9,6 @@ public class SendtoServer {
     private OutputStream output = null;
     private ObjectOutputStream objectOutput = null;
     private boolean isConnection = true;
-    InputStream input;
-    ObjectInputStream objectInputStream;
     private String json;
     private Socket socket;
 
