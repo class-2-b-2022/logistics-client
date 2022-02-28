@@ -1,2 +1,3 @@
-package Logic;public class VehicleManager {
+package logic;
+public class VehicleManager {
 }
