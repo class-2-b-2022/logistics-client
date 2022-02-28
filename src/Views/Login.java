@@ -27,8 +27,8 @@ public class Login {
         String email;
         String password;
         Scanner scanner=new Scanner(System.in);
-        System.out.println(Colors.ANSI_PURPLE);
-            System.out.println("\t\t\t\t\t\t Welcome to Logistics");
+        System.out.println(Colors.ANSI_BLUE);
+            System.out.println("\t\t\t\t\t\t Welcome to Logdel");
             System.out.println(Colors.ANSI_RESET);
 //            System.out.println("\t\t\t\t\t\tLogin\n");
             System.out.println("\t\t\tEmail:");

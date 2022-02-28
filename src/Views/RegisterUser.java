@@ -1,4 +1,4 @@
-package View;
+package Views;
 import java.io.DataOutputStream;
 import java.io.*;
 import java.util.*;
