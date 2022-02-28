@@ -43,7 +43,7 @@ public class DeliveryModel {
                 System.out.println(ANSI_MAG +"\t\t\t\t Added new vehicle "+ANSI_RESET);
                 // AddNewVehicle;
                 System.out.format("+-----------------+------+%n");
-                System.out.format("| Model       | Status  | Brand | Owner |Plate | %n");
+                    System.out.format("| Model       | Status  | Brand | Owner |Plate | %n");
                 System.out.format("+-----------------+------+%n");
                 for (int i = 0; i < 5; i++) {
                     System.out.format(leftAlignFormat, " AUDI A40   | AUDI  | COMPANY |  Healthy  |", i*125);
@@ -101,15 +101,13 @@ public class DeliveryModel {
         System.out.println(ANSI_MAG +"\t\t\t\t                                       "+ANSI_RESET);
         System.out.println(ANSI_MAG +"\tEnter your choice:      "+ANSI_RESET);
         choice = scanner.nextInt();
-
-
         switch (choice){
             case 1:
                 System.out.println(ANSI_MAG +"\t\t\t\t -----------  VEHICLE MANAGEMENT SYSTEM ---------------"+ANSI_RESET);
                 System.out.println(ANSI_MAG +"\t\t\t\t                                       "+ANSI_RESET);
                 System.out.println(ANSI_MAG +"\t\t\t\t                                       "+ANSI_RESET);
                 VehicleManagement();
-                break;
+            break;
             case 2:
                 System.out.println(ANSI_MAG +"\t\t\t\t -----------  TRACK YOUR PRODUCTS ---------------  "+ANSI_RESET);
                 // Tracking();
