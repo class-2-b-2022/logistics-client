@@ -1,25 +1,25 @@
-package View;
-import View.Colors;
+package Views;
+//import Views.Colors;
 import java.awt.desktop.UserSessionEvent;
 import java.net.Socket;
 import java.util.Properties;
 import java.util.Scanner;
 
 public class Login {
+    public static final String ANSI_RESET="\u001B[0m";
+    public static final String ANSI_BLACK="\u001B[30m";
+    public static final String ANSI_RED="\u001B[31m";
+    public static final String ANSI_GREEN="\u001B[32m";
+    public static final String ANSI_YELLOW="\u001B[33m";
+    public static final String ANSI_BLUE="\u001B[34m";
+    public static final String ANSI_PURPLE="\u001B[35m";
+    public static final String ANSI_CYAN="\u001B[36m";
+    public static final String ANSI_WHITE="\u001B[37m";
     private Socket socket;
     public Login(){};
     public Login(Socket socket) throws Exception {
         this.socket = socket;
-//        UserSessionEvent userSession=new UserSession():
-//        if(userSession.isLoggedin()){
-//   String json=userSession.getUserJsonObject();
-        //ObjectMapper objectMapper=new ObjectMapper();
-        //JsonNode jsonNode=ObjectMapper.readTree(json);
-        //route(jsonNode.get("appUser").asText());
-//    }else{
-        //openLogin=true;
-        //this.view();
-    //}
+
     }
     private boolean openLogin=false;
     public void view() throws Exception{
@@ -27,9 +27,9 @@ public class Login {
         String email;
         String password;
         Scanner scanner=new Scanner(System.in);
-        System.out.println(Colors.ANSI_BLUE);
+        System.out.println(ANSI_BLUE);
             System.out.println("\t\t\t\t\t\t Welcome to Logdel");
-            System.out.println(Colors.ANSI_RESET);
+            System.out.println(ANSI_RESET);
 //            System.out.println("\t\t\t\t\t\tLogin\n");
             System.out.println("\t\t\tEmail:");
             email=scanner.nextLine();
@@ -41,12 +41,12 @@ public class Login {
             if(password.equals("00")){
                 break authorize;
             }
-            Data_format DataFormat=new Data_format(email,password);
+         //   Data_format DataFormat=new Data_format(email,password);
 //           AuthService authService=new AuthService(this.socket,authenticationDataFormat);
 //            if(authService.authenticate()){
 //                route(authService.getLoggedInUser)
 //            }else{}
-            System.out.println(Colors.ANSI_RED+"\t\t\tInvalid credentials\t\t\t"+Colors.ANSI_RESET);
+            System.out.println(ANSI_RED+"\t\t\tInvalid credentials\t\t\t"+ANSI_RESET);
 
         }
         while (openLogin);
