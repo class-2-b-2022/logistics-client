@@ -1,9 +1,8 @@
 package main;
-import views.CompanyMainView;
-import views.NewCompanyView;
+import views.Home;
+import views.company.CompanyMainView;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.*;
@@ -30,8 +29,8 @@ public class Main {
         try{
             Socket socket = new Socket(serverIp, portNumber);
             while(isConnectionOn){
-                CompanyMainView companyMainView = new CompanyMainView(socket);
-                companyMainView.view();
+                Home home = new Home(socket);
+                home.view();
             }
         }catch (Exception e){
             System.out.println("Failed to connect to the server at port: " + portNumber);

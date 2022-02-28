@@ -1,4 +1,4 @@
-package views;
+package views.company;
 
 import data_format.NewCompanyFormat;
 import services.CompanyService;

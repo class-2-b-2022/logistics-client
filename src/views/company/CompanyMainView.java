@@ -1,6 +1,5 @@
-package views;
+package views.company;
 
-import services.CompanyService;
 import utils.Colors;
 
 import java.io.IOException;
@@ -16,11 +15,12 @@ public class CompanyMainView {
     }
 
     public void view() throws IOException, ClassNotFoundException {
-        boolean customerView = false;
+        boolean companyView = false;
         do{
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t1. Register New Company");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t2. View All Companies");
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t3. Update Company Information");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t2. View A Company's Information");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t3. View All Companies");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t4. Update Company Information");
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t00. Back");
             System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\tEnter your choice"+ Colors.ANSI_YELLOW+" <1-00>"+Colors.ANSI_RESET+": ");
             Scanner scan = new Scanner(System.in);
@@ -32,20 +32,24 @@ public class CompanyMainView {
                     String role = scan.nextLine();
                     if(!role.equals("System Admin")){
                         System.out.println("You are not allowed to register a company, ask the System Admin to do that task");
-                        customerView = false;
+                        companyView = false;
                         break;
                     }
                     NewCompanyView newCompanyView = new NewCompanyView(this.socket);
                     newCompanyView.view();
                     break;
+                case "2":
+                    ReadCompanyView readCompanyView = new ReadCompanyView(this.socket);
+                    readCompanyView.view();
+                    break;
                 case "00":
-                    customerView = false;
+                    companyView = false;
                     break;
                 default:
                     System.out.println(Colors.ANSI_RED+"\t\t\t\t\t\t\t\t\t\t\t\t\t\tINVALID CHOICE"+Colors.ANSI_RESET);
             }
 
-        }while(customerView);
+        }while(companyView);
     }
 
 }

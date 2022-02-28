@@ -1,10 +1,12 @@
 package services;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import data_format.NewCompanyFormat;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CompanyService {
@@ -74,4 +76,26 @@ public class CompanyService {
 //                System.out.println("No matching requirement");
 //        }
 //    }
+public List getCompany(int companyOwnerCode) throws IOException,ClassNotFoundException {
+    ObjectMapper objectMapper = new ObjectMapper();
+    String json = objectMapper.writeValueAsString(companyOwnerCode);
+    SendtoServer sendtoServer = new SendtoServer(json,this.socket);
+    List<String> res = new ArrayList<>();
+    System.out.println("Your requested is being handled by the server");
+//    if(sendtoServer.send()) {
+//        try{
+//            InputStream input = this.socket.getInputStream();
+//            ObjectInputStream objectInputStream = new ObjectInputStream(input);
+//            res = (List) objectInputStream.readObject();
+//            JsonNode jsonNode = objectMapper.readTree(res.get(0));
+//            if(jsonNode.get("status").asInt() == 404){
+//                System.out.println("No such company registered");
+//                return null;
+//            }
+//        }catch(Exception e){
+//            System.out.println("Error, "+e.getMessage());
+//        }
+//    }
+    return res;
+    }
 }
