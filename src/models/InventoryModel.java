@@ -1,26 +1,17 @@
 package models;
 
-import java.util.Date;
+import java.io.Serializable;
 
-public class InventoryModel {
+public class InventoryModel implements Serializable {
     int quantity;
-    String Price;
     String Status;
     int productId;
     int userId;
-    Date date;
 
     public void setProductId(int productId) {
         this.productId = productId;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public void setPrice(String price) {
-        Price = price;
-    }
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
@@ -34,9 +25,6 @@ public class InventoryModel {
         this.userId = userId;
     }
 
-    public Date getDate() {
-        return date;
-    }
 
     public int getProductId() {
         return productId;
@@ -48,10 +36,6 @@ public class InventoryModel {
 
     public int getUserId() {
         return userId;
-    }
-
-    public String getPrice() {
-        return Price;
     }
 
     public String getStatus() {
