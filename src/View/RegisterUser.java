@@ -62,10 +62,10 @@ public class RegisterUser {
     }
 
     public static void SaveUser(String fullname, String email, int phone, String password) throws IOException {
-        Socket socket = new Socket("192.168.0.146", 5450);
-
-        OutputStream out = socket.getOutputStream();
-        DataOutputStream req = new DataOutputStream(out);
-        req.writeUTF(fullname);
+//        Socket client = new Socket("192.168.0.146", 5450);
+//
+//        OutputStream out = client.getOutputStream();
+//        DataOutputStream req = new DataOutputStream(out);
+//        req.writeUTF(fullname);
     }
 }
