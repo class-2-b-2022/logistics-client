@@ -3,7 +3,10 @@ public class Main {
     public static final String ANSI_RESET = "\u001B[0m";
 
     public static void main(String[] args) {
-        System.out.println("\n                                                                                                                                         ");
+        // Author:
+        // @Niyigena-Yves
+
+        System.out.println("\n");
         
         System.out.println(ANSI_BLUE +"\t\t __                __    __________    __             _________       _______       ___           ___   _________    "+ANSI_RESET);
         System.out.println(ANSI_BLUE +"\t\t|  |              |  |  |          |  |  |           /          |   /   ___   \\    |   \\        /   |  |         | "+ANSI_RESET);
@@ -38,6 +41,10 @@ public class Main {
         System.out.println(ANSI_BLUE +"\t\t\t\t|   ______    |   \\___ /  |  |  \\___  /  |  |   ____/  /   |  |______  |   ______  "+ANSI_RESET);
         System.out.println(ANSI_BLUE +"\t\t\t\t|          |   \\         /    \\         /   |         /    |         | |          |"+ANSI_RESET);
         System.out.println(ANSI_BLUE +"\t\t\t\t __________      ------         ------       --------       ---------   __________   "+ANSI_RESET);
+
+        System.out.println("\n");
+        System.out.println("\t\t\t\t -------------------------- OFFERING EXCELLENT SERVICES ------------------------");
+        
 
 
 
