@@ -1,8 +1,15 @@
 package main;
 
+import java.util.Scanner;
+
+/**
+ * @author : Mudahemuka Manzi
+ */
 public class ClientMain {
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_RESET = "\u001B[0m";
+    public static final
+    Scanner scanner = new Scanner(System.in);
     public static void welcomeScreen(){
         /**
          * @author: Niyigena Yves
@@ -48,9 +55,20 @@ public class ClientMain {
 
     }
     public static void main(String[] args) {
-
+        int choice;
         welcomeScreen();
-
+        System.out.println("\n");
+        System.out.print("                       1.Login\t\t\t\t\t\t\t\t\t\t");
+        System.out.println("                       2.Register company");
+        choice = scanner.nextInt();
+        switch(choice){
+            case 1:
+//               login
+                break;
+            case 2:
+//                register
+               break;
+        }
     }
 }
 
