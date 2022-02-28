@@ -1,3 +1,4 @@
+package Views;
 import java.util.Scanner;
 
 public class DeliveryModel {
@@ -22,6 +23,7 @@ public class DeliveryModel {
         System.out.println(ANSI_CYAN +"\t\t\t\t __________________________________________________________________"+ANSI_RESET);
     }
     public static void VehicleManagement(){
+        String leftAlignFormat = "| %-11s | %-4d |%n";
         int VehicleManagementChoice;
         Scanner scanner = new Scanner(System.in);
         System.out.println(ANSI_MAG +"\t\t\t\t  --------    SELECT AN OPTION    -----"+ANSI_RESET);
@@ -40,18 +42,46 @@ public class DeliveryModel {
             case 1:
                 System.out.println(ANSI_MAG +"\t\t\t\t Added new vehicle "+ANSI_RESET);
                 // AddNewVehicle;
+                System.out.format("+-----------------+------+%n");
+                System.out.format("| Model       | Status  | Brand | Owner |Plate | %n");
+                System.out.format("+-----------------+------+%n");
+                for (int i = 0; i < 5; i++) {
+                    System.out.format(leftAlignFormat, " AUDI A40   | AUDI  | COMPANY |  Healthy  |", i*125);
+                }
+                System.out.format("+-----------------+------+%n");
                 break;
             case 2:
                 System.out.println(ANSI_MAG +"\t\t\t\t List of all vehicles "+ANSI_RESET);
                 // ViewVehicles();
+                System.out.format("+-----------------+---------------------+%n");
+                System.out.format("| Model       | Status  | Brand | Owner |Plate | %n");
+                System.out.format("+-----------------+------+%n");
+                for (int i = 0; i < 5; i++) {
+                    System.out.format(leftAlignFormat, " AUDI A40   | AUDI  | COMPANY |  Healthy  |", i*115);
+                }
+                System.out.format("+-----------------+---------------------+%n");
                 break;
             case 3:
                 System.out.println(ANSI_MAG +"\t\t\t\t Edited successfully "+ANSI_RESET);
                 // EditVehicle;
+                System.out.format("+-----------------+------+%n");
+                System.out.format("| Model       | Status  | Brand | Owner |Plate | %n");
+                System.out.format("+-----------------+------+%n");
+                for (int i = 0; i < 1; i++) {
+                    System.out.format(leftAlignFormat, " AUDI A40   | AUDI  | COMPANY |  Healthy  |", i+1);
+                }
+                System.out.format("+-----------------+------+%n");
                 break;
             case 4:
                 System.out.println(ANSI_MAG +"\t\t\t\t Deleted successfully "+ANSI_RESET);
                 //DeleteVehicle();
+                System.out.format("+-----------------+------+%n");
+                System.out.format("| Model       | Status  | Brand | Owner |Plate | %n");
+                System.out.format("+-----------------+------+%n");
+                for (int i = 0; i < 4; i++) {
+                    System.out.format(leftAlignFormat, " AUDI A40   | AUDI  | COMPANY |  Healthy  |", i*125);
+                }
+                System.out.format("+-----------------+------+%n");
                 break;
             default:
                 System.out.println(ANSI_MAG +"\t\t\t\t No option seleted "+ANSI_RESET);
@@ -71,13 +101,15 @@ public class DeliveryModel {
         System.out.println(ANSI_MAG +"\t\t\t\t                                       "+ANSI_RESET);
         System.out.println(ANSI_MAG +"\tEnter your choice:      "+ANSI_RESET);
         choice = scanner.nextInt();
+
+
         switch (choice){
             case 1:
                 System.out.println(ANSI_MAG +"\t\t\t\t -----------  VEHICLE MANAGEMENT SYSTEM ---------------"+ANSI_RESET);
                 System.out.println(ANSI_MAG +"\t\t\t\t                                       "+ANSI_RESET);
                 System.out.println(ANSI_MAG +"\t\t\t\t                                       "+ANSI_RESET);
                 VehicleManagement();
-            break;
+                break;
             case 2:
                 System.out.println(ANSI_MAG +"\t\t\t\t -----------  TRACK YOUR PRODUCTS ---------------  "+ANSI_RESET);
                 // Tracking();
