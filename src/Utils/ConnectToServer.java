@@ -1,7 +1,7 @@
 
-package Utils;
-import models.ClientRequest;
-import models.ResponseBody;
+package utils;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -11,7 +11,7 @@ import java.util.List;
 
 
 public class ConnectToServer {
-    public ResponseBody connectToServer(ClientRequest clientRequest)throws Exception
+    public ResponseBody connectToServer(RequestBody clientRequest)throws Exception
     {
         // establish a connection by providing host and port
         // number
@@ -25,9 +25,11 @@ public class ConnectToServer {
 
             String line = null;
 
-
             // sending the user input to server
-            out.writeObject(clientRequest);
+            ObjectMapper objectMapper = new ObjectMapper();
+            String json = objectMapper.writeValueAsString(clientRequest);
+            System.out.println(json);
+            out.writeObject(json);
             out.flush();
 
             // displaying server reply

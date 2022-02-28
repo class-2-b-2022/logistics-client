@@ -1,10 +1,12 @@
 package logic;
 
-import models.DeliveryModule.Vehicle;
-import Utils.ConnectToServer;
-import models.ClientRequest;
-import models.ResponseBody;
-import models.ResponseStatus;
+import formats.Vehicle;
+import utils.ConnectToServer;
+import utils.RequestBody;
+import utils.ResponseBody;
+import utils.ResponseStatus;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.Scanner;
 
@@ -35,9 +37,10 @@ public class VehicleManager {
         vehicle.setOwner(owner);
         vehicle.setDescription(description);
 
-        ClientRequest clientRequest = new ClientRequest();
+        RequestBody clientRequest = new RequestBody();
         clientRequest.setRoute("/delivery/vehicle");
         clientRequest.setAction("register");
+
         clientRequest.setData(vehicle);
         ConnectToServer clientServerConnector = new ConnectToServer();
         ResponseBody responseBody = clientServerConnector.connectToServer(clientRequest);

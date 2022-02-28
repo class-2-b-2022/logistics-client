@@ -1,30 +1,31 @@
-package models;
+package utils;
+
+
 
 import java.io.Serializable;
 
-public class ClientRequest implements Serializable {
+public class RequestBody implements Serializable {
     private String route; // /users
     private String action; //update
     private Object data; //{}
 
-    public ClientRequest(){}
-    public ClientRequest(String route, String action, Object data) {
-        this.route = route;
+    public RequestBody(){}
+    public RequestBody(String url, String action, Object object) {
+        this.route = url;
         this.action = action;
-        this.data = data;
+        this.data = object;
     }
         /*
            /deleteUsers/1
            /updateUser/1
-
          */
 
     public String getRoute() {
         return route;
     }
 
-    public void setRoute(String url) {
-        this.route = url;
+    public void setRoute(String route) {
+        this.route = route;
     }
 
     public String getAction() {
@@ -39,7 +40,7 @@ public class ClientRequest implements Serializable {
         return data;
     }
 
-    public void setData(Object object) {
-        this.data = object;
+    public void setData(Object data) {
+        this.data = data;
     }
 }
