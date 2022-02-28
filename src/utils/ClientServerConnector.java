@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class ConnectToServer {
+public class ClientServerConnector {
     public ResponseBody ConnectToServer(RequestBody requestBody)throws Exception
     {
         // establish a connection by providing host and port
         // number
-        try (Socket socket = new Socket("localhost", 1294)) {
+        try (Socket socket = new Socket("localhost", 5450)) {
 
             // writing to server
             ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
