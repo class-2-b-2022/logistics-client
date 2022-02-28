@@ -43,7 +43,7 @@ public class Main {
         System.out.println(ANSI_BLUE +"\t\t\t\t __________      ------         ------       --------       ---------   __________   "+ANSI_RESET);
 
         System.out.println("\n");
-        System.out.println("\t\t\t\t -------------------------- OFFERING EXCELLENT SERVICES ------------------------");
+        System.out.println("\t\t\t\t ---------------------- OFFERING EXCELLENT LOGISTIC SERVICES --------------------");
         
 
 
