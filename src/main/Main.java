@@ -25,7 +25,7 @@ public class Main {
     }
 
     private boolean connectTOServer(String serverIp) {
-        int portNumber = 8000;
+        int portNumber = 5450;
         try{
             Socket socket = new Socket(serverIp, portNumber);
             while(isConnectionOn){

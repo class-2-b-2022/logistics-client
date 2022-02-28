@@ -32,15 +32,20 @@ public class CompanyMainView {
                     String role = scan.nextLine();
                     if(!role.equals("System Admin")){
                         System.out.println("You are not allowed to register a company, ask the System Admin to do that task");
-                        companyView = false;
+//                        companyView = false;
                         break;
                     }
                     NewCompanyView newCompanyView = new NewCompanyView(this.socket);
                     newCompanyView.view();
+                    companyView = false;
                     break;
                 case "2":
                     ReadCompanyView readCompanyView = new ReadCompanyView(this.socket);
                     readCompanyView.view();
+                    break;
+                case "3":
+                case "4":
+                    System.out.println("Sub-module not available, Sorry for any inconviniences");
                     break;
                 case "00":
                     companyView = false;

@@ -24,7 +24,7 @@ public class NewCompanyView {
         do{
             System.out.println("\t\t\t------------------NEW-CUSTOMER---------------------");
             System.out.println("\n       00. Enter To Exit ");
-            System.out.println("        Enter  Company Owner");
+            System.out.println("        Enter  Company Owner Code");
             try {
                 int companyOwner = Integer.parseInt(reader.readLine());
 
