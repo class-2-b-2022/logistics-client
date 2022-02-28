@@ -1,17 +1,43 @@
 package main;
+import views.CompanyMainView;
+import views.NewCompanyView;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.net.*;
 
 public class Main {
+    private OutputStream output = null;
+    private ObjectOutputStream objectOutput = null;
+    private boolean isConnectionOn = true;
 
-    public static void main(String[] args) {
-	    System.out.println("Welcome to logistics");
+    public Main(String serverIP) throws IOException {
+        if(!connectTOServer(serverIP)) {
+            System.out.println("Failed to connect to the server on: "+serverIP);
+        }
+    }
 
-        System.out.println("Hello World");
+    public static void main(String[] args) throws IOException {
+        new Main("localhost");
+        System.out.println("Shutting down.......");
 
-        System.out.println("hello there ");
+    }
 
-        System.out.println("Heyyy");
-
+    private boolean connectTOServer(String serverIp) {
+        int portNumber = 8000;
+        try{
+            Socket socket = new Socket(serverIp, portNumber);
+            while(isConnectionOn){
+                CompanyMainView companyMainView = new CompanyMainView(socket);
+                companyMainView.view();
+            }
+        }catch (Exception e){
+            System.out.println("Failed to connect to the server at port: " + portNumber);
+            System.out.println("Exception: " + e.toString());
+        }
+        return true;
     }
 
 }

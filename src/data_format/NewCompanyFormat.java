@@ -1,12 +1,15 @@
 package data_format;
 
 public class NewCompanyFormat {
+    private int companyOwner;
     private String companyName;
     private String companyEmail;
     private String companyType;
     private String companyPhone;
     private String companyDescription;
-    public NewCompanyFormat(String companyName, String companyEmail, String companyPhone, String companyType, String companyDescription){
+
+    public NewCompanyFormat(int companyOwner, String companyName, String companyEmail, String companyPhone, String companyType, String companyDescription){
+        this.companyOwner = companyOwner;
         this.companyDescription = companyDescription;
         this.companyName = companyName;
         this.companyEmail = companyEmail;
@@ -33,6 +36,14 @@ public class NewCompanyFormat {
 
     public String getCompanyType() {
         return companyType;
+    }
+
+    public int getCompanyOwner() {
+        return companyOwner;
+    }
+
+    public void setCompanyOwner(int companyOwner) {
+        this.companyOwner = companyOwner;
     }
 
     public void setCompanyType(String companyType) {

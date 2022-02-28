@@ -27,10 +27,11 @@ public class CompanyService {
     public void create(NewCompanyFormat format) throws IOException, ClassNotFoundException {
         ObjectMapper objectMapper= new ObjectMapper();
         String json =objectMapper.writeValueAsString(format);
+
         SendtoServer sendtoServer = new SendtoServer(json, this.socket);
         if (sendtoServer.send()) {
             System.out.println("Company Registered Successfully");
-            this.handleCreateCustomerResponse();
+//            this.handleCreateCustomerResponse();
         }
     }
     // getting response from the server
