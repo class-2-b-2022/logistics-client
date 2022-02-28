@@ -1,4 +1,4 @@
-package formats;
+package models.DeliveryModule;
 
       /*
        *required fields for vehicle*
