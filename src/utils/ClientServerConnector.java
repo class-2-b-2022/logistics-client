@@ -1,5 +1,7 @@
 
 package  utils;
+import models.ClientRequest;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -10,27 +12,24 @@ import java.util.Scanner;
 
 
 public class ClientServerConnector {
-    public ResponseBody ConnectToServer(RequestBody requestBody)throws Exception
+    public static ResponseBody serverClientConnnector(ClientRequest clientRequest)throws Exception
     {
         // establish a connection by providing host and port
         // number
         try (Socket socket = new Socket("localhost", 5450)) {
 
             // writing to server
-            ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+            ObjectOutputStream requestStream = new ObjectOutputStream(socket.getOutputStream());
 
             // reading from server
-            ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
+            ObjectInputStream responseStream = new ObjectInputStream(socket.getInputStream());
 
-            String line = null;
+            // sending request
+            requestStream.writeObject(clientRequest);
+            requestStream.flush();
 
-
-            // sending the user input to server
-            out.writeObject(requestBody);
-            out.flush();
-
-            // displaying server reply
-            List<Object> dataReturned = (List<Object>) in.readObject();
+            // getting response
+            List<Object> dataReturned = (List<Object>) responseStream.readObject();
 
 
             ResponseBody responseBody = new ResponseBody(dataReturned);

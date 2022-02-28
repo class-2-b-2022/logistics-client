@@ -1,5 +1,7 @@
 package main;
 
+import logic.TestingServerConnecting;
+
 import java.util.Scanner;
 
 public class ClientMain {
@@ -51,12 +53,13 @@ public class ClientMain {
         System.out.println("\t\t\t\t ---------------------- OFFERING EXCELLENT LOGISTIC SERVICES --------------------");
 
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         int choice;
         welcomeScreen();
         System.out.println("\n");
         System.out.print("\t\t\t\t\t\t       1.Login\t\t");
-        System.out.println("2.Register company");
+        System.out.println("2.Testing");
+
         System.out.print("\t\t\t\t\t\t");
         choice = scanner.nextInt();
         switch(choice){
@@ -65,7 +68,10 @@ public class ClientMain {
                 break;
             case 2:
 //                register
+                TestingServerConnecting.connect();
                break;
+            case 3:
+
         }
     }
 }
