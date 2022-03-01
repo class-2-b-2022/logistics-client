@@ -79,6 +79,8 @@ public class DistributorWallet {
             InputStream inFromServer = socket.getInputStream();
             DataInputStream response = new DataInputStream(inFromServer);
 
+            System.out.println(response.readUTF());
+
         }catch(Exception e){
 //            e.printStackTrace()
         }
