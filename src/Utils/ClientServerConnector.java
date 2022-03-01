@@ -7,12 +7,13 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 
 public class ClientServerConnector {
-    public static ResponseBody serverClientConnnector(ClientRequest clientRequest)throws Exception
+    public static ResponseBody serverClientConnnector(String json)throws Exception
     {
         // establish a connection by providing host and port
         // number
@@ -23,9 +24,10 @@ public class ClientServerConnector {
 
             // reading from server
             ObjectInputStream responseStream = new ObjectInputStream(socket.getInputStream());
-
+             List<String> dataTosend = new ArrayList<>();
+             dataTosend.add(json);
             // sending request
-            requestStream.writeObject(clientRequest);
+            requestStream.writeObject(dataTosend);
             requestStream.flush();
 
             // getting response

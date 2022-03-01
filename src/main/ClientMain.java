@@ -1,8 +1,11 @@
 package main;
 
+
 import logic.TestingServerConnecting;
 
 import java.util.Scanner;
+import Views.DeliveryModel;
+
 
 public class ClientMain {
     public static final String ANSI_BLUE = "\u001B[34m";
@@ -54,8 +57,13 @@ public class ClientMain {
 
     }
     public static void main(String[] args) throws Exception {
+       welcomeScreen();
         int choice;
-        welcomeScreen();
+
+        DeliveryModel delivery = new DeliveryModel();
+//        delivery.Delivery();
+//        delivery.Start();
+//        welcomeScreen();
         System.out.println("\n");
         System.out.print("\t\t\t\t\t\t       1.Login\t\t");
         System.out.println("2.Testing");
@@ -72,7 +80,13 @@ public class ClientMain {
                break;
             case 3:
 
+
         }
+
+
+
+
+
     }
 }
 

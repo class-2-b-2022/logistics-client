@@ -1,6 +1,8 @@
 package models;
 
-public class BillingModel {
+import java.io.Serializable;
+
+public class BillingModel implements Serializable {
     private int userId;
     private float amount;
 

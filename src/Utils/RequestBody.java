@@ -5,28 +5,27 @@ package utils;
 import java.io.Serializable;
 
 public class RequestBody implements Serializable {
-    private String url; // /users
+    private String route; // /users
     private String action; //update
-    private Object object; //{}
+    private Object data; //{}
 
     public RequestBody(){}
     public RequestBody(String url, String action, Object object) {
-        this.url = url;
+        this.route = url;
         this.action = action;
-        this.object = object;
+        this.data = object;
     }
         /*
            /deleteUsers/1
            /updateUser/1
-
          */
 
-    public String getUrl() {
-        return url;
+    public String getRoute() {
+        return route;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setRoute(String route) {
+        this.route = route;
     }
 
     public String getAction() {
@@ -37,11 +36,11 @@ public class RequestBody implements Serializable {
         this.action = action;
     }
 
-    public Object getObject() {
-        return object;
+    public Object getData() {
+        return data;
     }
 
-    public void setObject(Object object) {
-        this.object = object;
+    public void setData(Object data) {
+        this.data = data;
     }
 }
