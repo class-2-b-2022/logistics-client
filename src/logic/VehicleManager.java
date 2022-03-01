@@ -54,5 +54,8 @@ public class VehicleManager {
         }
 
     }
+    public void viewVehicles() throws Exception {
+
+    }
 
 }
