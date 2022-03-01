@@ -1,10 +1,13 @@
 package main;
 
-import java.util.Scanner;
 
-/**
- * @author : Mudahemuka Manzi
- */
+import logic.TestingServerConnecting;
+
+import java.util.Scanner;
+import Views.DeliveryModel;
+import logic.VehicleManager;
+
+
 public class ClientMain {
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_RESET = "\u001B[0m";
@@ -54,12 +57,20 @@ public class ClientMain {
         System.out.println("\t\t\t\t ---------------------- OFFERING EXCELLENT LOGISTIC SERVICES --------------------");
 
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+       welcomeScreen();
         int choice;
-        welcomeScreen();
+
+        DeliveryModel delivery = new DeliveryModel();
+        VehicleManager vh = new VehicleManager();
+//        delivery.Delivery();
+//        delivery.Start();
+//        welcomeScreen();
         System.out.println("\n");
-        System.out.print("                       1.Login\t\t\t\t\t\t\t\t\t\t");
-        System.out.println("                       2.Register company");
+        System.out.print("\t\t\t\t\t\t       1.Login\t\t");
+        System.out.println("2.Testing");
+
+        System.out.print("\t\t\t\t\t\t");
         choice = scanner.nextInt();
         switch(choice){
             case 1:
@@ -67,8 +78,18 @@ public class ClientMain {
                 break;
             case 2:
 //                register
+                TestingServerConnecting.connect();
+                ;
                break;
+            case 3:
+
+
         }
+
+
+
+
+
     }
 }
 
