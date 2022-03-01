@@ -25,6 +25,7 @@ public class CompanyMainView {
             System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\tEnter your choice"+ Colors.ANSI_YELLOW+" <1-00>"+Colors.ANSI_RESET+": ");
             Scanner scan = new Scanner(System.in);
             String input = scan.nextLine();
+            String number = "1";
 
             switch (input){
                 case "1":
