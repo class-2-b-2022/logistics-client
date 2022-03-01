@@ -5,6 +5,7 @@ import logic.TestingServerConnecting;
 
 import java.util.Scanner;
 import Views.DeliveryModel;
+import logic.VehicleManager;
 
 
 public class ClientMain {
@@ -61,6 +62,7 @@ public class ClientMain {
         int choice;
 
         DeliveryModel delivery = new DeliveryModel();
+        VehicleManager vh = new VehicleManager();
 //        delivery.Delivery();
 //        delivery.Start();
 //        welcomeScreen();
@@ -77,6 +79,7 @@ public class ClientMain {
             case 2:
 //                register
                 TestingServerConnecting.connect();
+                ;
                break;
             case 3:
 
