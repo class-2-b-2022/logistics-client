@@ -1,6 +1,6 @@
 package main.Distributor;
 
-public class Person {
+public class Distributor {
     private String fname;
     private String lname;
     private String email;
