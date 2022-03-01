@@ -7,6 +7,7 @@ public class Main {
     public static final String ANSI_RESET = "\u001B[0m";
 
     public static void main(String[] args) throws Exception {
+
         // Author:
         // @Niyigena-Yves
 
