@@ -4,10 +4,6 @@ import models.*;
 
 import java.io.*;
 import java.net.Socket;
-import java.sql.ResultSet;
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,12 +14,13 @@ public class Inventory {
     public void create(){
         try {
             System.out.println("Welcome to Inventory MIS, register inventory please!");
-
+            DataInputStream serverSaveResult;
             Socket socket = new Socket("localhost",5450);
             OutputStream outToServer = socket.getOutputStream();
             ObjectOutputStream out = new ObjectOutputStream(outToServer);
+            int userId = 1;
 
-            request = new ClientRequest("/inventory/getProducts", "get", "");
+            request = new ClientRequest("/products", "GET", userId);
             out.writeObject(request);
 
             InputStream serverResponse = socket.getInputStream();
@@ -47,28 +44,49 @@ public class Inventory {
             inventoryModel.setStatus(sc.nextLine());
 
             System.out.println("which product? ");
+            System.out.print("(Hint: Choose id from given products) :: ");
             inventoryModel.setProductId(sc.nextInt());
 
             System.out.println("How many products? ");
             inventoryModel.setQuantity(sc.nextInt());
 
-            inventoryModel.setProductId(1);
-            inventoryModel.setUserId(1);
+            // set user who registered inventory
+            inventoryModel.setUserId(userId);
 
-            request = new ClientRequest("/inventory", "post", inventoryModel);
+            request = new ClientRequest("/inventory", "POST", inventoryModel);
             out.writeObject(request);
 
-            serverResponse = socket.getInputStream();
-            System.out.println(serverResponse);
+            serverSaveResult = new DataInputStream(socket.getInputStream());
 
-
-            inFromServer = new ObjectInputStream(serverResponse);
-//            productResult = (List) inFromServer.readObject();
-//            System.out.println(productResult);
-
+            if(serverSaveResult.readInt() > 0){
+                System.out.print("successfully registered the inventory");
+            }else {
+                System.out.println("Please register the product Again. An error occured!");
+            }
         }catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public void getInventories(int userId){
+        try {
+            Socket socket = new Socket("localhost",5450);
+            OutputStream outToServer = socket.getOutputStream();
+            ObjectOutputStream out = new ObjectOutputStream(outToServer);
+            // Send request to server
+            this.request = new ClientRequest("/inventory", "GET", userId);
+            out.writeObject(request);
+            ObjectInputStream inventoryFromServer = new ObjectInputStream(socket.getInputStream());
 
+            List inventoryResult = (List) inventoryFromServer.readObject();
+
+           InventoryModel inventoryModel;
+            for (int i=0; i<inventoryResult.size(); i++){
+                inventoryModel = (InventoryModel) inventoryResult.get(i);
+                System.out.println("product id: " + inventoryModel.getProductId() + " Quantity name: " + inventoryModel.getQuantity()
+                + " Status " + inventoryModel.getStatus() + " User " + inventoryModel.getUserId());
+            }
+        }catch (Exception e){
+            e.getMessage();
+        }
     }
 }
