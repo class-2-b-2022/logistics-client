@@ -1,3 +1,5 @@
+package main.Distributor;
+
 public class Person {
     private String fname;
     private String lname;
