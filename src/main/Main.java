@@ -1,9 +1,12 @@
 package main;
+
+import Views.Login;
+
 public class Main {
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_RESET = "\u001B[0m";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         // Author:
         // @Niyigena-Yves
 
@@ -45,6 +48,7 @@ public class Main {
 
         System.out.println("\n");
         System.out.println("\t\t\t\t ---------------------- OFFERING EXCELLENT LOGISTIC SERVICES --------------------");
-
+        Login login =new Login();
+//        login.view();
     }
 }
