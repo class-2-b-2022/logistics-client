@@ -14,7 +14,7 @@ public class Login {
     PrintWriter output;
 
     public void startClient() throws UnknownHostException, IOException{
-        socket = new Socket("localhost", 9090);
+        socket = new Socket("192.168.1.235", 5450   );
         output = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
         String email;
         String password;

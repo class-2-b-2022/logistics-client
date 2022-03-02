@@ -1,4 +1,4 @@
-package formats;
+package models;
 
       /*
        *required fields for vehicle*
