@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 
 public class ClientServerConnector {
-    public static ResponseBody serverClientConnnector(String json)throws Exception
+    public static Object serverClientConnnector(String json)throws Exception
     {
         // establish a connection by providing host and port
         // number
@@ -33,10 +33,7 @@ public class ClientServerConnector {
             // getting response
             List<Object> dataReturned = (List<Object>) responseStream.readObject();
 
-
-            ResponseBody responseBody = new ResponseBody(dataReturned);
-
-            return responseBody;
+            return dataReturned;
 
         }
         catch (IOException e) {

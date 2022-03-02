@@ -10,10 +10,11 @@ public class TestingServerConnecting {
         ClientRequest clientRequest = new ClientRequest();
         clientRequest.setRoute("/testing");
         clientRequest.setAction("testing");
-        BillingModel billModel = new BillingModel(11, 105000);
+        BillingModel billModel = new BillingModel(1100, 2000000);
         clientRequest.setData(billModel);
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(clientRequest);
-        ClientServerConnector.serverClientConnnector(json);
+         Object obj = ClientServerConnector.serverClientConnnector(json);
+
     }
 }
