@@ -1,4 +1,4 @@
-package models;
+package formats;
 /**
  * @author : Mudahemuka Manzi
  */

@@ -1,4 +1,8 @@
 package Views;
+import formats.Vehicle;
+import logic.VehicleManager;
+
+import java.util.List;
 import java.util.Scanner;
 
 public class DeliveryModel {
@@ -22,7 +26,7 @@ public class DeliveryModel {
         System.out.println(ANSI_CYAN +"\t\t\t\t ________________0 0 0___________________________0 0 0_____________"+ANSI_RESET);
         System.out.println(ANSI_CYAN +"\t\t\t\t __________________________________________________________________"+ANSI_RESET);
     }
-    public static void VehicleManagement(){
+    public static void VehicleManagement() throws Exception {
         String leftAlignFormat = "| %-11s | %-4d |%n";
         int VehicleManagementChoice;
         Scanner scanner = new Scanner(System.in);
@@ -36,28 +40,32 @@ public class DeliveryModel {
         System.out.println(ANSI_MAG +"\t\t\t\t                                       "+ANSI_RESET);
         System.out.println(ANSI_MAG +"\t\t\t\t ________    4. Delete a vehicle    _______"+ANSI_RESET);
         System.out.println(ANSI_MAG +"\t\t\t\t                                       "+ANSI_RESET);
-        System.out.println(ANSI_MAG +"\tEnter your choice:      "+ANSI_RESET);
+        System.out.println(ANSI_MAG +"\t Enter your choice:      "+ANSI_RESET);
         VehicleManagementChoice = scanner.nextInt();
+        VehicleManager vehicleManager = new VehicleManager();
         switch (VehicleManagementChoice){
             case 1:
+                vehicleManager.registerVehicle();
                 System.out.println(ANSI_MAG +"\t\t\t\t Added new vehicle "+ANSI_RESET);
                 // AddNewVehicle;
                 System.out.format("+-----------------+------+%n");
                     System.out.format("| Model       | Status  | Brand | Owner |Plate | %n");
                 System.out.format("+-----------------+------+%n");
                 for (int i = 0; i < 5; i++) {
+
                     System.out.format(leftAlignFormat, " AUDI A40   | AUDI  | COMPANY |  Healthy  |", i*125);
                 }
                 System.out.format("+-----------------+------+%n");
                 break;
             case 2:
                 System.out.println(ANSI_MAG +"\t\t\t\t List of all vehicles "+ANSI_RESET);
-                // ViewVehicles();
+                List<Vehicle> vehicles = vehicleManager.viewVehicles();
                 System.out.format("+-----------------+---------------------+%n");
-                System.out.format("| Model       | Status  | Brand | Owner |Plate | %n");
+                System.out.format("| #Id    | Model    | Owner       | Brand  | Plate Number | Description  |");
                 System.out.format("+-----------------+------+%n");
-                for (int i = 0; i < 5; i++) {
-                    System.out.format(leftAlignFormat, " AUDI A40   | AUDI  | COMPANY |  Healthy  |", i*115);
+                for ( Vehicle vehicle : vehicles) {
+                    String line = String.format("  %s   |   %s    |   %s   | %s  | %s   |   %s  ", vehicle.getVehicleId(),vehicle.getModel(),vehicle.getOwner(),vehicle.getBrand(),vehicle.getPlateNbr(),vehicle.getDescription(),vehicle.getVehicleId());
+                    System.out.format(leftAlignFormat, line,2,3);
                 }
                 System.out.format("+-----------------+---------------------+%n");
                 break;
@@ -87,7 +95,8 @@ public class DeliveryModel {
                 System.out.println(ANSI_MAG +"\t\t\t\t No option seleted "+ANSI_RESET);
         }
     }
-    public static void Start(){
+
+    public static void Start() throws Exception {
         int choice;
         Scanner scanner = new Scanner(System.in);
         System.out.println(ANSI_MAG +"\t\t\t\t                                       "+ANSI_RESET);
@@ -106,6 +115,7 @@ public class DeliveryModel {
                 System.out.println(ANSI_MAG +"\t\t\t\t -----------  VEHICLE MANAGEMENT SYSTEM ---------------"+ANSI_RESET);
                 System.out.println(ANSI_MAG +"\t\t\t\t                                       "+ANSI_RESET);
                 System.out.println(ANSI_MAG +"\t\t\t\t                                       "+ANSI_RESET);
+
                 VehicleManagement();
             break;
             case 2:
@@ -115,7 +125,7 @@ public class DeliveryModel {
                 System.out.println(ANSI_MAG +"\t\t\t\t No option seleted "+ANSI_RESET);
         }
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Delivery();
         Start();
     }
