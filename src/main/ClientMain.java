@@ -1,11 +1,11 @@
 package main;
 
 
+import Views.*;
 import logic.TestingServerConnecting;
+import logic.VehicleManager;
 
 import java.util.Scanner;
-import Views.DeliveryModel;
-import logic.VehicleManager;
 
 
 public class ClientMain {

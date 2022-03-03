@@ -1,13 +1,10 @@
 package logic;
+
+import Utils.ConnectToServer;
+import Utils.RequestBody;
+import Utils.ResponseBody;
+import Utils.ResponseStatus;
 import models.*;
-
-
-import utils.ConnectToServer;
-import utils.RequestBody;
-import utils.ResponseBody;
-import utils.ResponseStatus;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.Scanner;
 

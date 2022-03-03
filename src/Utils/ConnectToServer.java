@@ -1,5 +1,5 @@
 
-package utils;
+package Utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -9,13 +9,12 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.List;
 
-
 public class ConnectToServer {
     public ResponseBody connectToServer(RequestBody clientRequest)throws Exception
     {
         // establish a connection by providing host and port
         // number
-        try (Socket socket = new Socket("192.168.0.77", 5450)) {
+        try (Socket socket = new Socket("192.168.1.93", 5450)) {
 
             // writing to server
             ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
@@ -34,7 +33,6 @@ public class ConnectToServer {
 
             // displaying server reply
             List<Object> dataReturned = (List<Object>) in.readObject();
-
 
             ResponseBody responseBody = new ResponseBody(dataReturned);
 
