@@ -20,11 +20,12 @@ public class TestingServerConnecting {
         BillingModel billModel = new BillingModel(1100, 2000000);
         clientRequest.setData(billModel);
         ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString(clientRequest);
          ResponseBody res = new ConnectToServer().connectToServer(clientRequest);
         System.out.println("Returned data " +res.getData());
         JsonNode jsonNode = objectMapper.readTree(res.getData());
-        System.out.println("ResponseData");
-        System.out.println(jsonNode);
+        byte[] dataToparse = objectMapper.writeValueAsBytes(jsonNode);
+        BillingModel billingModel = objectMapper.readValue(dataToparse, BillingModel.class);
+        System.out.println(billingModel.getAmount());
+
     }
 }
