@@ -1,10 +1,10 @@
 package Views.billing;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import logic.TestingServerConnecting;
-import models.BillingModel;
-import models.ClientRequest;
-import models.CreateWalletModel;
-import utils.ClientServerConnector;
+//import models.BillingModel;
+//import models.ClientRequest;
+//import models.CreateWalletModel;
+//import utils.ClientServerConnector;
 
 import java.util.Scanner;
 
@@ -64,23 +64,13 @@ public class DistributorWalletView {
             System.out.println(" Enter your choice: ");
             choice = scanner.nextInt();
 
-            TestingServerConnecting test = new TestingServerConnecting();
 
             switch (choice) {
                 case 1:
                         System.out.println("Enter your user id to create a wallet: ");
                         userId = scanner.nextInt();
-
-                    ClientRequest clientRequest = new ClientRequest();
-                    clientRequest.setRoute("/billing");
-                    clientRequest.setAction("CreateWallet");
-                    CreateWalletModel newWallet = new CreateWalletModel(userId);
-                    clientRequest.setData(newWallet);
-                    ObjectMapper objectMapper = new ObjectMapper();
-                    String json = objectMapper.writeValueAsString(clientRequest);
-                    ClientServerConnector.serverClientConnnector(json);
                 case 2:
-                    test.connect(0,0,"GetWallet");
+                    TestingServerConnecting.connect();
                     break;
                 case 3:
                     System.out.println("Enter your user id: ");
@@ -88,7 +78,7 @@ public class DistributorWalletView {
                     System.out.println("Enter amount you want to save: ");
                     amount = scanner.nextFloat();
 
-                    test.connect(userId,amount, "Deposit");
+                    test.connect(userId,amount);
                     break;
                 case 4:
 //
@@ -97,7 +87,7 @@ public class DistributorWalletView {
                     System.out.println("Enter amount you want to withdraw: ");
                     amount = scanner.nextFloat();
 
-                    test.connect(userId,amount,"Withdraw");
+                    test.connect(userId,amount);
 
                     break;
                 default:
