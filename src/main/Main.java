@@ -1,14 +1,15 @@
 package main;
-import main.views.inventory.Inventory;
+import main.views.inventory.*;
 
-import java.net.*;
 
 public class Main {
 
     public static void main(String[] args) {
-        Inventory inventory = new Inventory();
-        inventory.create();
+//        Inventory inventory = new Inventory();
+//        inventory.create();
 
+    	Product product=new Product();
+    	product.createProduct();
     }
 
 }

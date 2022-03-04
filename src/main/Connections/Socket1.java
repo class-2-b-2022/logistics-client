@@ -1,5 +1,4 @@
 package main.Connections;
-
 import java.io.IOException;
 
 public class Socket1 {
