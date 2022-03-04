@@ -1,20 +1,21 @@
 
-package  utils;
+package Utils;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.net.Socket;
 import java.util.List;
-import java.util.Scanner;
+import Utils.*;
 
-
-public class ClientServerConnector {
-    public ResponseBody ConnectToServer(RequestBody requestBody)throws Exception
+public class ConnectToServer {
+    public Utils.ResponseBody connectToServer(Utils.RequestBody clientRequest)throws Exception
     {
         // establish a connection by providing host and port
         // number
-        try (Socket socket = new Socket("localhost", 5450)) {
+        try (Socket socket = new Socket("192.168.0.77", 5450)) {
 
             // writing to server
             ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
@@ -24,16 +25,18 @@ public class ClientServerConnector {
 
             String line = null;
 
-
             // sending the user input to server
-            out.writeObject(requestBody);
+            ObjectMapper objectMapper = new ObjectMapper();
+            String json = objectMapper.writeValueAsString(clientRequest);
+            System.out.println(json);
+            out.writeObject(json);
             out.flush();
 
             // displaying server reply
             List<Object> dataReturned = (List<Object>) in.readObject();
 
 
-            ResponseBody responseBody = new ResponseBody(dataReturned);
+            Utils.ResponseBody responseBody = new Utils.ResponseBody(dataReturned);
 
             return responseBody;
 

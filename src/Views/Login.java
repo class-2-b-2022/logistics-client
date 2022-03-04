@@ -24,18 +24,13 @@ public class Login {
         System.out.println(ANSI_RESET);
         System.out.print("\t\t\tEmail:");
         email=scanner.nextLine();
-        output.println(email);
         System.out.print("\t\t\tPassword:");
         password=scanner.nextLine();
-        output.println(password);
-        output.flush();
-        read = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        String response = read.readLine();
-        System.out.println("Response: " + response);
+        Utils.RequestBody clientRequest = new Utils.RequestBody();
+//        read = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+//        String response = read.readLine();
+//        System.out.println("Response: " + response);
     }
-
-
-
     public static void main(String args[]){
         Login client = new Login();
         try {

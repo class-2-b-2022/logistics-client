@@ -1,8 +1,11 @@
 package models;
+
+import java.io.Serializable;
+
 /**
  * @author : Mudahemuka Manzi
  */
-public class ClientRequest {
+public class ClientRequest implements Serializable {
     private String route;///users
     private String action;//regist
     private Object data;
@@ -12,7 +15,6 @@ public class ClientRequest {
         this.action = action;
         this.data = data;
     }
-
     public String getRoute() {
         return route;
     }

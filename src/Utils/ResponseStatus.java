@@ -1,8 +1,5 @@
-package utils;
-
+package Utils;
 import java.io.Serializable;
-
-
 public class ResponseStatus implements Serializable {
     private Integer status;
     private String message;
