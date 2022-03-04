@@ -78,7 +78,7 @@ public class ClientMain {
                 break;
             case 2:
 //                register
-                TestingServerConnecting.connect();
+//                TestingServerConnecting.connect();
                 ;
                break;
             case 3:

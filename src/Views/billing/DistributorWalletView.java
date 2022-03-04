@@ -1,10 +1,12 @@
 package Views.billing;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import logic.TestingServerConnecting;
+import models.BillingModel;
+import models.ClientRequest;
+import models.CreateWalletModel;
+import utils.ClientServerConnector;
+
 import java.util.Scanner;
-import java.net.Socket;
 
 
 //save money, make transactions!!
@@ -16,7 +18,9 @@ public class DistributorWalletView {
 
 
         int choice;
-        String choiceText="";
+        int userId;
+        float amount;
+
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("\n\n");
@@ -45,41 +49,60 @@ public class DistributorWalletView {
 
 
         try {
-            Socket socket = new Socket("localhost", 2334);
-            OutputStream outToServer = socket.getOutputStream();
-            DataOutputStream requestToServer = new DataOutputStream(outToServer);
+//            Socket socket = new Socket("localhost", 2334);
+//            OutputStream outToServer = socket.getOutputStream();
+//            DataOutputStream requestToServer = new DataOutputStream(outToServer);
 
 
 
             System.out.println("\n\n");
             System.out.println("                            WHAT DO YOU WANT TO DO WITH YOUR WALLET?                          ");
-            System.out.println("                    (1) Get my Balance                    ");
-            System.out.println("                    (2) Save to my Wallet                 ");
-            System.out.println("                    (3) Withdraw from my Wallet           ");
+            System.out.println("                    (1) Create Wallet                    ");
+            System.out.println("                    (2) Get Wallet Details                    ");
+            System.out.println("                    (3) Save to my Wallet                 ");
+            System.out.println("                    (4) Withdraw from my Wallet           ");
             System.out.println(" Enter your choice: ");
             choice = scanner.nextInt();
 
+            TestingServerConnecting test = new TestingServerConnecting();
 
             switch (choice) {
                 case 1:
-                    choiceText = "Get my Balance";
-                    break;
+                        System.out.println("Enter your user id to create a wallet: ");
+                        userId = scanner.nextInt();
+
+                    ClientRequest clientRequest = new ClientRequest();
+                    clientRequest.setRoute("/billing");
+                    clientRequest.setAction("CreateWallet");
+                    CreateWalletModel newWallet = new CreateWalletModel(userId);
+                    clientRequest.setData(newWallet);
+                    ObjectMapper objectMapper = new ObjectMapper();
+                    String json = objectMapper.writeValueAsString(clientRequest);
+                    ClientServerConnector.serverClientConnnector(json);
                 case 2:
-                    choiceText = "Save to my Wallet";
+                    test.connect(0,0,"GetWallet");
                     break;
                 case 3:
-                    choiceText = "Withdraw from my Wallet";
+                    System.out.println("Enter your user id: ");
+                    userId = scanner.nextInt();
+                    System.out.println("Enter amount you want to save: ");
+                    amount = scanner.nextFloat();
+
+                    test.connect(userId,amount, "Deposit");
+                    break;
+                case 4:
+//
+                    System.out.println("Enter your user id: ");
+                    userId= scanner.nextInt();
+                    System.out.println("Enter amount you want to withdraw: ");
+                    amount = scanner.nextFloat();
+
+                    test.connect(userId,amount,"Withdraw");
+
                     break;
                 default:
                     System.out.println("Please enter a valid choice");
             }
-
-            requestToServer.writeUTF(choiceText);
-
-            InputStream inFromServer = socket.getInputStream();
-            DataInputStream response = new DataInputStream(inFromServer);
-
-            System.out.println(response.readUTF());
 
         }catch(Exception e){
 //            e.printStackTrace()
