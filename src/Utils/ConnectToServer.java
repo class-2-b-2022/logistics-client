@@ -32,7 +32,7 @@ public class ConnectToServer {
             JsonNode jsonNodeRoot = inputMapper.readTree(jsonReturned);
             res.setMessage(jsonNodeRoot.get("status").asText());
             res.setData(jsonReturned.split("data\":")[1].split(",\"message\"")[0]);
-            res.setStatus((jsonNodeRoot.get("message").asText()));
+
             return res;
         }
         catch (IOException e) {

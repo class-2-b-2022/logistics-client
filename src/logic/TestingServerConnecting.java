@@ -10,6 +10,9 @@ import utils.RequestBody;
 import utils.ResponseBody;
 
 import java.io.DataInput;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class TestingServerConnecting {
     public static void connect() throws Exception {
@@ -24,8 +27,10 @@ public class TestingServerConnecting {
         System.out.println("Returned data " +res.getData());
         JsonNode jsonNode = objectMapper.readTree(res.getData());
         byte[] dataToparse = objectMapper.writeValueAsBytes(jsonNode);
-        BillingModel billingModel = objectMapper.readValue(dataToparse, BillingModel.class);
-        System.out.println(billingModel.getAmount());
-
+        List<BillingModel> bills;
+        bills = Arrays.asList(objectMapper.readValue(dataToparse, BillingModel[].class));
+    for(BillingModel b: bills){
+        System.out.println(b.getAmount());
+    }
     }
 }
