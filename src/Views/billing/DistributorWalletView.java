@@ -1,10 +1,10 @@
 package Views.billing;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import formats.ClientRequest;
+import formats.CreateWalletModel;
 import logic.TestingServerConnecting;
-//import models.BillingModel;
-//import models.ClientRequest;
-//import models.CreateWalletModel;
-//import utils.ClientServerConnector;
+import formats.*;
+import utils.ClientServerConnector;
 
 import java.util.Scanner;
 
@@ -49,11 +49,6 @@ public class DistributorWalletView {
 
 
         try {
-//            Socket socket = new Socket("localhost", 2334);
-//            OutputStream outToServer = socket.getOutputStream();
-//            DataOutputStream requestToServer = new DataOutputStream(outToServer);
-
-
 
             System.out.println("\n\n");
             System.out.println("                            WHAT DO YOU WANT TO DO WITH YOUR WALLET?                          ");
@@ -70,7 +65,8 @@ public class DistributorWalletView {
                         System.out.println("Enter your user id to create a wallet: ");
                         userId = scanner.nextInt();
                 case 2:
-                    TestingServerConnecting.connect();
+
+                    TestingServerConnecting.connect(0,0);
                     break;
                 case 3:
                     System.out.println("Enter your user id: ");
@@ -78,7 +74,7 @@ public class DistributorWalletView {
                     System.out.println("Enter amount you want to save: ");
                     amount = scanner.nextFloat();
 
-                    test.connect(userId,amount);
+                    TestingServerConnecting.connect(userId,amount);
                     break;
                 case 4:
 //
@@ -87,7 +83,7 @@ public class DistributorWalletView {
                     System.out.println("Enter amount you want to withdraw: ");
                     amount = scanner.nextFloat();
 
-                    test.connect(userId,amount);
+                    TestingServerConnecting.connect(userId,amount);
 
                     break;
                 default:
