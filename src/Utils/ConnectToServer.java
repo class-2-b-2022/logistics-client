@@ -2,6 +2,8 @@ package utils;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import formats.ClientRequest;
+
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -30,7 +32,8 @@ public class ConnectToServer {
             System.out.println(jsonReturned);
             ObjectMapper inputMapper = new ObjectMapper();
             JsonNode jsonNodeRoot = inputMapper.readTree(jsonReturned);
-            res.setMessage(jsonNodeRoot.get("status").asText());
+            res.setStatus(jsonNodeRoot.get("status").asText());
+            res.setMessage(jsonNodeRoot.get("message").asText());
             res.setData(jsonReturned.split("data\":")[1].split(",\"message\"")[0]);
 
             return res;

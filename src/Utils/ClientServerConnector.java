@@ -18,7 +18,7 @@ public class ClientServerConnector {
         // establish a connection by providing host and port
         ResponseBody res = new ResponseBody();
         // number
-        try (Socket socket = new Socket("localhost", 5450)) {
+        try (Socket socket = new Socket("192.168.1.34", 5450)) {
 
             // writing to server
             ObjectOutputStream requestStream = new ObjectOutputStream(socket.getOutputStream());

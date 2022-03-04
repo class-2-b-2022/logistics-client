@@ -1,5 +1,6 @@
 package main;
 
+import Views.billing.DistributorWalletView;
 import logic.TestingServerConnecting;
 
 import java.util.Scanner;
@@ -74,15 +75,14 @@ public class ClientMain {
         System.out.println("2.Testing");
 
         System.out.print("\t\t\t\t\t\t");
+//        DistributorWalletView distView = new DistributorWalletView();
         choice = scanner.nextInt();
         switch(choice){
             case 1:
 //               login
                 break;
             case 2:
-//                register
-                TestingServerConnecting.connect();
-                ;
+             DistributorWalletView.Wallet();
                break;
             case 3:
 
