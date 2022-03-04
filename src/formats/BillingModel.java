@@ -29,4 +29,5 @@ public class BillingModel implements Serializable {
     public void setAmount(float amount) {
         this.amount = amount;
     }
+    
 }
