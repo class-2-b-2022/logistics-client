@@ -11,9 +11,13 @@ public class Inventory {
     InventoryModel inventoryModel = new InventoryModel();
     Scanner sc = new Scanner(System.in);
     ClientRequest request;
+    public void welcome(){
+        System.out.println("--------------------Welcome to Inventory MS--------------------------");
+
+
+    }
     public void create(){
         try {
-            System.out.println("Welcome to Inventory MIS, register inventory please!");
             DataInputStream serverSaveResult;
             Socket socket = new Socket("localhost",5450);
             OutputStream outToServer = socket.getOutputStream();
