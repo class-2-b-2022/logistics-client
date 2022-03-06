@@ -1,12 +1,24 @@
 package main.Distributor;
 
-public class DistributorModel {
+import java.io.Serializable;
+
+public class DistributorModel implements Serializable {
     private String first_name;
     private String last_name;
     private String email;
     private String telephone;
+    private String distributor_type;
     private String business_name;
     private String business_description;
+
+
+    public String getDistributor_type() {
+        return distributor_type;
+    }
+
+    public void setDistributor_type(String distributor_type) {
+        this.distributor_type = distributor_type;
+    }
 
     public String getFirst_name() {
         return first_name;

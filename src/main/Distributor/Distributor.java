@@ -1,5 +1,6 @@
 package main.Distributor;
 
+import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -15,12 +16,17 @@ public class Distributor {
         p1.setEmail(myObj.nextLine());
         System.out.println("Enter your telephone");
         p1.setTelephone(myObj.nextLine());
+        System.out.println("Enter your distributor role");
+        p1.setDistributor_type(myObj.nextLine());
         System.out.println("Enter your business name");
-        String business_name = myObj.nextLine();
         p1.setBusiness_name(myObj.nextLine());
         System.out.println("Enter business description");
         p1.setBusiness_description(myObj.nextLine());
 
-
+        try {
+            Socket socket = new Socket("192.168.0.137", 1234);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
