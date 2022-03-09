@@ -60,9 +60,7 @@ public class VehicleManager {
             System.out.println("\t\t --------------         Meaning: " + responseStatus.getMessage());
             System.out.println("\t\t --------------         Action: " + responseStatus.getActionToDo());
             System.out.println("\t\t ------------------------------------------------------------------------------");
-
         }*/
-
     }
     public List<Vehicle> viewVehicles() throws Exception {
         ObjectMapper inputMapper = new ObjectMapper();
@@ -75,5 +73,7 @@ public class VehicleManager {
         List<Vehicle> vehicles = Arrays.asList(inputMapper.readValue(responseBody.getData(), Vehicle[].class));
        return vehicles;
     }
+
+
 
 }
