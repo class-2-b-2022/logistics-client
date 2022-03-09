@@ -93,7 +93,7 @@ public class Inventory {
                     clientRequest.setData(inventoryModel);
                     json = objectMapper.writeValueAsString(clientRequest);
                     responseBody = new ClientServerConnector().serverClientConnnector(json);
-                    System.out.println(responseBody.getData());
+                    System.out.println(responseBody.getStatus());
                     break;
                 case 2:
                     break;
