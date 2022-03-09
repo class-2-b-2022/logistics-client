@@ -4,10 +4,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import formats.*;
-import utils.ClientServerConnector;
-import utils.ConnectToServer;
-import utils.RequestBody;
-import utils.ResponseBody;
+import Utils.ClientServerConnector;
+import Utils.ConnectToServer;
+import Utils.RequestBody;
+import Utils.ResponseBody;
 
 import java.io.DataInput;
 import java.util.ArrayList;
