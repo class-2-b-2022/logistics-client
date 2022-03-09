@@ -1,9 +1,9 @@
 package data_format;
-// import java.io.BufferedReader;
-// import java.io.IOException;
-// import java.io.InputStreamReader;
-// import java.io.OutputStreamReader;
-// import java.io.Socket;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamReader;
+import java.io.Socket;
 
 public class NewCompanyFormat {
     private int companyOwner;
