@@ -1,4 +1,4 @@
-//package views.company;
+//package Views.company;
 //
 //import utils.Colors;
 //
