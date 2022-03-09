@@ -1,4 +1,9 @@
 package data_format;
+// import java.io.BufferedReader;
+// import java.io.IOException;
+// import java.io.InputStreamReader;
+// import java.io.OutputStreamReader;
+// import java.io.Socket;
 
 public class NewCompanyFormat {
     private int companyOwner;
@@ -70,14 +75,38 @@ public class NewCompanyFormat {
 
     }
 
-    @Override
-    public String toString() {
-        return "Company{" +
-                "companyName='" + companyName + '\'' +
-                ", companyEmail='" + companyEmail + '\'' +
-                ", companyType='" + companyType + '\'' +
-                ", companyPhone='" + companyPhone + '\'' +
-                ", companyDescription='" + companyDescription + '\'' +
-                '}';
+    // @Override
+    // public String toString() {
+    //     return "Company{" +
+    //             "companyName='" + companyName + '\'' +
+    //             ", companyEmail='" + companyEmail + '\'' +
+    //             ", companyType='" + companyType + '\'' +
+    //             ", companyPhone='" + companyPhone + '\'' +
+    //             ", companyDescription='" + companyDescription + '\'' +
+    //             '}';
+    // }
+
+    public static void main(String[] args) throws Exception {
+        Socket socket = new Socket("localhost",8080);
+        OutputStreamWriter writer = new OutputStreamWriter(socket.getOutputStream(), "UTF-8");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream(),"UTF-8"));
+
+        JSONObject json = new JSONObject();
+        json.put("companyName", companyName);
+        json.put("companyEmail", companyEmail);
+        json.put("companyType", companyType);
+        json.put("companyPhone", companyPhone);
+        json.put("companyDescription", companyDescription);
+
+        writer.write(json.toString()+ "\n");
+        writer.flush();
+
+        String line = reader.readline();
+        json = new JSONObject(line);
+
+        System.out.println("received from server \n" + json.toString());
+
+        socket.close();
     }
+
 }
