@@ -1,6 +1,6 @@
 package main;
 
-import Views.billing.DistributorWalletView;
+import Views.billing.BillingView;
 
 import java.util.Scanner;
 import Views.DeliveryModel;
@@ -68,7 +68,7 @@ public class ClientMain {
 //        welcomeScreen();
         System.out.println("\n");
         System.out.print("\t\t\t\t\t\t       1.Login\t\t");
-        System.out.print("2.Testing\t\t");
+        System.out.print("2.Billing\t\t");
 
         System.out.print("3.Inventory");
         System.out.print("\t\t\t\t\t\t");
@@ -79,7 +79,7 @@ public class ClientMain {
 //               login
                 break;
             case 2:
-                DistributorWalletView.Wallet();
+                BillingView.mainMethod();
                break;
             case 3:
                 Inventory.Inventory();
