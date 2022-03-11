@@ -4,7 +4,7 @@ import formats.ClientRequest;
 import formats.Wallet;
 import logic.BillingManager;
 import logic.TestingServerConnecting;
-import Utils.ClientServerConnector;
+import utils.ClientServerConnector;
 
 import java.util.Scanner;
 
@@ -66,7 +66,9 @@ public class BillingView {
                     billingManager.createWallet(userId, "CreateWallet");
                     break;
                 case 2:
-//                    test.connect(0,0);
+                    System.out.println("Enter your user id: ");
+                    userId = scanner.nextInt();
+                    billingManager.getWallet(userId,"GetWallet");
                     break;
                 case 3:
                     System.out.println("Enter your user id: ");
@@ -74,7 +76,7 @@ public class BillingView {
                     System.out.println("Enter amount you want to save: ");
                     amount = scanner.nextFloat();
 
-//                    test.connect(userId,amount);
+                   billingManager.deposit(userId,amount,"Deposit");
                     break;
                 case 4:
 //
@@ -83,7 +85,7 @@ public class BillingView {
                     System.out.println("Enter amount you want to withdraw: ");
                     amount = scanner.nextFloat();
 
-//                    test.connect(userId,amount);
+                    billingManager.withdraw(userId,amount,"Withdraw");
 
                     break;
                 default:

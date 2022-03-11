@@ -1,8 +1,8 @@
 package logic;
 
-import Utils.ConnectToServer;
-import Utils.RequestBody;
-import Utils.ResponseBody;
+import utils.ConnectToServer;
+import utils.RequestBody;
+import utils.ResponseBody;
 import Views.DeliveryModel;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,4 +20,35 @@ public class BillingManager {
       ResponseBody responseBody = clientServerConnector.connectToServer(clientRequest);
   }
 
+  public void getWallet(int userId, String action) throws Exception{
+      RequestBody clientRequest = new RequestBody();
+      Wallet wallet = new Wallet();
+      clientRequest.setRoute("/billing");
+      wallet.setUserId(userId);
+      clientRequest.setData(wallet);
+      clientRequest.setAction(action);
+      ConnectToServer clientServerConnector = new ConnectToServer();
+      ResponseBody responseBody = clientServerConnector.connectToServer(clientRequest);
+  }
+    public void deposit(int userId, float amount, String action) throws Exception {
+        RequestBody clientRequest = new RequestBody();
+        Wallet wallet = new Wallet();
+        clientRequest.setRoute("/billing");
+        wallet.setUserId(userId);
+        clientRequest.setData(amount);
+        clientRequest.setAction(action);
+        ConnectToServer clientServerConnector = new ConnectToServer();
+        ResponseBody responseBody = clientServerConnector.connectToServer(clientRequest);
+    }
+
+    public void withdraw(int userId, float amount, String action) throws Exception {
+        RequestBody clientRequest = new RequestBody();
+        Wallet wallet = new Wallet();
+        clientRequest.setRoute("/billing");
+        wallet.setUserId(userId);
+        clientRequest.setData(amount);
+        clientRequest.setAction(action);
+        ConnectToServer clientServerConnector = new ConnectToServer();
+        ResponseBody responseBody = clientServerConnector.connectToServer(clientRequest);
+    }
 }
