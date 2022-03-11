@@ -30,23 +30,25 @@ public class BillingManager {
       ConnectToServer clientServerConnector = new ConnectToServer();
       ResponseBody responseBody = clientServerConnector.connectToServer(clientRequest);
   }
-    public void deposit(int userId, float amount, String action) throws Exception {
+    public void deposit(int userId, double amount, String action) throws Exception {
         RequestBody clientRequest = new RequestBody();
         Wallet wallet = new Wallet();
         clientRequest.setRoute("/billing");
         wallet.setUserId(userId);
-        clientRequest.setData(amount);
+        wallet.setAmount(amount);
+        clientRequest.setData(wallet);
         clientRequest.setAction(action);
         ConnectToServer clientServerConnector = new ConnectToServer();
         ResponseBody responseBody = clientServerConnector.connectToServer(clientRequest);
     }
 
-    public void withdraw(int userId, float amount, String action) throws Exception {
+    public void withdraw(int userId, double amount, String action) throws Exception {
         RequestBody clientRequest = new RequestBody();
         Wallet wallet = new Wallet();
         clientRequest.setRoute("/billing");
         wallet.setUserId(userId);
-        clientRequest.setData(amount);
+        wallet.setAmount(amount);
+        clientRequest.setData(wallet);
         clientRequest.setAction(action);
         ConnectToServer clientServerConnector = new ConnectToServer();
         ResponseBody responseBody = clientServerConnector.connectToServer(clientRequest);
