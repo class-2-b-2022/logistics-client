@@ -7,6 +7,7 @@ import formats.ClientRequest;
 import formats.InventoryModel;
 import logic.TestingServerConnecting;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Inventory {
@@ -14,37 +15,11 @@ public class Inventory {
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_RESET= "\u001B[0m";
     public static void Inventory(){
-
-
         int choice;
-        int userId;
-
-
+        int branchId;
         Scanner scanner = new Scanner(System.in);
         System.out.println("\n\n");
         System.out.println("________________________________________"+ANSI_CYAN+"USER'S INVENTORY"+ANSI_RESET+"___________________________________________\n");
-
-        System.out.print(ANSI_GREEN+"                                     ||"+ANSI_RESET );
-        System.out.print(ANSI_GREEN+"                                     ||"+ANSI_RESET );
-        System.out.println("");
-        System.out.print("                                 ~  ~"+ANSI_GREEN +"||"+ANSI_RESET+"  ~");
-        System.out.print("                              ~  ~"+ANSI_GREEN +"||"+ANSI_RESET+"  ~");
-        System.out.println("");
-        System.out.print("                                ~               ");
-        System.out.print("                       ~               ");
-        System.out.println("");
-        System.out.print("                                 ~  ~"+ANSI_GREEN +"||"+ANSI_RESET +  "~");
-        System.out.print("                                ~  ~"+ANSI_GREEN +"||"+ANSI_RESET +  "~");
-        System.out.println("");
-        System.out.print("                                         ~");
-        System.out.print("                                       ~");
-        System.out.println("");
-        System.out.print("                                ~  ~"+ANSI_GREEN +" ||"+ANSI_RESET +"  ~");
-        System.out.print("                             ~  ~"+ANSI_GREEN +" ||"+ANSI_RESET +"  ~");
-        System.out.println("");
-        System.out.print("                                     "+ANSI_GREEN +"||"+ANSI_RESET );
-        System.out.print("                                     "+ANSI_GREEN +"||"+ANSI_RESET );
-
 
         try {
 
@@ -60,23 +35,17 @@ public class Inventory {
             String json;
             ResponseBody responseBody;
             InventoryModel inventoryModel = new InventoryModel();
+            ClientRequest clientRequest = new ClientRequest();
 
+            System.out.println("Enter your branch id : ");
+            branchId = scanner.nextInt();
+            int status;
             switch (choice) {
                 case 1:
-                    System.out.println("Enter your user id to create Inventory: ");
-                    userId = scanner.nextInt();
-
-
-                    ClientRequest clientRequest = new ClientRequest();
-                    clientRequest.setRoute("/products");
-                    clientRequest.setAction("GET");
-                    clientRequest.setData(userId);
-                    json = objectMapper.writeValueAsString(clientRequest);
-                    responseBody = new ClientServerConnector().serverClientConnnector(json);
-                    System.out.println(responseBody.getData());
-
-//                    System.out.println("IN/OUT? ");
-                    inventoryModel.setStatus("IN");
+                    System.out.println("INStock(0)/OUTStock(1)? ");
+                    status = scanner.nextInt();
+                    if(status == 0){inventoryModel.setStatus("INStock");}
+                    else{inventoryModel.setStatus("OutStock");}
 
                     System.out.println("which product? ");
                     System.out.print("(Hint: Choose id from given products) :: ");
@@ -85,8 +54,8 @@ public class Inventory {
                     System.out.println("How many products? ");
                     inventoryModel.setQuantity(scanner.nextInt());
 
-                    // set user who registered inventory
-                    inventoryModel.setUserId(userId);
+                    // set branch the inventory belongs to
+                    inventoryModel.setUserId(branchId);
 
                     clientRequest.setRoute("/inventory");
                     clientRequest.setAction("POST");
@@ -96,6 +65,16 @@ public class Inventory {
                     System.out.println(responseBody.getStatus());
                     break;
                 case 2:
+                    clientRequest = new ClientRequest();
+                    clientRequest.setRoute("/inventory");
+                    clientRequest.setAction("GET");
+                    clientRequest.setData(branchId);
+                    json = objectMapper.writeValueAsString(clientRequest);
+                    responseBody = new ClientServerConnector().serverClientConnnector(json);
+//                    System.out.format("+-----------------+---------------------+%n");
+//                    System.out.format("| #Id    | Quantity    | Status       | ProductId  | userId | Date  |");
+//                    System.out.format("+-----------------+------+%n");
+                    System.out.println(responseBody.getData());
                     break;
                 case 3:
                     break;
@@ -106,10 +85,9 @@ public class Inventory {
             }
 
         }catch(Exception e){
-//            e.printStackTrace()
+            e.printStackTrace();
         }
     }
-
     public static void main(String[] args){
         Inventory();
     }
