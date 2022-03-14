@@ -74,7 +74,8 @@ public class ClientMain {
         choice = scanner.nextInt();
         switch(choice){
             case 1:
-//               login
+//               VehicleManager v = new registerVehicle();
+                vh.registerVehicle();
                 break;
             case 2:
 //                register

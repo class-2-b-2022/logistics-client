@@ -1,56 +1,48 @@
 package models;
+
 import java.io.Serializable;
 
 public class Users implements Serializable {
+    private String names;
     private String email;
-    private String fullname;
     private long phone;
+    private String password ;
     private int role;
-    private String route;
-    private String password;
 
-//    public Users(String email, String fullname, long phone, int role, String password, String route) {
-//    }
-
-//    public void Users(String email,String fullname, long phone, int role, String password,String route){
-//        this.email = email;
-//        this.fullname = fullname;
-//        this.phone = phone;
-//        this.role = role;
-//        this.password = password;
-//        this.route = route;
-//    }
-
-    public String getEmail(String email) {
-        return this.email;
+    public String getNames() {
+        return names;
     }
 
-    public String getFullName(String name) {
-        return this.fullname;
-    }
-
-    public long getPhone(long phone) {
+    public long getPhone() {
         return this.phone;
     }
 
-    public int getRole(int role) {
-        return this.role;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setFullName(String name) {
-        this.fullname = name;
+    public String getEmail() {
+        return this.email;
     }
 
     public void setPhone(long phone) {
         this.phone = phone;
     }
 
+    public int getRole(){
+        return this.role;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setNames(String fullName) {
+        this.names = fullName;
+    }
+
     public void setRole(int role) {
         this.role = role;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setPassword(String password) {

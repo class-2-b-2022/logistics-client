@@ -27,10 +27,10 @@ public class ClientServerConnector {
             requestStream.flush();
 
             // getting response
-            List<Object> dataReturned = (List<Object>) responseStream.readObject();
+//            List<Object> dataReturned = (List<Object>) responseStream.readObject();
 
 
-            ResponseBody responseBody = new ResponseBody(dataReturned);
+            ResponseBody responseBody = new ResponseBody();
 
             return responseBody;
 

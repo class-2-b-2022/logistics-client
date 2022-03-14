@@ -91,24 +91,25 @@ public class RegisterUser {
     }
 
     public static void SaveUser(String fullname, String email, long phone, String password,int role) throws Exception {
-
-         Users user = new Users();
-         user.setEmail(email);
-         user.setFullName(fullname);
-         user.setPhone(phone);
-         user.setRole(role);
-         user.setPassword(password);
+        Users user = new Users();
+        user.setNames(fullname);
+        user.setPhone(phone);
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setRole(role);
 
         RequestBody clientRequest = new RequestBody();
-        clientRequest.setRoute("/users/register");
+        clientRequest.setRoute("/users");
         clientRequest.setAction("register");
 
         clientRequest.setData(user);
         ConnectToServer clientServerConnector = new ConnectToServer();
         ResponseBody responseBody = clientServerConnector.connectToServer(clientRequest);
-        System.out.println(responseBody.getResponse());
 
-
+        System.out.println(responseBody);
+//        json = objectMapper.writeValueAsString(clientRequest);
+//        responseBody = new ClientServerConnector().serverClientConnnector(json);
+//        System.out.println(responseBody.getStatus());
 
 //        Socket socket = new Socket("192.168.0.95", 5450);
 //
