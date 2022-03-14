@@ -14,7 +14,7 @@ public class ConnectToServer {
     public ResponseBody connectToServer(RequestBody clientRequest)throws Exception
     {
 
-        try (Socket socket = new Socket("192.168.0.63", 5450)) {
+        try (Socket socket = new Socket("192.168.1.66", 5450)) {
             ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
 
             // reading from server

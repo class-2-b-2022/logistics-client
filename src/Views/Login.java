@@ -45,7 +45,7 @@ public class Login {
         if(responseBody.getStatus() == "200") {
             System.out.println("Login successfully");
         }
-            System.out.println("Status: " +responseBody.getStatus());
+        System.out.println("Status: " +responseBody.getStatus());
         System.out.println("Status: " +responseBody.getData());
 
 //        }
