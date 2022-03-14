@@ -2,6 +2,7 @@ package Views;
 import formats.Vehicle;
 import logic.VehicleManager;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -9,6 +10,8 @@ public class DeliveryModel {
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_MAG = "\u001b[1;35m";
     public static final String ANSI_RESET = "\u001B[0m";
+
+
     public static void Delivery(){
         System.out.println(ANSI_CYAN +"\t\t\t\t                                                                   "+ANSI_RESET);
         System.out.println(ANSI_CYAN +"\t\t\t\t         -----    WELCOME TO DELIVERY MODEL      -----             "+ANSI_RESET);
@@ -43,6 +46,7 @@ public class DeliveryModel {
         System.out.println(ANSI_MAG +"\t Enter your choice:      "+ANSI_RESET);
         VehicleManagementChoice = scanner.nextInt();
         VehicleManager vehicleManager = new VehicleManager();
+
         switch (VehicleManagementChoice){
             case 1:
                 vehicleManager.registerVehicle();
@@ -70,26 +74,20 @@ public class DeliveryModel {
                 System.out.format("+-----------------+---------------------+%n");
                 break;
             case 3:
-                System.out.println(ANSI_MAG +"\t\t\t\t Edited successfully "+ANSI_RESET);
-                // EditVehicle;
-                System.out.format("+-----------------+------+%n");
-                System.out.format("| Model       | Status  | Brand | Owner |Plate | %n");
-                System.out.format("+-----------------+------+%n");
-                for (int i = 0; i < 1; i++) {
-                    System.out.format(leftAlignFormat, " AUDI A40   | AUDI  | COMPANY |  Healthy  |", i+1);
-                }
-                System.out.format("+-----------------+------+%n");
+                printVehicles();
+                Scanner scan = new Scanner(System.in);
+                System.out.println("Select The Id of a vehicle to update");
+                int id = scan.nextInt();
+                vehicleManager.updateVehicles(id);
+                printVehicles();
                 break;
             case 4:
-                System.out.println(ANSI_MAG +"\t\t\t\t Deleted successfully "+ANSI_RESET);
-                //DeleteVehicle();
-                System.out.format("+-----------------+------+%n");
-                System.out.format("| Model       | Status  | Brand | Owner |Plate | %n");
-                System.out.format("+-----------------+------+%n");
-                for (int i = 0; i < 4; i++) {
-                    System.out.format(leftAlignFormat, " AUDI A40   | AUDI  | COMPANY |  Healthy  |", i*125);
-                }
-                System.out.format("+-----------------+------+%n");
+                printVehicles();
+                Scanner scann = new Scanner(System.in);
+                System.out.println("Select The Id of a vehicle to Delete");
+                id = scann.nextInt();
+                vehicleManager.deleteVehicle(id);
+                printVehicles();
                 break;
             default:
                 System.out.println(ANSI_MAG +"\t\t\t\t No option seleted "+ANSI_RESET);
@@ -124,7 +122,23 @@ public class DeliveryModel {
             default:
                 System.out.println(ANSI_MAG +"\t\t\t\t No option seleted "+ANSI_RESET);
         }
+
     }
+    public static void printVehicles() throws Exception{
+        String leftAlignFormat = "| %-11s | %-4d |%n";
+        VehicleManager vehicleManager = new VehicleManager();
+        System.out.println(ANSI_MAG +"\t\t\t\t List of all vehicles "+ANSI_RESET);
+        List<Vehicle> vehicles = vehicleManager.viewVehicles();
+        System.out.format("+-----------------+---------------------+%n");
+        System.out.format("| #Id    | Model    | Owner       | Brand  | Plate Number | Description  |");
+        System.out.format("+-----------------+------+%n");
+        for ( Vehicle vehicle : vehicles) {
+            String line = String.format("  %s   |   %s    |   %s   | %s  | %s   |   %s  ", vehicle.getVehicleId(),vehicle.getModel(),vehicle.getOwner(),vehicle.getBrand(),vehicle.getPlateNbr(),vehicle.getDescription(),vehicle.getVehicleId());
+            System.out.format(leftAlignFormat, line,2,3);
+        }
+        System.out.format("+-----------------+---------------------+%n");
+    }
+
     public static void main(String[] args) throws Exception {
         Delivery();
         Start();

@@ -23,20 +23,23 @@ public class VehicleManager {
         */
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter vehicle Owner : ");
-        String owner = scanner.next();
+        String owner = scanner.nextLine();
         System.out.println("Enter the plate number: ");
-        String plateNbr = scanner.next();
+        String plateNbr = scanner.nextLine();
         System.out.println("Enter the brand: ");
-        String brand = scanner.next();
+        String brand = scanner.nextLine();
 
         System.out.println("Enter the description: ");
-        String description = scanner.next();
+        String description = scanner.nextLine();
+        System.out.println("Enter vehicle Model : ");
+        String model = scanner.nextLine();
 
         Vehicle vehicle = new Vehicle();
         vehicle.setPlateNbr(plateNbr);
         vehicle.setBrand(brand);
         vehicle.setOwner(owner);
         vehicle.setDescription(description);
+        vehicle.setModel(model);
 
         RequestBody clientRequest = new RequestBody();
         clientRequest.setRoute("/delivery/vehicles");
@@ -53,7 +56,6 @@ public class VehicleManager {
             System.out.println("An error occurred behind your screen");
         }
 
-
         /*for (Object response : responseBody.getResponse()) {
             ResponseStatus responseStatus = (ResponseStatus) response;
             System.out.println("\t\t -------------------------------------- STATUS: " + responseStatus.getStatus() + " ---------------------------");
@@ -62,6 +64,10 @@ public class VehicleManager {
             System.out.println("\t\t ------------------------------------------------------------------------------");
         }*/
     }
+
+
+
+
     public List<Vehicle> viewVehicles() throws Exception {
         ObjectMapper inputMapper = new ObjectMapper();
         RequestBody clientRequest = new RequestBody();
@@ -75,5 +81,78 @@ public class VehicleManager {
     }
 
 
+    public void updateVehicles(int id)throws Exception{
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter vehicle Owner : ");
+        String owner = scanner.nextLine();
+        System.out.println("Enter the plate number: ");
+        String plateNbr = scanner.nextLine();
+        System.out.println("Enter the brand: ");
+        String brand = scanner.nextLine();
 
+        System.out.println("Enter the description: ");
+        String description = scanner.nextLine();
+        System.out.println("Enter vehicle Model : ");
+        String model = scanner.nextLine();
+
+        Vehicle vehicle = new Vehicle();
+        vehicle.setVehicleId(id);
+        vehicle.setPlateNbr(plateNbr);
+        vehicle.setBrand(brand);
+        vehicle.setOwner(owner);
+        vehicle.setDescription(description);
+        vehicle.setModel(model);
+
+
+        RequestBody req = new RequestBody();
+        req.setRoute("/delivery/vehicles");
+        req.setAction("update");
+
+        req.setData(vehicle);
+        ConnectToServer clientServerConnector = new ConnectToServer();
+        ResponseBody responseBody = clientServerConnector.connectToServer(req);
+        System.out.println(responseBody.getStatus());
+        if(!responseBody.getStatus().equals("200")){
+            System.out.println("An error occurred behind your screen");
+        }
+        else{
+            System.out.println("Vehicle updated successfully");
+            DeliveryModel delivery = new DeliveryModel();
+            delivery.VehicleManagement();
+
+        }
+
+
+
+
+
+
+    }
+    public void deleteVehicle(int id) throws Exception{
+
+
+        Vehicle vehicle = new Vehicle();
+
+        vehicle.setVehicleId(id);
+
+        RequestBody req = new RequestBody();
+        req.setRoute("/delivery/vehicles");
+        req.setAction("delete");
+
+        req.setData(vehicle);
+        ConnectToServer clientServerConnector = new ConnectToServer();
+        ResponseBody responseBody = clientServerConnector.connectToServer(req);
+        System.out.println(responseBody.getStatus());
+        if(!responseBody.getStatus().equals("200")){
+            System.out.println("An error occurred behind your screen");
+        }
+        else{
+            System.out.println("Vehicle Deleted successfully");
+            DeliveryModel delivery = new DeliveryModel();
+            delivery.VehicleManagement();
+
+        }
+
+
+    }
 }
