@@ -7,15 +7,17 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-<<<<<<< HEAD
-    <orderEntry type="library" name="jackson-databind-2.12.1" level="project" />
-    <orderEntry type="library" name="jackson-core-2.12.1" level="project" />
-    <orderEntry type="library" name="jackson-annotations-2.12.1" level="project" />
-=======
+
     <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/jackson-databind-2.12.1.jar!/" />
+
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/jar_files/json-20211205.jar!/" />
+
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -39,6 +41,5 @@
         <SOURCES />
       </library>
     </orderEntry>
->>>>>>> 19c449d82c95c45996959bfb3a8c286eb6251fbd
   </component>
 </module>

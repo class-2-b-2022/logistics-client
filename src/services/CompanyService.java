@@ -47,35 +47,9 @@ public class CompanyService {
         }catch (Exception e) {
             System.out.println("Error, "+ e.getMessage());
         }
+
     }
-    String[] requirements = {"companyName", "companyEmail", "companyPhone", "companyType", "companyDescription"};
-//        for(int i = 0 ; i< requirements.length; i++) {
-//        OutputStream out = socket1.getOutputStream();
-//        DataOutputStream newOut = new DataOutputStream(out);
-//        newOut.writeUTF("Enter your "+requirements[i]+"::");
-//        InputStream inFromClient = socket1.getInputStream();
-//        DataInputStream response = new DataInputStream(inFromClient);
-//        System.out.println(i + " " + requirements[i]);
-//        switch (requirements[i]){
-//            case "companyName":
-//                newCompany.setCompanyName(response.readUTF());
-//                break;
-//            case "companyEmail":
-//                newCompany.setCompanyEmail(response.readUTF());
-//                break;
-//            case "companyPhone":
-//                newCompany.setCompanyPhone(response.readUTF());
-//                break;
-//            case "companyType":
-//                newCompany.setCompanyType(response.readUTF());
-//                break;
-//            case "companyDescription":
-//                newCompany.setCompanyDescription(response.readUTF());
-//                break;
-//            default:
-//                System.out.println("No matching requirement");
-//        }
-//    }
+
 public List getCompany(int companyOwnerCode) throws IOException,ClassNotFoundException {
     ObjectMapper objectMapper = new ObjectMapper();
     String json = objectMapper.writeValueAsString(companyOwnerCode);
@@ -98,8 +72,8 @@ public List getCompany(int companyOwnerCode) throws IOException,ClassNotFoundExc
 //    }
     return res;
     }
-//    public List getCompanies() throws IOException {
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        String json = objectMapper.writeValueAsString();
-//    }
+    public List getCompanies() throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString();
+    }
 }

@@ -1,5 +1,6 @@
 package data_format;
 
+
 public class NewCompanyFormat {
     private int companyOwner;
     private String companyName;
@@ -70,14 +71,17 @@ public class NewCompanyFormat {
 
     }
 
-    @Override
-    public String toString() {
-        return "Company{" +
-                "companyName='" + companyName + '\'' +
-                ", companyEmail='" + companyEmail + '\'' +
-                ", companyType='" + companyType + '\'' +
-                ", companyPhone='" + companyPhone + '\'' +
-                ", companyDescription='" + companyDescription + '\'' +
-                '}';
-    }
+    // @Override
+    // public String toString() {
+    //     return "Company{" +
+    //             "companyName='" + companyName + '\'' +
+    //             ", companyEmail='" + companyEmail + '\'' +
+    //             ", companyType='" + companyType + '\'' +
+    //             ", companyPhone='" + companyPhone + '\'' +
+    //             ", companyDescription='" + companyDescription + '\'' +
+    //             '}';
+    // }
+
+
+
 }
