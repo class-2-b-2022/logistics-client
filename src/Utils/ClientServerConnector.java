@@ -1,6 +1,6 @@
 
 package  Utils;
-import models.ClientRequest;
+import formats.ClientRequest;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

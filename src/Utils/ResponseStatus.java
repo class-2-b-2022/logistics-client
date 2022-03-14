@@ -18,8 +18,6 @@ public class ResponseStatus implements Serializable {
         this.object = object;
         this.actionToDo = actionToDo;
     }
-
-
     public Object getObject() {
         return object;
     }

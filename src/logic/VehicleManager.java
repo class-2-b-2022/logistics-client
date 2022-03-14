@@ -1,17 +1,14 @@
 package logic;
 import Utils.ConnectToServer;
 import Utils.ResponseBody;
-import Utils.ResponseStatus;
-import models.*;
-
-
-import Utils.ConnectToServer;
 import Utils.RequestBody;
-import Utils.ResponseBody;
-import Utils.ResponseStatus;
-import com.fasterxml.jackson.databind.JsonNode;
+import Views.DeliveryModel;
+import formats.Vehicle;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class VehicleManager {
@@ -42,19 +39,48 @@ public class VehicleManager {
         vehicle.setDescription(description);
 
         RequestBody clientRequest = new RequestBody();
-        clientRequest.setRoute("/delivery/vehicle");
+        clientRequest.setRoute("/delivery/vehicles");
         clientRequest.setAction("register");
 
         clientRequest.setData(vehicle);
         ConnectToServer clientServerConnector = new ConnectToServer();
-        Utils.ResponseBody responseBody = clientServerConnector.connectToServer(clientRequest);
-        for (Object response : responseBody.getResponse()) {
+
+        ResponseBody responseBody = clientServerConnector.connectToServer(clientRequest);
+        if(responseBody.getStatus() == "201"){
+            System.out.println("Vehicle registered successfully");
+            DeliveryModel delivery = new DeliveryModel();
+            delivery.VehicleManagement();
+        }else{
+            System.out.println("An error occurred behind your screen");
+        }
+
+
+        /*for (Object response : responseBody.getResponse()) {
+>>>>>>> 1260e0e026cf119cf56d3b8afe3bcd5f000c48b0
             ResponseStatus responseStatus = (ResponseStatus) response;
             System.out.println("\t\t -------------------------------------- STATUS: " + responseStatus.getStatus() + " ---------------------------");
             System.out.println("\t\t --------------         Meaning: " + responseStatus.getMessage());
             System.out.println("\t\t --------------         Action: " + responseStatus.getActionToDo());
             System.out.println("\t\t ------------------------------------------------------------------------------");
+<<<<<<< HEAD
         }
 
     }
+=======
+
+        }*/
+
+    }
+    public List<Vehicle> viewVehicles() throws Exception {
+        ObjectMapper inputMapper = new ObjectMapper();
+        RequestBody clientRequest = new RequestBody();
+        clientRequest.setRoute("/delivery/vehicles");
+        clientRequest.setAction("view");
+        ConnectToServer clientServerConnector = new ConnectToServer();
+        ResponseBody responseBody = clientServerConnector.connectToServer(clientRequest);
+        System.out.println(responseBody.getData());
+        List<Vehicle> vehicles = Arrays.asList(inputMapper.readValue(responseBody.getData(), Vehicle[].class));
+       return vehicles;
+    }
+
 }
