@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.*;
+import main.views.inventory.*;
 
 public class Main {
     private OutputStream output = null;
@@ -13,8 +14,8 @@ public class Main {
     private boolean isConnectionOn = true;
 
     public Main(String serverIP) throws IOException {
-        if(!connectTOServer(serverIP)) {
-            System.out.println("Failed to connect to the server on: "+serverIP);
+        if (!connectTOServer(serverIP)) {
+            System.out.println("Failed to connect to the server on: " + serverIP);
         }
     }
 
@@ -22,21 +23,23 @@ public class Main {
         new Main("localhost");
         System.out.println("Shutting down.......");
 
+        Product product = new Product();
+        product.createProduct();
+
     }
 
     private boolean connectTOServer(String serverIp) {
         int portNumber = 5450;
-        try{
+        try {
             Socket socket = new Socket(serverIp, portNumber);
-            while(isConnectionOn){
+            while (isConnectionOn) {
                 Home home = new Home(socket);
                 home.view();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Failed to connect to the server at port: " + portNumber);
             System.out.println("Exception: " + e.toString());
         }
         return true;
     }
-
 }

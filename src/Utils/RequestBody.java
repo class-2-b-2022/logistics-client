@@ -1,17 +1,24 @@
-package models;
+package Utils;
+
+
 
 import java.io.Serializable;
 
-public class ClientRequest implements Serializable {
-    private String route;
-    private String action;
-    private Object data;
-    public ClientRequest(){}
-    public ClientRequest(String route, String action, Object data){
-        this.route = route;
+public class RequestBody implements Serializable {
+    private String route; // /users
+    private String action; //update
+    private Object data; //{}
+
+    public RequestBody(){}
+    public RequestBody(String url, String action, Object object) {
+        this.route = url;
         this.action = action;
-        this.data = data;
+        this.data = object;
     }
+        /*
+           /deleteUsers/1
+           /updateUser/1
+         */
 
     public String getRoute() {
         return route;
