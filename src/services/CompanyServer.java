@@ -10,7 +10,7 @@ import java.nio.charset.StandardCharsets;
 public class CompanyServer {
     public static void main(String[] args) {
 
-        try (ServerSocket serverSocket = new ServerSocket(8080)) {
+        try (ServerSocket serverSocket = new ServerSocket(5450)) {
             while (true) {
                 Socket socket = serverSocket.accept();
                 startHandler(socket);

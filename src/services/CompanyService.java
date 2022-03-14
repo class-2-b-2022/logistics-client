@@ -1,8 +1,5 @@
 package services;
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import data_format.NewCompanyFormat;
+import org.json.JSONObject;
 
 import java.io.*;
 import java.net.Socket;
@@ -11,7 +8,6 @@ import java.util.List;
 
 public class CompanyService {
     private Socket socket;
-    private ObjectMapper objectMapper;
 
     public CompanyService(){ }
     public CompanyService(Socket socket){
@@ -26,9 +22,7 @@ public class CompanyService {
         this.socket = socket;
     }
 
-    public void create(NewCompanyFormat format) throws IOException, ClassNotFoundException {
-        ObjectMapper objectMapper= new ObjectMapper();
-        String json =objectMapper.writeValueAsString(format);
+    public void create(JSONObject json) throws IOException, ClassNotFoundException {
         System.out.println(json);
         SendtoServer sendtoServer = new SendtoServer(json, this.socket);
         if (sendtoServer.send()) {
@@ -51,8 +45,9 @@ public class CompanyService {
     }
 
 public List getCompany(int companyOwnerCode) throws IOException,ClassNotFoundException {
-    ObjectMapper objectMapper = new ObjectMapper();
-    String json = objectMapper.writeValueAsString(companyOwnerCode);
+
+    JSONObject json = new JSONObject();
+    json.put("companyOwnerCode", companyOwnerCode);
     SendtoServer sendtoServer = new SendtoServer(json,this.socket);
     List<String> res = new ArrayList<>();
     System.out.println("Your requested is being handled by the server");
