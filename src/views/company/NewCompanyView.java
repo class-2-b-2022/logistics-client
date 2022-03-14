@@ -1,6 +1,7 @@
 package Views.company;
 
 import data_format.NewCompanyFormat;
+import org.json.JSONObject;
 import services.CompanyService;
 
 import java.io.BufferedReader;
@@ -18,6 +19,7 @@ public class NewCompanyView {
         this.socket = socket;
     }
     public void view() throws IOException, ClassNotFoundException {
+        JSONObject json = new JSONObject();
         Scanner scan = new Scanner(System.in);
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -32,6 +34,7 @@ public class NewCompanyView {
                     break;
                 System.out.println("        Enter  Company Name");
                 String companyName = scan.next();
+                json.put("CompanyName",companyName);
 
                 if (companyName.equals("00"))
                     break;
@@ -39,28 +42,31 @@ public class NewCompanyView {
 
                 System.out.println("        Enter  Company Email");
                 String companyEmail = scan.next();
+                json.put("CompanyEmail",companyEmail);
                 if (companyEmail.equals("00"))
                     break;
 
 
                 System.out.println("        Enter  Company Phone");
                 String companyPhone = scan.next();
+                json.put("CompanyPhone",companyPhone);
                 if (companyPhone.equals("00"))
                     break;
 
                 System.out.println("        Enter  Company Type");
                 String companyType = scan.next();
+                json.put("CompanyType",companyType);
                 if (companyType.equals("00"))
                     break;
 
                 System.out.println("        Enter  Company Description");
                 String companyDescription = scan.next();
+                json.put("CompanyDescription",companyDescription);
+
                 if (companyDescription.equals("00"))
                     break;
-                NewCompanyFormat format = new NewCompanyFormat(companyOwner, companyName, companyEmail, companyPhone, companyType, companyDescription);
-                System.out.println(format.toString());
                 CompanyService companyService = new CompanyService(this.socket);
-                companyService.create(format);
+                companyService.create(json);
             }catch (InputMismatchException e){
                 System.out.println(e.getMessage());
             }
