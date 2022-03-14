@@ -72,8 +72,8 @@ public List getCompany(int companyOwnerCode) throws IOException,ClassNotFoundExc
 //    }
     return res;
     }
-    public List getCompanies() throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString();
-    }
+//    public List getCompanies() throws IOException {
+//        ObjectMapper objectMapper = new ObjectMapper();
+////        String json = objectMapper.writeValueAsString();
+//    }
 }
