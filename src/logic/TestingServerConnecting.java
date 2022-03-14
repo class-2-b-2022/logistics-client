@@ -2,7 +2,9 @@ package logic;
 
 import Utils.ClientServerConnector;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import models.*;
+import formats.BillingModel;
+import formats.ClientRequest;
+import Utils.ClientServerConnector;
 
 public class TestingServerConnecting {
     public static void connect() throws Exception {

@@ -1,18 +1,26 @@
 package Utils;
 
+import com.fasterxml.jackson.databind.JsonNode;
 
 import java.io.Serializable;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 public class ResponseBody implements Serializable {
     private String message;///users
     private String status;//regist
     private String data;
     public ResponseBody(){}
-    public ResponseBody(String message, String status, String data){
+    public ResponseBody(String status, String message, String data){
         this.status = status;
         this.message = message;
         this.data = data;
     }
+
+    public ResponseBody(List<Object> dataReturned) {
+    }
+
     public String getMessage() {
         return message;
     }

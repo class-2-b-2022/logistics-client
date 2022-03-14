@@ -1,9 +1,6 @@
 package Views;
-
-import Utils.ConnectToServer;
-import Utils.RequestBody;
-import Utils.ResponseBody;
-import models.Users;
+import Utils.*;
+import formats.Users;
 
 import java.util.Scanner;
 
@@ -105,11 +102,15 @@ public class RegisterUser {
         clientRequest.setData(user);
         ConnectToServer clientServerConnector = new ConnectToServer();
         ResponseBody responseBody = clientServerConnector.connectToServer(clientRequest);
-
-        System.out.println(responseBody);
+//        if(responseBody.getStatus() == "200") {
+//            System.out.println("Login successfully");
+//        }
+//        System.out.println("Status: " +responseBody.getStatus());
+//        System.out.println("Status: " +responseBody.getData());
+//        System.out.println(responseBody);
 //        json = objectMapper.writeValueAsString(clientRequest);
 //        responseBody = new ClientServerConnector().serverClientConnnector(json);
-//        System.out.println(responseBody.getStatus());
+        System.out.println(responseBody);
 
 //        Socket socket = new Socket("192.168.0.95", 5450);
 //
