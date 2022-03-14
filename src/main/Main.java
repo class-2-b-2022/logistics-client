@@ -8,12 +8,10 @@ import java.io.OutputStream;
 import java.net.*;
 
 public class Main {
-    private OutputStream output = null;
-    private ObjectOutputStream objectOutput = null;
     private boolean isConnectionOn = true;
 
     public Main(String serverIP) throws IOException {
-        if(!connectTOServer(serverIP)) {
+        if(connectTOServer(serverIP)) {
             System.out.println("Failed to connect to the server on: "+serverIP);
         }
     }
@@ -36,7 +34,7 @@ public class Main {
             System.out.println("Failed to connect to the server at port: " + portNumber);
             System.out.println("Exception: " + e.toString());
         }
-        return true;
+        return false;
     }
 
 }

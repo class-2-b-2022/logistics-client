@@ -1,4 +1,4 @@
-package Views.billing;
+package views.billing;
 import java.util.Scanner;
 
 //save money, make transactions!!

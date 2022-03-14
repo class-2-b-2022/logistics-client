@@ -1,8 +1,7 @@
 package services;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import data_format.NewCompanyFormat;
+import org.json.JSONObject;
 
 import java.io.*;
 import java.net.Socket;
@@ -26,11 +25,9 @@ public class CompanyService {
         this.socket = socket;
     }
 
-    public void create(NewCompanyFormat format) throws IOException, ClassNotFoundException {
-        ObjectMapper objectMapper= new ObjectMapper();
-        String json =objectMapper.writeValueAsString(format);
-        System.out.println(json);
-        SendtoServer sendtoServer = new SendtoServer(json, this.socket);
+    public void create(JSONObject json) throws IOException, ClassNotFoundException {
+        SendToServer sendtoServer = new SendToServer(json, socket);
+
         if (sendtoServer.send()) {
             System.out.println("Company Registered Successfully");
 //            this.handleCreateCustomerResponse();
@@ -48,38 +45,11 @@ public class CompanyService {
             System.out.println("Error, "+ e.getMessage());
         }
     }
-    String[] requirements = {"companyName", "companyEmail", "companyPhone", "companyType", "companyDescription"};
-//        for(int i = 0 ; i< requirements.length; i++) {
-//        OutputStream out = socket1.getOutputStream();
-//        DataOutputStream newOut = new DataOutputStream(out);
-//        newOut.writeUTF("Enter your "+requirements[i]+"::");
-//        InputStream inFromClient = socket1.getInputStream();
-//        DataInputStream response = new DataInputStream(inFromClient);
-//        System.out.println(i + " " + requirements[i]);
-//        switch (requirements[i]){
-//            case "companyName":
-//                newCompany.setCompanyName(response.readUTF());
-//                break;
-//            case "companyEmail":
-//                newCompany.setCompanyEmail(response.readUTF());
-//                break;
-//            case "companyPhone":
-//                newCompany.setCompanyPhone(response.readUTF());
-//                break;
-//            case "companyType":
-//                newCompany.setCompanyType(response.readUTF());
-//                break;
-//            case "companyDescription":
-//                newCompany.setCompanyDescription(response.readUTF());
-//                break;
-//            default:
-//                System.out.println("No matching requirement");
-//        }
-//    }
 public List getCompany(int companyOwnerCode) throws IOException,ClassNotFoundException {
-    ObjectMapper objectMapper = new ObjectMapper();
-    String json = objectMapper.writeValueAsString(companyOwnerCode);
-    SendtoServer sendtoServer = new SendtoServer(json,this.socket);
+
+    JSONObject json = new JSONObject();
+    json.put("companyOwnerCode", companyOwnerCode);
+    SendToServer sendtoServer = new SendToServer(json,this.socket);
     List<String> res = new ArrayList<>();
     System.out.println("Your requested is being handled by the server");
 //    if(sendtoServer.send()) {
@@ -98,8 +68,4 @@ public List getCompany(int companyOwnerCode) throws IOException,ClassNotFoundExc
 //    }
     return res;
     }
-//    public List getCompanies() throws IOException {
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        String json = objectMapper.writeValueAsString();
-//    }
 }

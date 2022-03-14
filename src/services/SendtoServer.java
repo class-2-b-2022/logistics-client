@@ -1,15 +1,12 @@
 package services;
 
+import org.json.JSONObject;
 import java.io.*;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
 
-public class SendtoServer {
-    private OutputStream output = null;
-    private ObjectOutputStream objectOutput = null;
+public class SendToServer {
     private boolean isConnection = true;
-    private String json;
+    private JSONObject json;
     private Socket socket;
 
     public Socket getSocket() {
@@ -20,18 +17,16 @@ public class SendtoServer {
         this.socket = socket;
     }
 
-    public SendtoServer(String json, Socket socket) throws IOException{
+    public SendToServer(JSONObject json, Socket socket) throws IOException{
         this.socket = socket;
         this.json = json;
     }
 
     public boolean send() throws IOException {
+            OutputStreamWriter writer = new OutputStreamWriter(socket.getOutputStream());
         try{
-            List<String> dataToSend = new ArrayList();
-            dataToSend.add(this.json);
-            this.output = this.socket.getOutputStream();
-            this.objectOutput = new ObjectOutputStream(this.output);
-            this.objectOutput.writeObject(dataToSend);
+            writer.write(json+"\n");
+            writer.flush();
         }catch(Exception e) {
             System.out.println(e.getMessage());
         }
