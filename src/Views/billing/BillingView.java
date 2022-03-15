@@ -43,6 +43,11 @@ public class BillingView {
 
 
         try {
+
+            while(true){
+
+                TestingServerConnecting test = new TestingServerConnecting();
+
             int choice;
             int userId;
             float amount;
@@ -52,6 +57,7 @@ public class BillingView {
             System.out.println("                    (2) Get Wallet Details                    ");
             System.out.println("                    (3) Save to my Wallet                 ");
             System.out.println("                    (4) Withdraw from my Wallet           ");
+            System.out.println("                    (5) Back to dashboard           ");
             System.out.println(" Enter your choice: ");
 
             Scanner scanner = new Scanner(System.in);
@@ -74,22 +80,23 @@ public class BillingView {
                     System.out.println("Enter amount you want to save: ");
                     amount = scanner.nextFloat();
 
-//                    test.connect(userId,amount);
+                    test.connect(userId,amount);
                     break;
                 case 4:
 //
-                    System.out.println("Enter your user id: ");
-                    userId= scanner.nextInt();
-                    System.out.println("Enter amount you want to withdraw: ");
-                    amount = scanner.nextFloat();
+                        System.out.println("Enter your user id: ");
+                        userId= scanner.nextInt();
+                        System.out.println("Enter amount you want to withdraw: ");
+                        amount = scanner.nextFloat();
 
-//                    test.connect(userId,amount);
+                        test.connect(userId,amount);
 
-                    break;
-                default:
-                    System.out.println("Please enter a valid choice");
+                        break;
+                    default:
+                        System.out.println("Please enter a valid choice");
+                }
+
             }
-
         }catch(Exception e){
 //            e.printStackTrace()
         }
