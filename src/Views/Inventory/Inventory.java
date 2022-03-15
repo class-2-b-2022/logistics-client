@@ -256,7 +256,6 @@ public class Inventory {
                     System.out.print("Enter your branch id : ");
                     inventory.branchId = scanner.nextInt();
 
-
                     inventory.viewProducts(inventory.branchId);
 
                     int productId;
