@@ -1,8 +1,5 @@
-package utils;
-
+package Utils;
 import java.io.Serializable;
-
-
 public class ResponseStatus implements Serializable {
     private Integer status;
     private String message;
@@ -21,8 +18,6 @@ public class ResponseStatus implements Serializable {
         this.object = object;
         this.actionToDo = actionToDo;
     }
-
-
     public Object getObject() {
         return object;
     }

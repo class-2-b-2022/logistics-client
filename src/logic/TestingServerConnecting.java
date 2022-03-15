@@ -9,6 +9,11 @@ import java.io.DataInput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import utils.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import formats.BillingModel;
+import formats.ClientRequest;
+
 
 public class TestingServerConnecting {
 
@@ -20,7 +25,7 @@ public class TestingServerConnecting {
         ObjectMapper objectMapper = new ObjectMapper();
         ResponseBody res = new ConnectToServer().connectToServer(clientRequest);
         System.out.println("Returned data " +res.getData());
-        JsonNode jsonNode = objectMapper.readTree(res.getData());
+        JsonNode jsonNode = objectMapper.readTree((byte[]) res.getData());
         byte[] dataToparse = objectMapper.writeValueAsBytes(jsonNode);
         Wallet bills = objectMapper.readValue(dataToparse, Wallet.class);
         System.out.println(bills.getAmount());

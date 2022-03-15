@@ -1,5 +1,6 @@
 package Views.Inventory;
 
+import formats.*;
 import utils.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import formats.ClientRequest;
@@ -91,7 +92,7 @@ public class Inventory {
                     clientRequest.setAction("POST");
                     clientRequest.setData(inventoryModel);
                     json = objectMapper.writeValueAsString(clientRequest);
-                    responseBody = new ClientServerConnector().serverClientConnnector(json);
+                    responseBody = connect.connectToServer(clientRequest);
                     System.out.println(responseBody.getStatus());
                     break;
                 case 2:

@@ -1,25 +1,15 @@
-package utils;
+package formats;
 
-
-
-import java.io.Serializable;
-
-public class RequestBody implements Serializable {
-    private String route; // /users
-    private String action; //update
-    private Object data; //{}
-
+public class RequestBody {
+    private String route;///users
+    private String action;//regist
+    private Object data;
     public RequestBody(){}
-    public RequestBody(String url, String action, Object object) {
-        this.route = url;
+    public RequestBody(String route, String action, Object data){
+        this.route = route;
         this.action = action;
-        this.data = object;
+        this.data = data;
     }
-        /*
-           /deleteUsers/1
-           /updateUser/1
-         */
-
     public String getRoute() {
         return route;
     }

@@ -8,6 +8,14 @@ import logic.VehicleManager;
 
 import Views.Inventory.Inventory;
 
+
+import Views.*;
+import logic.TestingServerConnecting;
+import logic.VehicleManager;
+
+import java.util.Scanner;
+
+
 public class ClientMain {
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_RESET = "\u001B[0m";
@@ -76,7 +84,8 @@ public class ClientMain {
         choice = scanner.nextInt();
         switch(choice){
             case 1:
-//               login
+//               VehicleManager v = new registerVehicle();
+                vh.registerVehicle();
                 break;
             case 2:
                 BillingView.mainMethod();
@@ -97,7 +106,6 @@ public class ClientMain {
 //        DeliveryModel delivery = new DeliveryModel();
 //        delivery.Delivery();
 //        delivery.Start();
-
 
     }
 }
