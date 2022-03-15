@@ -1,14 +1,11 @@
-package utils;
+package Utils;
 
 
 
-import com.fasterxml.jackson.databind.JsonNode;
 
 import java.io.Serializable;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
+@SuppressWarnings("serial")
 public class ResponseBody implements Serializable {
     private String message;///users
     private String status;//regist

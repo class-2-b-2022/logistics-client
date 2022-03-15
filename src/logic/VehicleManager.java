@@ -1,9 +1,10 @@
 package logic;
 import Views.DeliveryModel;
+
 import formats.Vehicle;
-import utils.ConnectToServer;
-import utils.RequestBody;
-import utils.ResponseBody;
+import Utils.ConnectToServer;
+import Utils.RequestBody;
+import Utils.ResponseBody;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.Arrays;
