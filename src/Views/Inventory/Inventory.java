@@ -1,11 +1,11 @@
 package Views.Inventory;
 
-import Utils.ClientServerConnector;
-import Utils.ResponseBody;
+import utils.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import formats.ClientRequest;
 import formats.InventoryModel;
 import logic.TestingServerConnecting;
+import utils.ConnectToServer;
 
 import java.util.Scanner;
 
@@ -60,19 +60,18 @@ public class Inventory {
             String json;
             ResponseBody responseBody;
             InventoryModel inventoryModel = new InventoryModel();
-
+            ConnectToServer connect = new ConnectToServer();
             switch (choice) {
                 case 1:
                     System.out.println("Enter your user id to create Inventory: ");
                     userId = scanner.nextInt();
 
 
-                    ClientRequest clientRequest = new ClientRequest();
+                    RequestBody clientRequest = new RequestBody();
                     clientRequest.setRoute("/products");
                     clientRequest.setAction("GET");
                     clientRequest.setData(userId);
-                    json = objectMapper.writeValueAsString(clientRequest);
-                    responseBody = new ClientServerConnector().serverClientConnnector(json);
+                    responseBody = connect.connectToServer(clientRequest);
                     System.out.println(responseBody.getData());
 
 //                    System.out.println("IN/OUT? ");
