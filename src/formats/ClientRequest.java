@@ -1,6 +1,10 @@
 package formats;
 
+
 import java.io.Serializable;
+
+
+
 /**
  * @author : Mudahemuka Manzi
  */
@@ -14,7 +18,6 @@ public class ClientRequest implements Serializable {
         this.action = action;
         this.data = data;
     }
-
     public String getRoute() {
         return route;
     }

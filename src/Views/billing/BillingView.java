@@ -4,7 +4,7 @@ import formats.ClientRequest;
 import formats.Wallet;
 import logic.BillingManager;
 import logic.TestingServerConnecting;
-import Utils.ClientServerConnector;
+import utils.*;
 
 import java.util.Scanner;
 
@@ -43,11 +43,8 @@ public class BillingView {
 
 
         try {
-
+            TestingServerConnecting test = new TestingServerConnecting();
             while(true){
-
-                TestingServerConnecting test = new TestingServerConnecting();
-
             int choice;
             int userId;
             float amount;
@@ -64,6 +61,7 @@ public class BillingView {
             choice = scanner.nextInt();
 
             BillingManager billingManager = new BillingManager();
+            Wallet wallet = new Wallet();
 
             switch (choice) {
                 case 1:
@@ -79,8 +77,9 @@ public class BillingView {
                     userId = scanner.nextInt();
                     System.out.println("Enter amount you want to save: ");
                     amount = scanner.nextFloat();
-
-                    test.connect(userId,amount);
+                    wallet.setUserId(userId);
+                    wallet.setAmount(amount);
+                    test.connect(wallet);
                     break;
                 case 4:
 //
@@ -88,8 +87,9 @@ public class BillingView {
                         userId= scanner.nextInt();
                         System.out.println("Enter amount you want to withdraw: ");
                         amount = scanner.nextFloat();
-
-                        test.connect(userId,amount);
+                        wallet.setUserId(userId);
+                        wallet.setAmount(amount);
+                        test.connect(wallet);
 
                         break;
                     default:

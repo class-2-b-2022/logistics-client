@@ -1,9 +1,9 @@
 package logic;
 import Views.DeliveryModel;
+import formats.*;
+import utils.*;
+import Views.*;
 import formats.Vehicle;
-import Utils.ConnectToServer;
-import Utils.RequestBody;
-import Utils.ResponseBody;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.Arrays;
@@ -43,6 +43,7 @@ public class VehicleManager {
 
         clientRequest.setData(vehicle);
         ConnectToServer clientServerConnector = new ConnectToServer();
+
         ResponseBody responseBody = clientServerConnector.connectToServer(clientRequest);
         if(responseBody.getStatus() == "201"){
             System.out.println("Vehicle registered successfully");
@@ -59,6 +60,9 @@ public class VehicleManager {
             System.out.println("\t\t --------------         Meaning: " + responseStatus.getMessage());
             System.out.println("\t\t --------------         Action: " + responseStatus.getActionToDo());
             System.out.println("\t\t ------------------------------------------------------------------------------");
+        }
+
+    }
 
         }*/
 
@@ -71,7 +75,9 @@ public class VehicleManager {
         ConnectToServer clientServerConnector = new ConnectToServer();
         ResponseBody responseBody = clientServerConnector.connectToServer(clientRequest);
         System.out.println(responseBody.getData());
-        List<Vehicle> vehicles = Arrays.asList(inputMapper.readValue(responseBody.getData(), Vehicle[].class));
-       return vehicles;
+        List<Vehicle> vehicles = Arrays.asList(inputMapper.readValue((byte[]) responseBody.getData(), Vehicle[].class));
+        return vehicles;
     }
 }
+
+

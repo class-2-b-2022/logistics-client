@@ -1,18 +1,15 @@
-package models;
+package formats;
 
-import java.io.Serializable;
-
-public class ClientRequest implements Serializable {
-    private String route;
-    private String action;
+public class RequestBody {
+    private String route;///users
+    private String action;//regist
     private Object data;
-    public ClientRequest(){}
-    public ClientRequest(String route, String action, Object data){
+    public RequestBody(){}
+    public RequestBody(String route, String action, Object data){
         this.route = route;
         this.action = action;
         this.data = data;
     }
-
     public String getRoute() {
         return route;
     }

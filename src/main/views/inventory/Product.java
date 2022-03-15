@@ -1,5 +1,6 @@
 package main.views.inventory;
-import models.*;
+import formats.ProductModel;
+import formats.*;
 import java.io.*;
 import java.net.*;
 import java.util.*;
