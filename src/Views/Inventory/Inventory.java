@@ -1,20 +1,11 @@
 package Views.Inventory;
 
 import Utils.ClientServerConnector;
-import Utils.ConnectToServer;
-import Utils.RequestBody;
 import Utils.ResponseBody;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.util.DefaultIndenter;
-import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import formats.ClientRequest;
 import formats.InventoryModel;
-import formats.Vehicle;
-import logic.TestingServerConnecting;
-import main.views.inventory.Product;
 import models.ProductModel;
 
 import java.util.ArrayList;
@@ -201,8 +192,26 @@ public class Inventory {
             e.printStackTrace();
         }
     }
+    public void checkProductQuantityInStock(int branchId, int productId, String name){
+        List<Integer> data = new ArrayList<Integer>();
+        data.add(branchId);
+        data.add(productId);
+
+        clientRequest.setRoute("/inventory");
+        clientRequest.setAction("VIEW QUANTITY");
+        clientRequest.setData(data);
+
+        try{
+            json = objectMapper.writeValueAsString(clientRequest);
+            responseBody = new ClientServerConnector().serverClientConnnector(json);
+            System.out.println("There are " + responseBody.getData() + " of " + name + " in stock");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
     public static void Inventory() throws Exception {
         Inventory inventory = new Inventory();
+        Scanner scanner = new Scanner(System.in);
         int choice;
         inventory.printWelcome();
         try {
@@ -211,6 +220,7 @@ public class Inventory {
             System.out.println("                    (2) Get Inventory Details                    ");
             System.out.println("                    (3) Update my Inventory                 ");
             System.out.println("                    (4) Delete from my Inventory           ");
+            System.out.println("                    (5) Check product Quantity in stock           ");
             System.out.print(" Enter your choice: ");
             choice = inventory.scanner.nextInt();
             switch (choice) {
@@ -222,8 +232,26 @@ public class Inventory {
                     break;
                 case 3:
                     inventory.updateInventory();
+                    break;
                 case 4:
                     inventory.deleteInventory();
+                    break;
+                case 5:
+                    System.out.print("Enter your branch id : ");
+                    inventory.branchId = scanner.nextInt();
+
+
+                    inventory.viewProducts(inventory.branchId);
+
+                    int productId;
+                    System.out.println("Which product? ");
+                    productId = scanner.nextInt();
+
+                    String productName;
+                    System.out.println("product Name: ");
+                    productName = scanner.next();
+
+                    inventory.checkProductQuantityInStock(inventory.branchId, productId, productName);
                     break;
                 default:
                     System.out.println("Please enter a valid choice");

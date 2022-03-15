@@ -31,6 +31,7 @@ public class ClientServerConnector {
             // getting response
             DataInputStream in = new DataInputStream(socket.getInputStream());
             String jsonReturned =  in.readUTF();
+            System.out.println(jsonReturned);
             ObjectMapper inputMapper = new ObjectMapper();
             JsonNode jsonNodeRoot = inputMapper.readTree(jsonReturned);
             res.setMessage(jsonNodeRoot.get("status").asText());
