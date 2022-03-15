@@ -49,56 +49,58 @@ public class DistributorWalletView {
 
 
         try {
+            while(true){
 
-            System.out.println("\n\n");
-            System.out.println("                            WHAT DO YOU WANT TO DO WITH YOUR WALLET?                          ");
-            System.out.println("                    (1) Create Wallet                    ");
-            System.out.println("                    (2) Get Wallet Details                    ");
-            System.out.println("                    (3) Save to my Wallet                 ");
-            System.out.println("                    (4) Withdraw from my Wallet           ");
-            System.out.println(" Enter your choice: ");
-            choice = scanner.nextInt();
+                System.out.println("\n\n");
+                System.out.println("                            WHAT DO YOU WANT TO DO WITH YOUR WALLET?                          ");
+                System.out.println("                    (1) Create Wallet                    ");
+                System.out.println("                    (2) Get Wallet Details                    ");
+                System.out.println("                    (3) Save to my Wallet                 ");
+                System.out.println("                    (4) Withdraw from my Wallet           ");
+                System.out.println(" Enter your choice: ");
+                choice = scanner.nextInt();
 
-            TestingServerConnecting test = new TestingServerConnecting();
+                TestingServerConnecting test = new TestingServerConnecting();
 
-            switch (choice) {
-                case 1:
+                switch (choice) {
+                    case 1:
                         System.out.println("Enter your user id to create a wallet: ");
                         userId = scanner.nextInt();
 
-                    ClientRequest clientRequest = new ClientRequest();
-                    clientRequest.setRoute("/billing");
-                    clientRequest.setAction("CreateWallet");
-                    CreateWalletModel newWallet = new CreateWalletModel(userId);
-                    clientRequest.setData(newWallet);
-                    ObjectMapper objectMapper = new ObjectMapper();
-                    String json = objectMapper.writeValueAsString(clientRequest);
-                    ClientServerConnector.serverClientConnnector(json);
-                case 2:
-                    test.connect(0,0);
-                    break;
-                case 3:
-                    System.out.println("Enter your user id: ");
-                    userId = scanner.nextInt();
-                    System.out.println("Enter amount you want to save: ");
-                    amount = scanner.nextFloat();
+                        ClientRequest clientRequest = new ClientRequest();
+                        clientRequest.setRoute("/billing");
+                        clientRequest.setAction("CreateWallet");
+                        CreateWalletModel newWallet = new CreateWalletModel(userId);
+                        clientRequest.setData(newWallet);
+                        ObjectMapper objectMapper = new ObjectMapper();
+                        String json = objectMapper.writeValueAsString(clientRequest);
+                        ClientServerConnector.serverClientConnnector(json);
+                    case 2:
+                        test.connect(0,0);
+                        break;
+                    case 3:
+                        System.out.println("Enter your user id: ");
+                        userId = scanner.nextInt();
+                        System.out.println("Enter amount you want to save: ");
+                        amount = scanner.nextFloat();
 
-                    test.connect(userId,amount);
-                    break;
-                case 4:
+                        test.connect(userId,amount);
+                        break;
+                    case 4:
 //
-                    System.out.println("Enter your user id: ");
-                    userId= scanner.nextInt();
-                    System.out.println("Enter amount you want to withdraw: ");
-                    amount = scanner.nextFloat();
+                        System.out.println("Enter your user id: ");
+                        userId= scanner.nextInt();
+                        System.out.println("Enter amount you want to withdraw: ");
+                        amount = scanner.nextFloat();
 
-                    test.connect(userId,amount);
+                        test.connect(userId,amount);
 
-                    break;
-                default:
-                    System.out.println("Please enter a valid choice");
+                        break;
+                    default:
+                        System.out.println("Please enter a valid choice");
+                }
+
             }
-
         }catch(Exception e){
 //            e.printStackTrace()
         }
