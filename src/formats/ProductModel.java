@@ -8,17 +8,14 @@ import java.io.*;
 	    int productId;
 	    String productName;
 	    String productType;
-	    int userId;
+	   int companyId;
 	    String pricePerBulk;
 
 	    public void setProductId(int productId) {
 	        this.productId = productId;
 	    }
 
-	    public void setUserId(int userId) {
-	        this.userId = userId;
-	    }
-
+	   
 	    public void setPricePerBulk(String pricePerBulk) {
 	        this.pricePerBulk = pricePerBulk;
 	    }
@@ -31,11 +28,18 @@ import java.io.*;
 	        this.productType = productType;
 	    }
 
-	    public int getUserId() {
-	        return userId;
-	    }
 
-	    public int getProductId() {
+	    public int getCompanyId() {
+			return companyId;
+		}
+
+
+		public void setCompanyId(int companyId) {
+			this.companyId = companyId;
+		}
+
+
+		public int getProductId() {
 	        return productId;
 	    }
 

@@ -1,6 +1,7 @@
 package main;
 
 import Views.billing.DistributorWalletView;
+import Views.Product.*;
 
 import java.util.Scanner;
 import Views.DeliveryModel;
@@ -70,11 +71,13 @@ public class ClientMain {
         System.out.print("\t\t\t\t\t\t       1.Login\t\t");
         System.out.print("2.Testing\t\t");
 
-        System.out.print("3.Inventory");
-        System.out.print("\t\t\t\t\t\t");
+        System.out.print("3.Inventory\t\t");
+    
 //        DistributorWalletView distView = new DistributorWalletView();
+        System.out.print("4.Products\t\t\t\t");
         choice = scanner.nextInt();
         switch(choice){
+        
             case 1:
 //               login
                 break;
@@ -83,6 +86,9 @@ public class ClientMain {
                break;
             case 3:
                 Inventory.Inventory();
+                break;
+            case 4:
+               Product.productManagement();
                 break;
             default:
                 System.out.println("Choice not available");

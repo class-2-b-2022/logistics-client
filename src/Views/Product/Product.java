@@ -2,6 +2,7 @@ package Views.Product;
 
 import java.util.Scanner;
 import logic.ProductInventory;
+import logic.ProductManager;
 
 public class Product {
 
@@ -10,7 +11,7 @@ public class Product {
 productManagement();
 	             }
 
-	private static void productManagement() throws Exception {
+	public static void productManagement() throws Exception {
 		 int choice;
 	        Scanner scanner = new Scanner(System.in);
 	      
@@ -22,22 +23,21 @@ productManagement();
 	        System.out.println("\t\t\t\t ________    4. Products Delete _______");
 	   
 	        choice = scanner.nextInt();
-	        ProductInventory product=new ProductInventory();
+	        ProductManager product=new ProductManager();
 	        switch (choice){
             case 1:
-
-
 product.registerProduct();
 break;
              
        
             case 2:
-                System.out.println("Read  ");
+                System.out.println("------Available products------");
+                product.viewProducts();
              break;
-            case 4:
+            case 3:
                 System.out.println("Update  ");
              break;
-            case 5:
+            case 4:
                 System.out.println("Delete  ");
              break;
             default:
