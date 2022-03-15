@@ -2,14 +2,13 @@
 package  Utils;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import formats.*;
 
-import java.io.*;
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-
 
 public class ClientServerConnector {
     public ResponseBody serverClientConnnector(String json)throws Exception
@@ -27,16 +26,15 @@ public class ClientServerConnector {
             requestStream.writeObject(dataTosend);
 
 
-
             // getting response
             DataInputStream in = new DataInputStream(socket.getInputStream());
             String jsonReturned =  in.readUTF();
-            System.out.println(jsonReturned);
             ObjectMapper inputMapper = new ObjectMapper();
             JsonNode jsonNodeRoot = inputMapper.readTree(jsonReturned);
-            res.setMessage(jsonNodeRoot.get("status").asText());
-            res.setData(jsonReturned.split("data\":")[1].split(",\"message\"")[0]);
-            res.setStatus((jsonNodeRoot.get("message").asText()));
+            jsonNodeRoot = inputMapper.readTree(jsonReturned);
+             res.setMessage(jsonNodeRoot.get("status").asText());
+             res.setData(jsonReturned.split("data\":")[1].split(",\"message\"")[0]);
+             res.setStatus((jsonNodeRoot.get("message").asText()));
         }
         catch (IOException e) {
             e.printStackTrace();

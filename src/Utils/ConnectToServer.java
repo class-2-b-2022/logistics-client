@@ -1,13 +1,11 @@
 package Utils;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import formats.ClientRequest;
+import java.util.*;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ConnectToServer {
     public ResponseBody res = new ResponseBody();
@@ -27,9 +25,9 @@ public class ConnectToServer {
             List<String> dt = new ArrayList<>();
             dt.add(json);
             out.writeObject(dt);
-            System.out.println("getting returned data");
+            System.out.println("Data sent, getting returned data");
+
             String jsonReturned =  in.readUTF();
-            System.out.println(jsonReturned);
             ObjectMapper inputMapper = new ObjectMapper();
             JsonNode jsonNodeRoot = inputMapper.readTree(jsonReturned);
             res.setStatus(jsonNodeRoot.get("status").asText());
