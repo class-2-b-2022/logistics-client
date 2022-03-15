@@ -1,15 +1,12 @@
 package main;
 
-import Views.billing.DistributorWalletView;
-import logic.TestingServerConnecting;
+import Views.billing.BillingView;
 
 import java.util.Scanner;
 import Views.DeliveryModel;
 import logic.VehicleManager;
 
-import Views.DeliveryModel;
-
-import java.util.Scanner;
+import Views.Inventory.Inventory;
 
 public class ClientMain {
     public static final String ANSI_BLUE = "\u001B[34m";
@@ -61,7 +58,6 @@ public class ClientMain {
 
     }
     public static void main(String[] args) throws Exception {
-
        welcomeScreen();
         int choice;
 
@@ -72,8 +68,9 @@ public class ClientMain {
 //        welcomeScreen();
         System.out.println("\n");
         System.out.print("\t\t\t\t\t\t       1.Login\t\t");
-        System.out.println("2.Testing");
+        System.out.print("2.Billing\t\t");
 
+        System.out.print("3.Inventory");
         System.out.print("\t\t\t\t\t\t");
 //        DistributorWalletView distView = new DistributorWalletView();
         choice = scanner.nextInt();
@@ -82,11 +79,14 @@ public class ClientMain {
 //               login
                 break;
             case 2:
-             DistributorWalletView.Wallet();
+                BillingView.mainMethod();
                break;
             case 3:
-
-
+                Inventory.Inventory();
+                break;
+            default:
+                System.out.println("Choice not available");
+                System.exit(-1);
         }
 
 
