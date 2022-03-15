@@ -31,15 +31,15 @@ public class ProductInventory {
  
  ResponseBody response=clientServerConnector.connectToServer(clientRequest);
  String result=response.getStatus();
- System.out.println("result stauts is-----"+result);
+
 
  if(result.equals("201")) {
     System.out.println("Product registered successfully");
    }
-// else{
-//	   System.out.println(response.getStatus());
-//       System.out.println("Error occured registering"+ " product");
-//   }
+ else{
+	   System.out.println(response.getStatus());
+       System.out.println("Error occured registering"+ " product");
+   }
  
 	
  }

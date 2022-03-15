@@ -2,20 +2,19 @@ package models;
 
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
 public class ProductModel implements Serializable {
     int productId;
     String productName;
     String productType;
-    int userId;
+    int companyId;
     String pricePerBulk;
 
     public void setProductId(int productId) {
         this.productId = productId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setCompanyId(int companyId) {
+        this.companyId = companyId;
     }
 
     public void setPricePerBulk(String pricePerBulk) {
@@ -30,8 +29,8 @@ public class ProductModel implements Serializable {
         this.productType = productType;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getCompanyId() {
+        return companyId;
     }
 
     public int getProductId() {

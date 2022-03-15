@@ -4,7 +4,7 @@ import formats.ClientRequest;
 import formats.CreateWalletModel;
 import logic.TestingServerConnecting;
 import formats.*;
-import utils.ClientServerConnector;
+import Utils.ClientServerConnector;
 
 import java.util.Scanner;
 
@@ -73,7 +73,9 @@ public class DistributorWalletView {
                     clientRequest.setData(newWallet);
                     ObjectMapper objectMapper = new ObjectMapper();
                     String json = objectMapper.writeValueAsString(clientRequest);
-                    ClientServerConnector.serverClientConnnector(json);
+                    ClientServerConnector clientServerConnector = new ClientServerConnector();
+                    clientServerConnector.serverClientConnnector(json);
+                    break;
                 case 2:
                     test.connect(0,0);
                     break;

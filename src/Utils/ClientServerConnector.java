@@ -13,40 +13,35 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 public class ClientServerConnector {
-
-    public static ResponseBody serverClientConnnector(String json)throws Exception
+    public ResponseBody serverClientConnnector(String json)throws Exception
     {
         // establish a connection by providing host and port
         ResponseBody res = new ResponseBody();
         // number
-        try (Socket socket = new Socket("192.168.1.34", 5450)) {
+        try (Socket socket = new Socket("localhost", 5450)) {
 
             // writing to server
             ObjectOutputStream requestStream = new ObjectOutputStream(socket.getOutputStream());
-
-            // reading from server
-//            ObjectInputStream responseStream = new ObjectInputStream(socket.getInputStream());
-            DataInputStream in = new DataInputStream(socket.getInputStream());
-             List<String> dataTosend = new ArrayList<>();
-             dataTosend.add(json);
+            List<String> dataTosend = new ArrayList<>();
+            dataTosend.add(json);
             // sending request
             requestStream.writeObject(dataTosend);
-            requestStream.flush();
+
+
 
             // getting response
+            DataInputStream in = new DataInputStream(socket.getInputStream());
             String jsonReturned =  in.readUTF();
-            System.out.println(jsonReturned);
             ObjectMapper inputMapper = new ObjectMapper();
-            JsonNode jsonNodeRoot = inputMapper.readTree(jsonReturned);
-            res.setMessage(jsonNodeRoot.get("status").asText());
-            res.setData(jsonReturned.split("data\":")[1].split(",\"message\"")[0]);
-            res.setStatus((jsonNodeRoot.get("message").asText()));
-            return res;
-
+            // // jsonNodeRoot = inputMapper.readTree(jsonReturned);
+            // res.setMessage(jsonNodeRoot.get("status").asText());
+            // res.setData(jsonReturned.split("data\":")[1].split(",\"message\"")[0]);
+            // res.setStatus((jsonNodeRoot.get("message").asText()));
         }
         catch (IOException e) {
             e.printStackTrace();
+        }finally {
+            return res;
         }
-        return null;
     }
 }

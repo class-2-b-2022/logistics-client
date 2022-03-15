@@ -28,8 +28,8 @@ public class Product {
               productModel.setProductType(sc.nextLine());
               System.out.println("Price per Bulk? ");
               productModel.setPricePerBulk(sc.nextLine());
-              System.out.println("User Id? ");
-              productModel.setUserId(sc.nextInt());
+              System.out.println("Company Id? ");
+              productModel.setCompanyId(sc.nextInt());
 
          
 
