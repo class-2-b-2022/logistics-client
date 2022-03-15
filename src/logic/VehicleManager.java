@@ -56,17 +56,14 @@ public class VehicleManager {
 
 
         /*for (Object response : responseBody.getResponse()) {
->>>>>>> 1260e0e026cf119cf56d3b8afe3bcd5f000c48b0
             ResponseStatus responseStatus = (ResponseStatus) response;
             System.out.println("\t\t -------------------------------------- STATUS: " + responseStatus.getStatus() + " ---------------------------");
             System.out.println("\t\t --------------         Meaning: " + responseStatus.getMessage());
             System.out.println("\t\t --------------         Action: " + responseStatus.getActionToDo());
             System.out.println("\t\t ------------------------------------------------------------------------------");
-<<<<<<< HEAD
         }
 
     }
-=======
 
         }*/
 
@@ -80,7 +77,7 @@ public class VehicleManager {
         ResponseBody responseBody = clientServerConnector.connectToServer(clientRequest);
         System.out.println(responseBody.getData());
         List<Vehicle> vehicles = Arrays.asList(inputMapper.readValue(responseBody.getData(), Vehicle[].class));
-       return vehicles;
+        return vehicles;
     }
 
 }

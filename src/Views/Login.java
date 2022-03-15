@@ -53,11 +53,29 @@ public class Login {
 //            System.out.println("An error occurred behind your screen");
 //        }
     }
+    public void deleteUser() throws Exception {
+//        Scanner scanner=new Scanner(System.in);
+//        System.out.print("User Email to delete: ");
+//        String email;
+//        email=scanner.nextLine();
+        Data_format dataFormat=new Data_format();
+        dataFormat.setEmail("email");
+        dataFormat.setPassword("pass123");
+        RequestBody requestBody=new RequestBody();
+        requestBody.setAction("deleteuser");
+        requestBody.setRoute("/user");
+        requestBody.setData(dataFormat);
+        ConnectToServer connectToServer=new ConnectToServer();
+        ResponseBody responseBody=connectToServer.connectToServer(requestBody);
+        System.out.println(responseBody.getMessage());
+    }
     //yvesisite@gmail.com pass123
     public static void main(String args[]){
         Login client = new Login();
         try {
-            client.startClient();
+//            client.startClient();
+            client.deleteUser();
+//            for today tasks,is using some javascript allowed.
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (IOException e) {

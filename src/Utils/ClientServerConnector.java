@@ -24,8 +24,8 @@ public class ClientServerConnector {
 
             // reading from server
             ObjectInputStream responseStream = new ObjectInputStream(socket.getInputStream());
-             List<String> dataTosend = new ArrayList<>();
-             dataTosend.add(json);
+            List<String> dataTosend = new ArrayList<>();
+            dataTosend.add(json);
             // sending request
             requestStream.writeObject(dataTosend);
             requestStream.flush();

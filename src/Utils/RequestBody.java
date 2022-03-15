@@ -1,7 +1,4 @@
 package Utils;
-
-
-
 import java.io.Serializable;
 
 public class RequestBody implements Serializable {

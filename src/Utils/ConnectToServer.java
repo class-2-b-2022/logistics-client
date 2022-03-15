@@ -14,7 +14,7 @@ public class ConnectToServer {
     public ResponseBody connectToServer(RequestBody clientRequest)throws Exception
     {
 
-        try (Socket socket = new Socket("192.168.1.66", 5450)) {
+        try (Socket socket = new Socket("192.168.1.159", 5450)) {
             ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
 
             // reading from server
@@ -25,8 +25,6 @@ public class ConnectToServer {
             String json = objectMapper.writeValueAsString(clientRequest);
             out.writeObject(json);
             String jsonReturned =  in.readUTF();
-
-
 
             ObjectMapper inputMapper = new ObjectMapper();
             JsonNode jsonNodeRoot = inputMapper.readTree(jsonReturned);
