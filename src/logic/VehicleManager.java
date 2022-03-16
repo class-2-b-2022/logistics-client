@@ -6,7 +6,6 @@ import Utils.ConnectToServer;
 import Utils.RequestBody;
 import Utils.ResponseBody;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;

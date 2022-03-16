@@ -1,7 +1,6 @@
 package Views.Product;
 
 import java.util.Scanner;
-import logic.ProductInventory;
 import logic.ProductManager;
 
 public class Product {

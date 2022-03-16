@@ -1,20 +1,12 @@
 package Views.Inventory;
 
 import Utils.ClientServerConnector;
-import Utils.ConnectToServer;
-import Utils.RequestBody;
 import Utils.ResponseBody;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.util.DefaultIndenter;
-import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
+import Views.Product.Product;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import formats.ClientRequest;
 import formats.InventoryModel;
-import formats.Vehicle;
-import logic.TestingServerConnecting;
-import main.views.inventory.Product;
 import models.ProductModel;
 
 import java.util.ArrayList;
@@ -42,8 +34,8 @@ public class Inventory {
         System.out.println("\n");
         System.out.println("________________________________________"+ANSI_CYAN+"USER'S INVENTORY"+ANSI_RESET+"___________________________________________\n");
     }
-    public List<Integer> viewProducts(int branchId){
-        List<Integer> productIds = new ArrayList<Integer>();
+    public List<ProductModel> viewProducts(int branchId){
+        List<ProductModel> products = new ArrayList<ProductModel>();
         try {
             clientRequest.setRoute("/products");
             clientRequest.setAction("GET");
@@ -51,7 +43,7 @@ public class Inventory {
             json = objectMapper.writeValueAsString(clientRequest);
             responseBody = new ClientServerConnector().serverClientConnnector(json);
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            List<ProductModel> products = Arrays.asList(objectMapper.readValue(responseBody.getData(), ProductModel[].class));
+            products = Arrays.asList(objectMapper.readValue(responseBody.getData(), ProductModel[].class));
             // System.out.println(responseBody.getData());
             String leftAlignFormat = "| %-11s | %-4d |%n";
             System.out.println(ANSI_MAG + "\t\t\t\t List of all products " + ANSI_RESET);
@@ -61,15 +53,13 @@ public class Inventory {
                 String line = String.format("%s    |  %s             |  %s          | %s         | %s        ",product.getProductId(),product.getProductName(),product.getProductType(),product.getCompanyId(), product.getPricePerBulk());
                 System.out.format(leftAlignFormat, line, 2, 3);
 
-                // insert the product id in the productIds array
-                productIds.add(product.getProductId());
             }
             System.out.format("+-----------------+---------------------+%n");
         }catch (Exception e){
             e.printStackTrace();
         }
         finally {
-            return productIds;
+            return products;
         }
     }
     public void viewInventory(){
@@ -105,10 +95,12 @@ public class Inventory {
         try{
             InventoryModel inventoryModel = new InventoryModel();
 
-            List<Integer> productIds;
+            List<ProductModel> products;
+            List<Integer> productIds = new ArrayList<Integer>();
             int productId;
             int status;
             int branchId;
+            int productQuantity;
 
             System.out.print("Enter your branch id to create Inventory: ");
             branchId = scanner.nextInt();
@@ -116,19 +108,10 @@ public class Inventory {
             System.out.print(" IN(0)/OUT?(1) ");
             status = scanner.nextInt();
 
-            while(status != 0 && status != 1){
-                System.out.println(ANSI_RED + "Please give a valid status of your inventory" + ANSI_RESET);
-                System.out.print("status : ");
-                status = scanner.nextInt();
+            products = this.viewProducts(branchId);
+            for (ProductModel product:products){
+                productIds.add(product.getProductId());
             }
-
-            if(status == 0){
-                inventoryModel.setStatus("IN");
-            }else{
-                inventoryModel.setStatus("OUT");
-            }
-
-            productIds = this.viewProducts(branchId);
             System.out.println("which product? ");
             System.out.print("(Hint- Choose id from the listed products) : ");
 
@@ -144,8 +127,29 @@ public class Inventory {
 
             inventoryModel.setProductId(productId);
 
+            while(status != 0 && status != 1){
+                System.out.println(ANSI_RED + "Please give a valid status of your inventory" + ANSI_RESET);
+                System.out.print("status : ");
+                status = scanner.nextInt();
+            }
+
+
             System.out.println("How many products? ");
-            inventoryModel.setQuantity(scanner.nextInt());
+            productQuantity = scanner.nextInt();
+
+            if(status == 0){
+                inventoryModel.setStatus("IN");
+            }else{
+                int res = checkProductQuantityInStock(branchId, productId);
+                while(res < productQuantity){
+                    System.out.println(ANSI_RED + " You don't have enough goods in stock. You only have " + res + " of that product" + ANSI_RESET);
+                    System.out.println(ANSI_CYAN + "Please input the product Quantity again: " + ANSI_RESET);
+                    productQuantity = scanner.nextInt();
+                }
+
+                inventoryModel.setQuantity(productQuantity);
+                inventoryModel.setStatus("OUT");
+            }
 
             // keep branch which registered the inventory
             inventoryModel.setBranchId(branchId);
@@ -201,8 +205,29 @@ public class Inventory {
             e.printStackTrace();
         }
     }
+    public int checkProductQuantityInStock(int branchId, int productId){
+        List<Integer> data = new ArrayList<Integer>();
+        data.add(branchId);
+        data.add(productId);
+
+        clientRequest.setRoute("/inventory");
+        clientRequest.setAction("VIEW QUANTITY");
+        clientRequest.setData(data);
+        int resultQuantity = 0;
+        try{
+            json = objectMapper.writeValueAsString(clientRequest);
+            responseBody = new ClientServerConnector().serverClientConnnector(json);
+            String[] number = responseBody.getData().split("\"");
+            resultQuantity = Integer.valueOf(number[1]);
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            return resultQuantity;
+        }
+    }
     public static void Inventory() throws Exception {
         Inventory inventory = new Inventory();
+        Scanner scanner = new Scanner(System.in);
         int choice;
         inventory.printWelcome();
         try {
@@ -211,6 +236,7 @@ public class Inventory {
             System.out.println("                    (2) Get Inventory Details                    ");
             System.out.println("                    (3) Update my Inventory                 ");
             System.out.println("                    (4) Delete from my Inventory           ");
+            System.out.println("                    (5) Check product Quantity in stock           ");
             System.out.print(" Enter your choice: ");
             choice = inventory.scanner.nextInt();
             switch (choice) {
@@ -222,8 +248,27 @@ public class Inventory {
                     break;
                 case 3:
                     inventory.updateInventory();
+                    break;
                 case 4:
                     inventory.deleteInventory();
+                    break;
+                case 5:
+                    System.out.print("Enter your branch id : ");
+                    inventory.branchId = scanner.nextInt();
+
+                    inventory.viewProducts(inventory.branchId);
+
+                    int productId;
+                    System.out.println("Which product? ");
+                    productId = scanner.nextInt();
+
+                    String productName;
+                    System.out.println("product Name: ");
+                    productName = scanner.next();
+
+                    int res = inventory.checkProductQuantityInStock(inventory.branchId, productId);
+                    System.out.println("There are " + res + " " + productName + "(s) in stock");
+
                     break;
                 default:
                     System.out.println("Please enter a valid choice");
