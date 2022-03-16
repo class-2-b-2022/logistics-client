@@ -7,8 +7,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-<<<<<<< HEAD
-=======
     <orderEntry type="library" name="jackson-databind-2.12.1" level="project" />
     <orderEntry type="library" name="jackson-core-2.12.1" level="project" />
     <orderEntry type="library" name="jackson-annotations-2.12.1" level="project" />
@@ -22,6 +20,5 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="json-20211205" level="project" />
->>>>>>> 0489ecca6be0a0f41762f35d0f8f0c7e1d21aa88
   </component>
 </module>
