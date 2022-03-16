@@ -8,6 +8,14 @@ import logic.VehicleManager;
 
 import Views.Inventory.Inventory;
 
+
+import Views.*;
+import logic.TestingServerConnecting;
+import logic.VehicleManager;
+
+import java.util.Scanner;
+
+
 public class ClientMain {
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_RESET = "\u001B[0m";
@@ -62,6 +70,7 @@ public class ClientMain {
         int choice;
 
         DeliveryModel delivery = new DeliveryModel();
+        Login login = new Login();
         VehicleManager vh = new VehicleManager();
 //        delivery.Delivery();
 //        delivery.Start();
@@ -76,7 +85,7 @@ public class ClientMain {
         choice = scanner.nextInt();
         switch(choice){
             case 1:
-//               login
+                login.mainMethod();
                 break;
             case 2:
                 BillingView.mainMethod();
@@ -86,7 +95,7 @@ public class ClientMain {
                 break;
             default:
                 System.out.println("Choice not available");
-                System.exit(1);
+                System.exit(-1);
         }
 
 
@@ -97,7 +106,6 @@ public class ClientMain {
 //        DeliveryModel delivery = new DeliveryModel();
 //        delivery.Delivery();
 //        delivery.Start();
-
 
     }
 }

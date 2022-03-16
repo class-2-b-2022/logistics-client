@@ -1,8 +1,7 @@
 package logic;
 
-import Utils.ConnectToServer;
-import Utils.RequestBody;
-import Utils.ResponseBody;
+import formats.*;
+import utils.*;
 import Views.DeliveryModel;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
