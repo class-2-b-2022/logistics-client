@@ -1,7 +1,7 @@
 package Views.Dashboard;
 
 import java.util.Scanner;
-
+/* Author: Niyigena Yves*/
 public class DashboardView {
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_RED = "\u001B[31m";
