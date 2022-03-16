@@ -1,15 +1,17 @@
 package logic;
 
+import Utils.ConnectToServer;
 import com.fasterxml.jackson.databind.JsonNode;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import formats.*;
-import utils.*;
+import Utils.*;
 import java.io.DataInput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import utils.*;
+import Utils.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import formats.BillingModel;
 import formats.ClientRequest;

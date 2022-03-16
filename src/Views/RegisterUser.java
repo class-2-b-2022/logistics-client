@@ -3,7 +3,7 @@ import Utils.*;
 import formats.RequestBody;
 import formats.ResponseBody;
 import formats.Users;
-import utils.ConnectToServer;
+import Utils.ConnectToServer;
 
 import java.util.Scanner;
 
