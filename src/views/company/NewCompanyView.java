@@ -1,4 +1,4 @@
-package Views.company;
+package views.company;
 
 import data_format.NewCompanyFormat;
 import org.json.JSONObject;
@@ -55,9 +55,14 @@ public class NewCompanyView {
 
                 System.out.println("        Enter  Company Type");
                 String companyType = scan.next();
+                while(!(companyType.equals("BRANCH")||companyType.equals("DISTRIBUTOR")||companyType.equals("MANUFACTURER")||companyType.equals("RESELLER"))){
+                    System.out.print("Enter a valid gender: BRANCH or DISTRIBUTOR or MANUFACTURER ");
+                    companyType = scan.next();
+                }
                 json.put("CompanyType",companyType);
-                if (companyType.equals("00"))
+                if (companyType.equals("00")) {
                     break;
+                }
 
                 System.out.println("        Enter  Company Description");
                 String companyDescription = scan.next();

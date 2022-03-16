@@ -1,5 +1,6 @@
 package services;
 
+import Utils.RequestBody;
 import org.json.JSONObject;
 
 import java.io.*;
@@ -15,31 +16,29 @@ public class CompanyServer {
                 Socket socket = serverSocket.accept();
                 startHandler(socket);
             }
-        }catch(IOException e){
+        }catch(Exception e){
             e.printStackTrace();
         }
     }
-    private static void startHandler (final Socket socket) {
+    private static void startHandler (final Socket socket) throws IOException, ClassNotFoundException {
         Thread thread = new Thread(() -> {
-            try{
-                OutputStreamWriter writer = new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8);
-                BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
 
-                String line = reader.readLine();
-                System.out.println(line);
-                JSONObject jsonObject = new JSONObject(line);
+            try{
+                ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
+                RequestBody requestBody = (RequestBody) objectInputStream.readObject();
+                System.out.println(requestBody.getAction());
+                JSONObject jsonObject = new JSONObject(requestBody.getData());
                 String companyName = jsonObject.getString("CompanyName");
                 String companyDescription = jsonObject.getString("CompanyDescription");
                 String companyEmail = jsonObject.getString("CompanyEmail");
                 String companyType = jsonObject.getString("CompanyType");
                 String companyPhone = jsonObject.getString("CompanyPhone");
 
-                writer.write(jsonObject + "\n");
-                writer.flush();
+
 //                System.out.println("sending to from server \n" + jsonObject);
 
 
-            } catch (IOException e) {
+            } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             } finally {
                 try {

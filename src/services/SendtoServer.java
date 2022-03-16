@@ -1,5 +1,7 @@
 package services;
 
+import Utils.RequestBody;
+import Utils.ResponseBody;
 import org.json.JSONObject;
 import java.io.*;
 import java.net.Socket;
@@ -11,6 +13,7 @@ public class SendtoServer {
     private ObjectOutputStream objectOutput = null;
     private boolean isConnection = true;
     private JSONObject json;
+    private RequestBody requestBody;
     private Socket socket;
     public Socket getSocket() {
         return socket;
@@ -20,19 +23,23 @@ public class SendtoServer {
         this.socket = socket;
     }
 
-    public SendtoServer(JSONObject json, Socket socket) throws IOException{
+    public SendtoServer(RequestBody clientRequest, Socket socket) throws IOException{
         this.socket = socket;
-        this.json = json;
+        this.requestBody = clientRequest;
     }
 
 
     public boolean send() throws IOException {
-        OutputStreamWriter writer = new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8);
+
         try{
-            writer.write(json + "\n");
-            writer.flush();
-            System.out.println("sending to from server \n" + json);
+            System.out.println(requestBody.getAction());
+            ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+            out.writeObject(requestBody);
+
+
+//            System.out.println("sending to from server \n" + String.valueOf(requestBody));
         }catch(Exception e) {
+            System.out.println("Error");
             System.out.println(e.getMessage());
         }
         return true;

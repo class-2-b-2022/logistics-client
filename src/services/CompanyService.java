@@ -1,4 +1,5 @@
 package services;
+import Utils.RequestBody;
 import org.json.JSONObject;
 
 import java.io.*;
@@ -24,7 +25,11 @@ public class CompanyService {
 
     public void create(JSONObject json) throws IOException, ClassNotFoundException {
         System.out.println(json);
-        SendtoServer sendtoServer = new SendtoServer(json, this.socket);
+        RequestBody request = new RequestBody();
+        request.setData(json);
+        request.setAction("register");
+        request.setRoute("/company");
+        SendtoServer sendtoServer = new SendtoServer(request, this.socket);
         if (sendtoServer.send()) {
             System.out.println("Company Registered Successfully");
 //            this.handleCreateCustomerResponse();
@@ -44,29 +49,29 @@ public class CompanyService {
 
     }
 
-public List getCompany(int companyOwnerCode) throws IOException,ClassNotFoundException {
-
-    JSONObject json = new JSONObject();
-    json.put("companyOwnerCode", companyOwnerCode);
-    SendtoServer sendtoServer = new SendtoServer(json,this.socket);
-    List<String> res = new ArrayList<>();
-    System.out.println("Your requested is being handled by the server");
-//    if(sendtoServer.send()) {
-//        try{
-//            InputStream input = this.socket.getInputStream();
-//            ObjectInputStream objectInputStream = new ObjectInputStream(input);
-//            res = (List) objectInputStream.readObject();
-//            JsonNode jsonNode = objectMapper.readTree(res.get(0));
-//            if(jsonNode.get("status").asInt() == 404){
-//                System.out.println("No such company registered");
-//                return null;
-//            }
-//        }catch(Exception e){
-//            System.out.println("Error, "+e.getMessage());
-//        }
+//public List getCompany(int companyOwnerCode) throws IOException,ClassNotFoundException {
+//
+//    JSONObject json = new JSONObject();
+//    json.put("companyOwnerCode", companyOwnerCode);
+//    SendtoServer sendtoServer = new SendtoServer(json,this.socket);
+//    List<String> res = new ArrayList<>();
+//    System.out.println("Your requested is being handled by the server");
+////    if(sendtoServer.send()) {
+////        try{
+////            InputStream input = this.socket.getInputStream();
+////            ObjectInputStream objectInputStream = new ObjectInputStream(input);
+////            res = (List) objectInputStream.readObject();
+////            JsonNode jsonNode = objectMapper.readTree(res.get(0));
+////            if(jsonNode.get("status").asInt() == 404){
+////                System.out.println("No such company registered");
+////                return null;
+////            }
+////        }catch(Exception e){
+////            System.out.println("Error, "+e.getMessage());
+////        }
+////    }
+//    return res;
 //    }
-    return res;
-    }
 //    public List getCompanies() throws IOException {
 //        ObjectMapper objectMapper = new ObjectMapper();
 ////        String json = objectMapper.writeValueAsString();

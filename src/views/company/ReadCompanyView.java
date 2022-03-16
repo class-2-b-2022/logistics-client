@@ -28,7 +28,7 @@ public class ReadCompanyView {
                 break search;
             CompanyService companyService = new CompanyService(this.socket);
             List<String> res = new ArrayList<>();
-            res = companyService.getCompany(Integer.parseInt(companyCode));
+//            res = companyService.getCompany(Integer.parseInt(companyCode));
             if(res != null){
                 System.out.println("\n\t\t\t\t\t\t\t-------------------------------------------");
                 System.out.println("CompanyOwnerCode\tCompanyName\tCompanyEmail\tCompanyPhone\tCompanyType\tCompanyDescription");
