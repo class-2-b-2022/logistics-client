@@ -1,11 +1,15 @@
 package Utils;
-import java.io.*;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import formats.*;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,9 +21,9 @@ public class ConnectToServer {
         // establish a connection by providing host and port
         // number
         try (Socket socket = new Socket("localhost", 5450)) {
-        	ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-        	
-        	
+
+            ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+
             // reading from server
             DataInputStream in = new DataInputStream(socket.getInputStream());
 

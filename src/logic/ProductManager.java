@@ -2,11 +2,14 @@ package logic;
 
 import java.util.*;
 
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import formats.ProductModel;
 
 import Utils.*;
+import formats.RequestBody;
+import formats.ResponseBody;
 
 
 public class ProductManager {
@@ -23,7 +26,7 @@ public class ProductManager {
       System.out.println("Product Type? ");
       productModel.setProductType(sc.nextLine());
       System.out.println("Price per Bulk? ");
-      productModel.setPricePerBulk(sc.nextLine());
+      productModel.setPricePerBulk(sc.nextInt());
       System.out.println("Company Id? ");
     productModel.setCompanyId(sc.nextInt());
      
@@ -58,8 +61,9 @@ public class ProductManager {
      clientRequest.setData(1);
      ConnectToServer clientServerConnector = new ConnectToServer();
      ResponseBody responseBody = clientServerConnector.connectToServer(clientRequest);
-     
-     List<ProductModel> products= Arrays.asList(inputMapper.readValue(responseBody.getData(), ProductModel[].class));
+
+     String json = (String) responseBody.getData();
+     List<ProductModel> products= Arrays.asList(inputMapper.readValue(json, ProductModel[].class));
      
     String leftAlignFormat = "| %-11s | %-4d |%n";
     System.out.println("\t\t\t\t List of all products ");

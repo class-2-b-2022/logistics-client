@@ -1,14 +1,15 @@
 package Views.Inventory;
 
 import Utils.ClientServerConnector;
-import Utils.ResponseBody;
-import Views.Product.Product;
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import formats.ClientRequest;
 import formats.InventoryModel;
-import models.ProductModel;
+import formats.ProductModel;
+import formats.ResponseBody;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -43,8 +44,9 @@ public class Inventory {
             json = objectMapper.writeValueAsString(clientRequest);
             responseBody = new ClientServerConnector().serverClientConnnector(json);
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            products = Arrays.asList(objectMapper.readValue(responseBody.getData(), ProductModel[].class));
-            // System.out.println(responseBody.getData());
+            String json = (String) responseBody.getData();
+            products = Arrays.asList(objectMapper.readValue(json, ProductModel[].class));
+
             String leftAlignFormat = "| %-11s | %-4d |%n";
             System.out.println(ANSI_MAG + "\t\t\t\t List of all products " + ANSI_RESET);
             System.out.format("| #Id    | Product Name    | Product Type       | Company Id  | Price per Bulk |");
@@ -74,7 +76,7 @@ public class Inventory {
             json = objectMapper.writeValueAsString(clientRequest);
             responseBody = new ClientServerConnector().serverClientConnnector(json);
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            List<InventoryModel> inventories = Arrays.asList(objectMapper.readValue(responseBody.getData(), InventoryModel[].class));
+            List<InventoryModel> inventories = Arrays.asList(objectMapper.readValue((JsonParser) responseBody.getData(), InventoryModel[].class));
 
             String leftAlignFormat = "| %-11s | %-4d |%n";
             System.out.println(ANSI_MAG + "\t\t\t\t List of all branch inventory " + ANSI_RESET);
@@ -217,7 +219,9 @@ public class Inventory {
         try{
             json = objectMapper.writeValueAsString(clientRequest);
             responseBody = new ClientServerConnector().serverClientConnnector(json);
-            String[] number = responseBody.getData().split("\"");
+
+            String responseFromServer = (String) responseBody.getData();
+            String[] number =  responseFromServer.split("\"");
             resultQuantity = Integer.valueOf(number[1]);
         }catch (Exception e){
             e.printStackTrace();

@@ -1,10 +1,9 @@
 package logic;
-import Views.DeliveryModel;
-
-import formats.Vehicle;
 import Utils.ConnectToServer;
-import Utils.RequestBody;
-import Utils.ResponseBody;
+import Views.DeliveryModel;
+import com.fasterxml.jackson.core.JsonParser;
+import formats.*;
+import formats.Vehicle;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Arrays;
 import java.util.List;
@@ -43,6 +42,7 @@ public class VehicleManager {
 
         clientRequest.setData(vehicle);
         ConnectToServer clientServerConnector = new ConnectToServer();
+
         ResponseBody responseBody = clientServerConnector.connectToServer(clientRequest);
         if(responseBody.getStatus() == "201"){
             System.out.println("Vehicle registered successfully");
@@ -59,6 +59,9 @@ public class VehicleManager {
             System.out.println("\t\t --------------         Meaning: " + responseStatus.getMessage());
             System.out.println("\t\t --------------         Action: " + responseStatus.getActionToDo());
             System.out.println("\t\t ------------------------------------------------------------------------------");
+        }
+
+    }
 
         }*/
 
@@ -71,7 +74,9 @@ public class VehicleManager {
         ConnectToServer clientServerConnector = new ConnectToServer();
         ResponseBody responseBody = clientServerConnector.connectToServer(clientRequest);
         
-        List<Vehicle> vehicles = Arrays.asList(inputMapper.readValue(responseBody.getData(), Vehicle[].class));
+        List<Vehicle> vehicles = Arrays.asList(inputMapper.readValue((JsonParser) responseBody.getData(), Vehicle[].class));
        return vehicles;
     }
 }
+
+

@@ -13,8 +13,6 @@ import java.io.Serializable;
 import java.math.BigInteger;
 
 public class Vehicle implements Serializable {
-
-
     private Integer VehicleId;
     private String plateNbr;
     private String brand;
@@ -29,8 +27,6 @@ public class Vehicle implements Serializable {
     public void setCreatedAt(BigInteger createdAt) {
         this.createdAt = createdAt;
     }
-
-
 
     public void setModel(String model) {
         this.model = model;
