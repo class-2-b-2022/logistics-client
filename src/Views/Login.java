@@ -48,6 +48,10 @@ public class Login {
         ResponseBody responseBody=connectToServer.connectToServer(requestBody);
         if(responseBody.getStatus() == "200") {
             System.out.println("Login successfully");
+        }else if(responseBody.getStatus() == "400"){
+            System.out.println("user");
+            System.out.println(responseBody.getMessage());
+            startClient();
         }
         System.out.println("Status: " +responseBody.getStatus());
         System.out.println("Status: " +responseBody.getData());
@@ -58,10 +62,11 @@ public class Login {
 //        }
     }
     //yvesisite@gmail.com pass123
-    public static void main(String args[]){
+    public  void mainMethod(){
         Login client = new Login();
         try {
             client.startClient();
+
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (IOException e) {
