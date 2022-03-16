@@ -10,7 +10,7 @@ public class ConnectToServer {
     public ResponseBody connectToServer(RequestBody clientRequest)throws Exception
     {
 
-        try (Socket socket = new Socket("ipaddress", 5450)) {
+        try (Socket socket = new Socket("192.168.0.149", 5450)) {
             ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
 
             // reading from server
