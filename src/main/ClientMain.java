@@ -70,6 +70,7 @@ public class ClientMain {
         int choice;
 
         DeliveryModel delivery = new DeliveryModel();
+        Login login = new Login();
         VehicleManager vh = new VehicleManager();
 //        delivery.Delivery();
 //        delivery.Start();
@@ -84,8 +85,7 @@ public class ClientMain {
         choice = scanner.nextInt();
         switch(choice){
             case 1:
-//               VehicleManager v = new registerVehicle();
-                vh.registerVehicle();
+                login.mainMethod();
                 break;
             case 2:
                 BillingView.mainMethod();
