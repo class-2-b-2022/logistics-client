@@ -54,11 +54,24 @@ public class ProductManager {
      ObjectMapper inputMapper = new ObjectMapper();
      RequestBody clientRequest = new RequestBody();
      clientRequest.setRoute("/products");
-     clientRequest.setAction("READ");
+     clientRequest.setAction("GET");
+     clientRequest.setData(1);
      ConnectToServer clientServerConnector = new ConnectToServer();
      ResponseBody responseBody = clientServerConnector.connectToServer(clientRequest);
      
      List<ProductModel> products= Arrays.asList(inputMapper.readValue(responseBody.getData(), ProductModel[].class));
+     
+    String leftAlignFormat = "| %-11s | %-4d |%n";
+    System.out.println("\t\t\t\t List of all products ");
+    System.out.format("| #Id    | Product Name    | Product Type       | Company Id  | Price per Bulk |");
+    System.out.format("+-----------------+------+%n");
+    for ( ProductModel product : products) {
+        String line = String.format("%s    |  %s             |  %s          | %s         | %s        ",product.getProductId(),product.getProductName(),product.getProductType(),product.getCompanyId(), product.getPricePerBulk());
+        System.out.format(leftAlignFormat, line, 2, 3);
+
+    }
+    System.out.format("+-----------------+---------------------+%n");
+
     return products;
  }
 
