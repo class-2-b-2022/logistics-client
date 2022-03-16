@@ -60,6 +60,7 @@ public class ClientMain {
     public static void main(String[] args) throws Exception {
        welcomeScreen();
         int choice;
+        int cont = 1;
 
         DeliveryModel delivery = new DeliveryModel();
         VehicleManager vh = new VehicleManager();
@@ -74,21 +75,26 @@ public class ClientMain {
         System.out.print("\t\t\t\t\t\t");
 //        DistributorWalletView distView = new DistributorWalletView();
         choice = scanner.nextInt();
-        switch(choice){
-            case 1:
-//               login
-                break;
-            case 2:
-                BillingView.mainMethod();
-               break;
-            case 3:
-                Inventory.Inventory();
-                break;
-            default:
-                System.out.println("Choice not available");
-                System.exit(1);
-        }
 
+
+        while(cont==1) {
+            switch (choice) {
+                case 1:
+//               login
+                    break;
+                case 2:
+                    BillingView.mainMethod();
+                    break;
+                case 3:
+                    Inventory.Inventory();
+                    break;
+                default:
+                    System.out.println("Choice not available");
+                    System.exit(1);
+            }
+            System.out.println("Continue? (1)");
+            cont = scanner.nextInt();
+        }
 
 
 

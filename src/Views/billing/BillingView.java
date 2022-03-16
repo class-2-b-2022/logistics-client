@@ -8,6 +8,9 @@ import utils.ClientServerConnector;
 
 import java.util.Scanner;
 
+/**
+ * @author : Acele Happy
+ */
 
 //save money, make transactions!!
 public class BillingView {
