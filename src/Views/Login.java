@@ -2,12 +2,12 @@ package Views;
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Properties;
 import java.util.Scanner;
 import Utils.*;
-import formats.ClientRequest;
-import formats.Data_format;
-import formats.RequestBody;
-import formats.ResponseBody;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import formats.*;
 import utils.ConnectToServer;
 
 public class Login {
@@ -23,6 +23,7 @@ public class Login {
     public void startClient() throws Exception {
 //        socket = new Socket("192.168.1.235", 5450   );
 //        output = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
+        ObjectMapper objectMapper = new ObjectMapper();
         String email;
         String password;
         Scanner scanner=new Scanner(System.in);
@@ -46,16 +47,23 @@ public class Login {
         System.out.println("Data  " + " {" + " Email : " + '"' + data.email + '"' + ", "+ " Password " + data.password + "}");
         ConnectToServer connectToServer=new ConnectToServer();
         ResponseBody responseBody=connectToServer.connectToServer(requestBody);
-        if(responseBody.getStatus() == "200") {
+
+        if(Integer.parseInt(responseBody.getStatus()) == 200) {
             System.out.println("Login successfully");
-        }else if(responseBody.getStatus() == "400"){
+            Properties property = new Properties();
+            InputStream in = getClass().getResourceAsStream("config.properties");
+            JsonNode jsonNode = objectMapper.readTree((byte[]) responseBody.getData());
+            byte[] dataToparse = objectMapper.writeValueAsBytes(jsonNode);
+            Users user = objectMapper.readValue(dataToparse, Users.class);
+            System.out.println(user.getEmail());
+            System.out.println(user.getUserId());
+            property.load(in);
+//            property.setProperty("userId", )
+        }else if(Integer.parseInt(responseBody.getStatus()) == 400){
             System.out.println("user");
             System.out.println(responseBody.getMessage());
             startClient();
         }
-        System.out.println("Status: " +responseBody.getStatus());
-        System.out.println("Status: " +responseBody.getData());
-
 //        }
 //        else{
 //            System.out.println("An error occurred behind your screen");

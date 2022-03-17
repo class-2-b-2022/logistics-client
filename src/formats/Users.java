@@ -3,11 +3,20 @@ package formats;
 import java.io.Serializable;
 
 public class Users implements Serializable {
+    private int userId;
     private String names;
     private String email;
     private long phone;
     private String password ;
     private int role;
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     public String getNames() {
         return names;

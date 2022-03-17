@@ -29,9 +29,7 @@ public class ConnectToServer {
             List<String> dt = new ArrayList<>();
             dt.add(json);
             out.writeObject(dt);
-            System.out.println("getting returned data");
             String jsonReturned =  in.readUTF();
-            System.out.println(jsonReturned);
             ObjectMapper inputMapper = new ObjectMapper();
             JsonNode jsonNodeRoot = inputMapper.readTree(jsonReturned);
             res.setStatus(jsonNodeRoot.get("status").asText());
