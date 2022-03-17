@@ -24,7 +24,7 @@ public class ClientMain {
     Scanner scanner = new Scanner(System.in);
     public static void welcomeScreen(){
         /**
-         * @author: Niyigena Yves
+         * @author: Niyigena Yves   
          */
         System.out.println("\n");
 
