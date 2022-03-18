@@ -19,8 +19,8 @@ public class Vehicle implements Serializable {
     private String plateNbr;
     private String brand;
     private String owner;
-    private String model;
     private String description ;
+    private String model;
     private BigInteger createdAt;
     public BigInteger getCreatedAt() {
         return createdAt;
