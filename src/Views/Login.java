@@ -34,16 +34,25 @@ public class Login {
         ResponseBody responseBody=connectToServer.connectToServer(requestBody);
         System.out.println(responseBody.getMessage());
     }    public void updateUser() throws Exception {
+        Users dataFormat=new Users();
         Scanner scanner=new Scanner(System.in);
+        System.out.print("update name: ");
+        String name;
+        name=scanner.nextLine();
+        System.out.print("update phone: ");
+        long phone;
+        phone=scanner.nextInt();
         System.out.print("update email: ");
         String email;
         email=scanner.nextLine();
-        Users dataFormat=new Users();
+
+        dataFormat.setNames(name);
+        dataFormat.setPhone(phone);
         dataFormat.setEmail(email);
-        dataFormat.setPassword("pass123");
+        
         RequestBody requestBody=new RequestBody();
-        requestBody.setAction("deleteuser");
-        requestBody.setRoute("/user");
+        requestBody.setAction("updateuser");
+        requestBody.setRoute("/users");
         requestBody.setData(dataFormat);
         ConnectToServer connectToServer=new ConnectToServer();
         ResponseBody responseBody=connectToServer.connectToServer(requestBody);
