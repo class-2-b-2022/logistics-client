@@ -56,7 +56,7 @@ public class NewCompanyView {
                 System.out.println("        Enter  Company Type");
                 String companyType = scan.next();
                 while(!(companyType.equals("BRANCH")||companyType.equals("DISTRIBUTOR")||companyType.equals("MANUFACTURER")||companyType.equals("RESELLER"))){
-                    System.out.print("Enter a valid gender: BRANCH or DISTRIBUTOR or MANUFACTURER ");
+                    System.out.print("Enter a valid gender: BRANCH or DISTRIBUTOR or MANUFACTURER or RESELLER ");
                     companyType = scan.next();
                 }
                 json.put("CompanyType",companyType);

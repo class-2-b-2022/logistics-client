@@ -1,8 +1,8 @@
 package logic;
-import Views.DeliveryModel;
+import views.DeliveryModel;
 import formats.*;
-import utils.*;
-import Views.*;
+import Utils.*;
+import views.*;
 import formats.Vehicle;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

@@ -1,4 +1,4 @@
-package utils;
+package Utils;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -7,7 +7,7 @@ import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
-import utils.*;
+import Utils.*;
 import formats.*;
 
 public class ConnectToServer {

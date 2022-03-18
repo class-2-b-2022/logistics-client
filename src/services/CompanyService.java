@@ -1,5 +1,7 @@
 package services;
-import Utils.RequestBody;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import formats.RequestBody;
 import org.json.JSONObject;
 
 import java.io.*;
@@ -25,10 +27,8 @@ public class CompanyService {
 
     public void create(JSONObject json) throws IOException, ClassNotFoundException {
         System.out.println(json);
-        RequestBody request = new RequestBody();
-        request.setData(json);
-        request.setAction("register");
-        request.setRoute("/company");
+        RequestBody request = new RequestBody("/company", "register", json);
+
         SendtoServer sendtoServer = new SendtoServer(request, this.socket);
         if (sendtoServer.send()) {
             System.out.println("Company Registered Successfully");

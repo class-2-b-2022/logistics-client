@@ -1,11 +1,14 @@
 package services;
 
-import Utils.RequestBody;
-import Utils.ResponseBody;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import formats.RequestBody;
 import org.json.JSONObject;
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class SendtoServer {
@@ -34,8 +37,12 @@ public class SendtoServer {
         try{
             System.out.println(requestBody.getAction());
             ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-            out.writeObject(requestBody);
+//            out.writeObject(requestBody);
+            ObjectMapper objectMapper = new ObjectMapper();
+            String jsonObject = objectMapper.writeValueAsString(requestBody);
 
+            dt.add(jsonObject);
+            out.writeObject(dt);
 
 //            System.out.println("sending to from server \n" + String.valueOf(requestBody));
         }catch(Exception e) {

@@ -1,15 +1,15 @@
 package main;
 
-import Views.billing.BillingView;
+import views.billing.BillingView;
 
 import java.util.Scanner;
-import Views.DeliveryModel;
+import views.DeliveryModel;
 import logic.VehicleManager;
 
-import Views.Inventory.Inventory;
+import views.Inventory.Inventory;
 
 
-import Views.*;
+import views.*;
 import logic.TestingServerConnecting;
 import logic.VehicleManager;
 
