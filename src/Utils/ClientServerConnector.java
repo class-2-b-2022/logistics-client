@@ -1,46 +1,46 @@
 
 package  Utils;
-import formats.ClientRequest;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import formats.ResponseBody;
 
+import java.io.DataInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-
 
 public class ClientServerConnector {
-    public static Utils.ResponseBody serverClientConnnector(String json)throws Exception
+    public ResponseBody serverClientConnnector(String json)throws Exception
     {
         // establish a connection by providing host and port
+        ResponseBody res = new ResponseBody();
         // number
         try (Socket socket = new Socket("localhost", 5450)) {
 
             // writing to server
             ObjectOutputStream requestStream = new ObjectOutputStream(socket.getOutputStream());
-
-            // reading from server
-            ObjectInputStream responseStream = new ObjectInputStream(socket.getInputStream());
             List<String> dataTosend = new ArrayList<>();
             dataTosend.add(json);
             // sending request
             requestStream.writeObject(dataTosend);
-            requestStream.flush();
+
 
             // getting response
-            List<Object> dataReturned = (List<Object>) responseStream.readObject();
-
-
-            Utils.ResponseBody responseBody = new Utils.ResponseBody(dataReturned);
-
-            return responseBody;
+            DataInputStream in = new DataInputStream(socket.getInputStream());
+            String jsonReturned =  in.readUTF();
+            ObjectMapper inputMapper = new ObjectMapper();
+            JsonNode jsonNodeRoot = inputMapper.readTree(jsonReturned);
+            jsonNodeRoot = inputMapper.readTree(jsonReturned);
+             res.setMessage(jsonNodeRoot.get("status").asText());
+             res.setData(jsonReturned.split("data\":")[1].split(",\"message\"")[0]);
+             res.setStatus((jsonNodeRoot.get("message").asText()));
         }
         catch (IOException e) {
             e.printStackTrace();
+        }finally {
+            return res;
         }
-        return null;
     }
 }

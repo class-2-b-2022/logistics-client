@@ -1,20 +1,36 @@
 package logic;
 
-import Utils.ClientServerConnector;
+import Utils.ConnectToServer;
+import com.fasterxml.jackson.databind.JsonNode;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import formats.*;
+import Utils.*;
+import java.io.DataInput;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import Utils.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import formats.BillingModel;
 import formats.ClientRequest;
-import Utils.ClientServerConnector;
+
 
 public class TestingServerConnecting {
-    public static void connect() throws Exception {
-        ClientRequest clientRequest = new ClientRequest();
+
+    public static void connect(Wallet wallet) throws Exception {
+        RequestBody clientRequest = new RequestBody();
         clientRequest.setRoute("/testing");
         clientRequest.setAction("testing");
-        BillingModel billModel = new BillingModel(11, 105000);
-        clientRequest.setData(billModel);
+        clientRequest.setData(wallet);
         ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString(clientRequest);
-        ClientServerConnector.serverClientConnnector(json);
+        ResponseBody res = new ConnectToServer().connectToServer(clientRequest);
+        System.out.println("Returned data " +res.getData());
+        JsonNode jsonNode = objectMapper.readTree((byte[]) res.getData());
+        byte[] dataToparse = objectMapper.writeValueAsBytes(jsonNode);
+        Wallet bills = objectMapper.readValue(dataToparse, Wallet.class);
+        System.out.println(bills.getAmount());
+
     }
 }

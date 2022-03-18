@@ -7,6 +7,9 @@ import Utils.*;
 import formats.ClientRequest;
 import formats.Data_format;
 import formats.Users;
+import formats.RequestBody;
+import formats.ResponseBody;
+import Utils.ConnectToServer;
 
 public class Login {
     public static final String ANSI_RESET="\u001B[0m";
@@ -33,7 +36,8 @@ public class Login {
         ConnectToServer connectToServer=new ConnectToServer();
         ResponseBody responseBody=connectToServer.connectToServer(requestBody);
         System.out.println(responseBody.getMessage());
-    }    public void updateUser() throws Exception {
+    }
+    public void updateUser() throws Exception {
         Users dataFormat=new Users();
         Scanner scanner=new Scanner(System.in);
         System.out.print("update name: ");
@@ -86,6 +90,10 @@ public class Login {
         ResponseBody responseBody=connectToServer.connectToServer(requestBody);
         if(responseBody.getStatus() == "200") {
             System.out.println("Login successfully");
+        }else if(responseBody.getStatus() == "400"){
+            System.out.println("user");
+            System.out.println(responseBody.getMessage());
+            startClient();
         }
         System.out.println("Status: " +responseBody.getStatus());
         System.out.println("Status: " +responseBody.getData());
@@ -96,12 +104,28 @@ public class Login {
 //        }
     }
     //yvesisite@gmail.com pass123
-    public static void main(String args[]){
+    public static void main(String[] args){
+        Login client = new Login();
+        try {
+//            client.startClient();
+//            client.deleteUser();
+//            for today tasks,is using some javascript allowed.
+            client.startClient();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public  void mainMethod(){
         Login client = new Login();
         try {
 //            client.startClient();
             client.deleteUser();
 //            for today tasks,is using some javascript allowed.
+            client.startClient();
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (IOException e) {
