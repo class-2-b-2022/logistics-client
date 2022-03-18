@@ -6,6 +6,8 @@ import java.util.Scanner;
 import Utils.*;
 import formats.ClientRequest;
 import formats.Data_format;
+import formats.Users;
+
 public class Login {
     public static final String ANSI_RESET="\u001B[0m";
     public static final String ANSI_RED="\u001B[31m";
@@ -16,6 +18,37 @@ public class Login {
     BufferedReader read;
     PrintWriter output;
 
+    public void deleteUser() throws Exception {
+//        Scanner scanner=new Scanner(System.in);
+//        System.out.print("User Email to delete: ");
+//        String email;
+//        email=scanner.nextLine();
+        Data_format dataFormat=new Data_format();
+        dataFormat.setEmail("email");
+        dataFormat.setPassword("pass123");
+        RequestBody requestBody=new RequestBody();
+        requestBody.setAction("deleteuser");
+        requestBody.setRoute("/user");
+        requestBody.setData(dataFormat);
+        ConnectToServer connectToServer=new ConnectToServer();
+        ResponseBody responseBody=connectToServer.connectToServer(requestBody);
+        System.out.println(responseBody.getMessage());
+    }    public void updateUser() throws Exception {
+        Scanner scanner=new Scanner(System.in);
+        System.out.print("update email: ");
+        String email;
+        email=scanner.nextLine();
+        Users dataFormat=new Users();
+        dataFormat.setEmail(email);
+        dataFormat.setPassword("pass123");
+        RequestBody requestBody=new RequestBody();
+        requestBody.setAction("deleteuser");
+        requestBody.setRoute("/user");
+        requestBody.setData(dataFormat);
+        ConnectToServer connectToServer=new ConnectToServer();
+        ResponseBody responseBody=connectToServer.connectToServer(requestBody);
+        System.out.println(responseBody.getMessage());
+    }
     public void startClient() throws Exception {
 //        socket = new Socket("192.168.1.235", 5450   );
 //        output = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
@@ -52,22 +85,6 @@ public class Login {
 //        else{
 //            System.out.println("An error occurred behind your screen");
 //        }
-    }
-    public void deleteUser() throws Exception {
-//        Scanner scanner=new Scanner(System.in);
-//        System.out.print("User Email to delete: ");
-//        String email;
-//        email=scanner.nextLine();
-        Data_format dataFormat=new Data_format();
-        dataFormat.setEmail("email");
-        dataFormat.setPassword("pass123");
-        RequestBody requestBody=new RequestBody();
-        requestBody.setAction("deleteuser");
-        requestBody.setRoute("/user");
-        requestBody.setData(dataFormat);
-        ConnectToServer connectToServer=new ConnectToServer();
-        ResponseBody responseBody=connectToServer.connectToServer(requestBody);
-        System.out.println(responseBody.getMessage());
     }
     //yvesisite@gmail.com pass123
     public static void main(String args[]){
