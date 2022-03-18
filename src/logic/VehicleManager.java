@@ -1,9 +1,10 @@
 package logic;
 
 import Views.DeliveryModel;
+import com.fasterxml.jackson.core.JsonParser;
 import formats.Vehicle;
 import utils.ConnectToServer;
-import utils.RequestBody;
+import utils.ClientRequest;
 import utils.ResponseBody;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -41,7 +42,7 @@ public class VehicleManager {
         vehicle.setDescription(description);
         vehicle.setModel(model);
 
-        RequestBody clientRequest = new RequestBody();
+        ClientRequest clientRequest = new ClientRequest();
         clientRequest.setRoute("/delivery/vehicles");
         clientRequest.setAction("register");
 
@@ -70,14 +71,14 @@ public class VehicleManager {
 
     public List<Vehicle> viewVehicles() throws Exception {
         ObjectMapper inputMapper = new ObjectMapper();
-        RequestBody clientRequest = new RequestBody();
+        ClientRequest clientRequest = new ClientRequest();
         clientRequest.setRoute("/delivery/vehicles");
         clientRequest.setAction("view");
         ConnectToServer clientServerConnector = new ConnectToServer();
         ResponseBody responseBody = clientServerConnector.connectToServer(clientRequest);
         System.out.println(responseBody.getData());
-        List<Vehicle> vehicles = Arrays.asList(inputMapper.readValue(responseBody.getData(), Vehicle[].class));
-       return vehicles;
+        List<Vehicle> vehicles = Arrays.asList(inputMapper.readValue((JsonParser) responseBody.getData(), Vehicle[].class));
+        return vehicles;
     }
 
 
@@ -104,7 +105,7 @@ public class VehicleManager {
         vehicle.setModel(model);
 
 
-        RequestBody req = new RequestBody();
+        ClientRequest req = new ClientRequest();
         req.setRoute("/delivery/vehicles");
         req.setAction("update");
 
@@ -135,7 +136,7 @@ public class VehicleManager {
 
         vehicle.setVehicleId(id);
 
-        RequestBody req = new RequestBody();
+        ClientRequest req = new ClientRequest();
         req.setRoute("/delivery/vehicles");
         req.setAction("delete");
 
