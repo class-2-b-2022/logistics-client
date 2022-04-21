@@ -36,7 +36,7 @@ public class CompanyMainView {
 //                        companyView = false;
                         break;
                     }
-                    NewCompanyView newCompanyView = new NewCompanyView(this.socket);
+                    views.company.NewCompanyView newCompanyView = new views.company.NewCompanyView(this.socket);
                     newCompanyView.view();
                     companyView = false;
                     break;
