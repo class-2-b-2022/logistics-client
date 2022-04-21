@@ -13,12 +13,11 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/jar_files/json-20211205.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../../Desktop/Y2 Courses/EMBEDDED SYSTEMS/jar_files.zip!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="json-20211205" level="project" />
   </component>
 </module>
