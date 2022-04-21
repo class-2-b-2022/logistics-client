@@ -2,7 +2,7 @@ package logic;
 
 import formats.*;
 import Utils.*;
-import views.DeliveryModel;
+import Views.DeliveryModel;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import formats.Wallet;
