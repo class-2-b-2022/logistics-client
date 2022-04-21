@@ -1,6 +1,6 @@
 package main;
-import views.Home;
-import views.company.CompanyMainView;
+import Views.Home;
+import Views.company.CompanyMainView;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
