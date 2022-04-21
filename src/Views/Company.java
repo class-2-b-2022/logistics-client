@@ -1,7 +1,9 @@
 package Views;
 
+import formats.CompanyModel;
 import logic.CompanyManager;
 
+import java.util.List;
 import java.util.Scanner;
 /**
  * @author Teta Butera Nelly
@@ -65,6 +67,20 @@ public class Company {
                     System.out.format(leftAlignFormat, " 205962103   | NYIRANGARAMA  | COMPANY |  Healthy  |", i * 125);
                 }
                 System.out.format("+-----------------+------+%n");
+                break;
+
+            case 2:
+                System.out.println(ANSI_MAG + "\t\t\t\t  List of all companies " + ANSI_RESET);
+                List<CompanyModel> companies = companyManager.viewCompanies();
+                System.out.println("+__________________+_______________+%n");
+                System.out.format("| TIN      | Name      | Email    | Type    | Phone   | Description    |");
+                System.out.println("+__________________+_______________+%n");
+
+                for(CompanyModel company : companies){
+                    String line = String.format("   %s  |   %s  |   %s  |   %s  |   %s  |   %s  ", company.getTIN(),company.getName(),company.getEmail(),company.getType(),company.getPhone(),company.getDescription());
+                    System.out.format(leftAlignFormat, line,2,3);
+                }
+                System.out.println("+__________________+_______________+%n");
                 break;
         }
 

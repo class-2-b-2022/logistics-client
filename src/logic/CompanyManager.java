@@ -2,12 +2,15 @@ package logic;
 
 import Utils.ConnectToServer;
 import Views.Company;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import formats.ClientRequest;
 import formats.ClientRequest.*;
 import formats.CompanyModel;
 import formats.RequestBody;
 import formats.ResponseBody;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 /**
  * @author Teta Butera Nelly
@@ -62,6 +65,18 @@ public class CompanyManager {
         }else{
             System.out.println("An error occurred behind your screen");
         }
+    }
+
+    public List<CompanyModel> viewCompanies() throws Exception{
+        ObjectMapper inputMapper = new ObjectMapper();
+        RequestBody clientRequest = new RequestBody();
+        clientRequest.setRoute("/company");
+        clientRequest.setAction("view");
+        ConnectToServer clientServerConnector = new ConnectToServer();
+        ResponseBody responseBody = clientServerConnector.connectToServer(clientRequest);
+        System.out.println(responseBody.getData());
+        List<CompanyModel> companies = Arrays.asList(inputMapper.readValue((byte[]) responseBody.getData(),CompanyModel[].class));
+        return companies;
     }
 
 
