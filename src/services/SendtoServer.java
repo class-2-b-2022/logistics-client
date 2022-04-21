@@ -41,8 +41,8 @@ public class SendtoServer {
             ObjectMapper objectMapper = new ObjectMapper();
             String jsonObject = objectMapper.writeValueAsString(requestBody);
 
-            dt.add(jsonObject);
-            out.writeObject(dt);
+//            dt.add(jsonObject);
+//            out.writeObject(dt);
 
 //            System.out.println("sending to from server \n" + String.valueOf(requestBody));
         }catch(Exception e) {

@@ -31,8 +31,8 @@ public class CompanyServer {
                 List<String> dt = new ArrayList<>();
                 dt = (List<String>) objectInputStream.readObject();
                 System.out.println(dt.get(0));
-                RequestBody requestBody = (RequestBody) dt.get(0);
-                requestBody.getData();
+//                RequestBody requestBody = (RequestBody)dt.get(0);
+//                requestBody.getData();
 
 
 //                System.out.println(requestBody.getAction());
@@ -45,13 +45,10 @@ public class CompanyServer {
 //                String companyPhone = jsonObject.getString("CompanyPhone");
 
 
-<<<<<<< Updated upstream
 //                System.out.println("sending to from server \n" + jsonObject);
-=======
-                writer.write(jsonObject + "\n");
-                writer.flush();
-                System.out.println("sending from server \n" + jsonObject);
->>>>>>> Stashed changes
+//                writer.write(jsonObject + "\n");
+//                writer.flush();
+//                System.out.println("sending from server \n" + jsonObject);
 
 
             } catch (IOException | ClassNotFoundException e) {
