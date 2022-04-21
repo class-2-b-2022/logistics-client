@@ -45,7 +45,13 @@ public class CompanyServer {
 //                String companyPhone = jsonObject.getString("CompanyPhone");
 
 
+<<<<<<< Updated upstream
 //                System.out.println("sending to from server \n" + jsonObject);
+=======
+                writer.write(jsonObject + "\n");
+                writer.flush();
+                System.out.println("sending from server \n" + jsonObject);
+>>>>>>> Stashed changes
 
 
             } catch (IOException | ClassNotFoundException e) {

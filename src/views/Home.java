@@ -1,7 +1,7 @@
-package views;
+package Views;
 
+import Views.company.CompanyMainView;
 import utils.Colors;
-import views.company.CompanyMainView;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
