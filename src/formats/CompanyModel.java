@@ -2,7 +2,9 @@ package formats;
 
 import java.io.Serializable;
 import java.math.BigInteger;
-
+/**
+ * @author Teta Butera Nelly
+ * */
     /*
      Fields required for company registration
      - TIN (Tax Identification Number)
@@ -13,7 +15,7 @@ import java.math.BigInteger;
      */
 
 
-public class Company implements Serializable {
+public class CompanyModel implements Serializable {
     private Integer TIN;
     private String name;
     private String email;
