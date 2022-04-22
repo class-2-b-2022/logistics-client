@@ -3,6 +3,7 @@ package formats;
 import java.io.Serializable;
 
 
+@SuppressWarnings("serial")
 public class ResponseBody implements Serializable {
     private String message;//created
     private String status;//201

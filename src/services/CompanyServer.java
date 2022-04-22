@@ -17,7 +17,10 @@ public class CompanyServer {
         try (ServerSocket serverSocket = new ServerSocket(5450)) {
             while (true) {
                 Socket socket = serverSocket.accept();
-                startHandler(socket);
+//                startHandler(socket);
+                if(socket.isClosed()){
+                    System.out.println("Client disconnected");
+                }
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -31,8 +34,8 @@ public class CompanyServer {
                 List<String> dt = new ArrayList<>();
                 dt = (List<String>) objectInputStream.readObject();
                 System.out.println(dt.get(0));
-                RequestBody requestBody = (RequestBody) dt.get(0);
-                requestBody.getData();
+//                RequestBody requestBody = (RequestBody) dt.get(0);
+//                requestBody.getData();
 
 
 //                System.out.println(requestBody.getAction());

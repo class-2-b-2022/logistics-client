@@ -3,9 +3,10 @@ import views.DeliveryModel;
 import formats.*;
 import Utils.*;
 import views.*;
+import com.fasterxml.jackson.core.JsonParser;
+
 import formats.Vehicle;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -74,9 +75,9 @@ public class VehicleManager {
         clientRequest.setAction("view");
         ConnectToServer clientServerConnector = new ConnectToServer();
         ResponseBody responseBody = clientServerConnector.connectToServer(clientRequest);
-        System.out.println(responseBody.getData());
-        List<Vehicle> vehicles = Arrays.asList(inputMapper.readValue((byte[]) responseBody.getData(), Vehicle[].class));
-        return vehicles;
+        
+        List<Vehicle> vehicles = Arrays.asList(inputMapper.readValue((JsonParser) responseBody.getData(), Vehicle[].class));
+       return vehicles;
     }
 }
 
