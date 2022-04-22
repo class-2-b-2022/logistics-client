@@ -21,7 +21,7 @@ public class Company implements Serializable {
     private String email;
     private String type;
     private Integer phone;
-    private String Description;
+    private String description;
 
     public Integer getTIN() {
         return TIN;
@@ -64,11 +64,11 @@ public class Company implements Serializable {
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
 }
