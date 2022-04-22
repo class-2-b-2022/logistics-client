@@ -1,11 +1,8 @@
-package views.Inventory;
+package Views.Inventory;
 
 import formats.*;
-import Utils.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import formats.ClientRequest;
 import formats.InventoryModel;
-import logic.TestingServerConnecting;
 import Utils.ConnectToServer;
 
 import java.util.Scanner;

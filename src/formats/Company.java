@@ -22,7 +22,6 @@ public class Company implements Serializable {
     private String type;
     private Integer phone;
     private String Description;
-    private BigInteger registeredAt;
 
     public Integer getTIN() {
         return TIN;
@@ -72,12 +71,5 @@ public class Company implements Serializable {
         Description = description;
     }
 
-    public BigInteger getRegisteredAt() {
-        return registeredAt;
-    }
-
-    public void setRegisteredAt(BigInteger registeredAt) {
-        this.registeredAt = registeredAt;
-    }
-
 }
+

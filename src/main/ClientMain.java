@@ -6,7 +6,7 @@ import views.billing.BillingView;
 import java.util.Scanner;
 import logic.VehicleManager;
 
-import views.Inventory.Inventory;
+import Views.Inventory.Inventory;
 
 
 import Views.*;
