@@ -1,7 +1,12 @@
 package main;
 
+<<<<<<< HEAD
 import views.Login;
 import views.billing.BillingView;
+=======
+import Views.Product.Product;
+import Views.billing.BillingView;
+>>>>>>> master
 
 import java.util.Scanner;
 import logic.VehicleManager;
@@ -23,23 +28,23 @@ public class ClientMain {
     Scanner scanner = new Scanner(System.in);
     public static void welcomeScreen(){
         /**
-         * @author: Niyigena Yves
+         * @author: Niyigena Yves   
          */
         System.out.println("\n");
 
-        System.out.println(ANSI_BLUE +"\t\t __                 __    __________    __             _________       _______       ___           ___   _________    "+ANSI_RESET);
-        System.out.println(ANSI_BLUE +"\t\t|  |               |  |  |          |  |  |           /          |   /   ___   \\    |   \\        /   |  |         | "+ANSI_RESET);
-        System.out.println(ANSI_BLUE +"\t\t|  |      __       |  |  |  |-------   |  |          |   --------   |   /   \\   |   |    \\      /    |  |  |------  "+ANSI_RESET);
-        System.out.println(ANSI_BLUE +"\t\t|  |     /  \\     |  |  |  |          |  |          |  |           |  |     |  |   |     \\    /     |  |  |        "+ANSI_RESET);
-        System.out.println(ANSI_BLUE +"\t\t|  |    /    \\    |  |  |  |          |  |          |  |           |  |     |  |   |  |\\  \\  /  /|  |  |  |       "+ANSI_RESET);
-        System.out.println(ANSI_BLUE +"\t\t|  |   /  /\\ \\   |  |  |  |____      |  |          |  |           |  |     |  |   |  | \\  \\/  / |  |  |  |____  "+ANSI_RESET);
-        System.out.println(ANSI_BLUE +"\t\t|  |  /  /  \\ \\  |  |  |       |     |  |          |  |           |  |     |  |   |  |  \\    /  |  |  |       |  "+ANSI_RESET);
-        System.out.println(ANSI_BLUE +"\t\t|  | /  /    \\ \\ |  |  |  |----      |  |          |  |           |  |     |  |   |  |   \\__/   |  |  |  |----   "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t __               __    __________    __             _________       _______       ___           ___   _________    "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t|  |             |  |  |          |  |  |           /          |   /   ___   \\    |   \\        /   |  |         | "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t|  |      __     |  |  |  |-------   |  |          |   --------   |   /   \\   |   |    \\      /    |  |  |------  "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t|  |     /  \\    |  |  |  |          |  |          |  |           |  |     |  |   |     \\    /     |  |  |        "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t|  |    /    \\   |  |  |  |          |  |          |  |           |  |     |  |   |  |\\  \\  /  /|  |  |  |       "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t|  |   /  /   \\  |  |  |  |____      |  |          |  |           |  |     |  |   |  | \\  \\/  / |  |  |  |____  "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t|  |  /  /  \\  \\ |  |  |       |     |  |          |  |           |  |     |  |   |  |  \\    /  |  |  |       |  "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t|  | /  /    \\  \\|  |  |  |----      |  |          |  |           |  |     |  |   |  |   \\__/   |  |  |  |----   "+ANSI_RESET);
         System.out.println(ANSI_BLUE +"\t\t|  |/  /      \\ \\|  |  |  |          |  |          |  |           |  |     |  |   |  |          |  |  |  |        "+ANSI_RESET);
         System.out.println(ANSI_BLUE +"\t\t|  /  /        \\ \\  |  |  |          |  |          |  |           |  |     |  |   |  |          |  |  |  |        "+ANSI_RESET);
-        System.out.println(ANSI_BLUE +"\t\t|    /          \\    |  |   _______   |   ______    |  \\_______    |   \\___/   |   |  |          |  |  |   _____  "+ANSI_RESET);
-        System.out.println(ANSI_BLUE +"\t\t|   /            \\   |  |          |  |          |   \\          |   \\         /    |  |          |  |  |         |"+ANSI_RESET);
-        System.out.println(ANSI_BLUE +"\t\t ---              ---    ----------    ----------      ---------      -------       --            --    ---------    "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t|    /          \\   |  |   _______   |   ______    |  \\_______    |   \\___/   |   |  |          |  |  |   _____  "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t|   /            \\  |  |          |  |          |   \\          |   \\         /    |  |          |  |  |         |"+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t ---              ---   ----------    ----------      ---------      -------       --            --    ---------    "+ANSI_RESET);
 
         System.out.println(ANSI_BLUE +"\t\t\t\t\t\t\t          _______   ______                 "+ANSI_RESET);
         System.out.println(ANSI_BLUE +"\t\t\t\t\t\t\t         |__   __| |  __  |                "+ANSI_RESET);
@@ -49,8 +54,8 @@ public class ClientMain {
         System.out.println(ANSI_BLUE +"\t\t\t\t\t\t\t             -      ------                 "+ANSI_RESET);
 
         System.out.println(ANSI_BLUE +"\t\t\t\t __              ______         ________     ________       ________    __           "+ANSI_RESET);
-        System.out.println(ANSI_BLUE +"\t\t\t\t|  |           /        \\    /          |  |         \\    |        |  |  |        "+ANSI_RESET);
-        System.out.println(ANSI_BLUE +"\t\t\t\t|  |          |  / ---\\  |  |  / ------    |   ----\\  \\   |  ------   |  |       "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t\t\t|  |           /        \\     /          |  |         \\    |        |  |  |        "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t\t\t|  |          |  / ---\\  |   |  / ------    |   ----\\  \\   |  ------   |  |       "+ANSI_RESET);
         System.out.println(ANSI_BLUE +"\t\t\t\t|  |          |  |     |  |  |  |           |  |     \\  |  |  |        |  |         "+ANSI_RESET);
         System.out.println(ANSI_BLUE +"\t\t\t\t|  |          |  |     |  |  |  |           |  |     |  |  |  |        |  |          "+ANSI_RESET);
         System.out.println(ANSI_BLUE +"\t\t\t\t|  |          |  |     |  |  |  |    __     |  |     |  |  |  | ___    |  |          "+ANSI_RESET);
@@ -79,11 +84,13 @@ public class ClientMain {
         System.out.print("\t\t\t\t\t\t       1.Login\t\t");
         System.out.print("2.Billing\t\t");
 
-        System.out.print("3.Inventory");
-        System.out.print("\t\t\t\t\t\t");
+        System.out.print("3.Inventory\t\t");
+    
 //        DistributorWalletView distView = new DistributorWalletView();
+        System.out.print("4.Products\t\t\t\t");
         choice = scanner.nextInt();
         switch(choice){
+        
             case 1:
                 login.mainMethod();
                 break;
@@ -92,6 +99,9 @@ public class ClientMain {
                break;
             case 3:
                 Inventory.Inventory();
+                break;
+            case 4:
+               Product.productManagement();
                 break;
             default:
                 System.out.println("Choice not available");

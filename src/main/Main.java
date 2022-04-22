@@ -1,4 +1,5 @@
 package main;
+<<<<<<< HEAD
 import Views.Home;
 import Views.company.CompanyMainView;
 
@@ -43,3 +44,20 @@ public class Main {
         return true;
     }
 }
+=======
+import Views.Inventory.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
+
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        Inventory inventory = new Inventory();
+        inventory.Inventory();
+
+//    	Product product=new Product();
+//    	product.createProduct();
+    }
+
+}
+>>>>>>> master

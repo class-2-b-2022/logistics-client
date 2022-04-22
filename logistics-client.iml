@@ -19,5 +19,9 @@
         <SOURCES />
       </library>
     </orderEntry>
+<<<<<<< HEAD
+=======
+    <orderEntry type="library" name="jackson-databind-2.13.1" level="project" />
+>>>>>>> master
   </component>
 </module>

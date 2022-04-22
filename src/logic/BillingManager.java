@@ -1,5 +1,6 @@
 package logic;
 
+import Utils.ConnectToServer;
 import formats.*;
 import Utils.*;
 import Views.DeliveryModel;
