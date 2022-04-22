@@ -15,7 +15,7 @@ import java.math.BigInteger;
      */
 
 
-public class CompanyModel implements Serializable {
+public class Company implements Serializable {
     private Integer TIN;
     private String name;
     private String email;
