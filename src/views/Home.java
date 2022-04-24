@@ -1,8 +1,9 @@
 package views;
 
 import services.CloseConnection;
-import utils.Colors;
 import views.company.CompanyMainView;
+
+import utils.Colors;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

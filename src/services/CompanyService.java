@@ -8,6 +8,9 @@ import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+/**
+ * @author Teta Butera Nelly
+ * */
 
 public class CompanyService {
     private Socket socket;

@@ -20,7 +20,7 @@ public class ConnectToServer {
     {
         // establish a connection by providing host and port
         // number
-        try (Socket socket = new Socket("localhost", 5450)) {
+        try (Socket socket = new Socket("localhost", 9050)) {
 
             ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
 

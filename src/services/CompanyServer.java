@@ -49,6 +49,9 @@ public class CompanyServer {
 
 
 //                System.out.println("sending to from server \n" + jsonObject);
+//                writer.write(jsonObject + "\n");
+//                writer.flush();
+//                System.out.println("sending from server \n" + jsonObject);
 
 
             } catch (IOException | ClassNotFoundException e) {
