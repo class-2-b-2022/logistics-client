@@ -1,11 +1,15 @@
 package services;
 
+
+import formats.RequestBody;
 import org.json.JSONObject;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CompanyServer {
     public static void main(String[] args) {
@@ -15,25 +19,39 @@ public class CompanyServer {
                 Socket socket = serverSocket.accept();
                 startHandler(socket);
             }
-        }catch(IOException e){
+        }catch(Exception e){
             e.printStackTrace();
         }
     }
-    private static void startHandler (final Socket socket) {
+    private static void startHandler (Socket socket) throws IOException, ClassNotFoundException {
         Thread thread = new Thread(() -> {
+            ObjectInputStream objectInputStream = null;
             try{
-                OutputStreamWriter writer = new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8);
-                BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
-
-                String line = reader.readLine();
-                JSONObject jsonObject = new JSONObject(line);
-
-                writer.write(jsonObject + "\n");
-                writer.flush();
-                System.out.println("sending to from server \n" + jsonObject);
+                objectInputStream = new ObjectInputStream(socket.getInputStream());
+                List<String> dt = new ArrayList<>();
+                dt = (List<String>) objectInputStream.readObject();
+                System.out.println(dt.get(0));
+//                RequestBody requestBody = (RequestBody)dt.get(0);
+//                requestBody.getData();
 
 
-            } catch (IOException e) {
+//                System.out.println(requestBody.getAction());
+//                System.out.println(requestBody.getAction());
+//                JSONObject jsonObject = new JSONObject(requestBody.getData());
+//                String companyName = jsonObject.getString("CompanyName");
+//                String companyDescription = jsonObject.getString("CompanyDescription");
+//                String companyEmail = jsonObject.getString("CompanyEmail");
+//                String companyType = jsonObject.getString("CompanyType");
+//                String companyPhone = jsonObject.getString("CompanyPhone");
+
+
+//                System.out.println("sending to from server \n" + jsonObject);
+//                writer.write(jsonObject + "\n");
+//                writer.flush();
+//                System.out.println("sending from server \n" + jsonObject);
+
+
+            } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             } finally {
                 try {

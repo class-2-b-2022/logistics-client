@@ -1,14 +1,17 @@
-package Views;
+package views;
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Properties;
 import java.util.Scanner;
-import Utils.*;
-import formats.ClientRequest;
-import formats.Data_format;
-import formats.RequestBody;
-import formats.ResponseBody;
-import utils.ConnectToServer;
+
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import org.json.JSONObject;
+import utils.*;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import formats.*;
 
 public class Login {
     public static final String ANSI_RESET="\u001B[0m";
@@ -23,6 +26,9 @@ public class Login {
     public void startClient() throws Exception {
 //        socket = new Socket("192.168.1.235", 5450   );
 //        output = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
+        JSONObject jsonHolder = new JSONObject();
+        ParserObj parserObj = new ParserObj();
+        ObjectMapper objectMapper = new ObjectMapper();
         String email;
         String password;
         Scanner scanner=new Scanner(System.in);
@@ -46,16 +52,24 @@ public class Login {
         System.out.println("Data  " + " {" + " Email : " + '"' + data.email + '"' + ", "+ " Password " + data.password + "}");
         ConnectToServer connectToServer=new ConnectToServer();
         ResponseBody responseBody=connectToServer.connectToServer(requestBody);
-        if(responseBody.getStatus() == "200") {
+
+        if(Integer.parseInt(responseBody.getStatus()) == 200) {
             System.out.println("Login successfully");
-        }else if(responseBody.getStatus() == "400"){
+            Properties property = new Properties();
+//            InputStream in = getClass().getClassLoader().getResourceAsStream("config.properties");
+            FileWriter fwrite = new FileWriter("C:\\apps\\projects\\logisticsProject\\logistics-client\\config.properties");
+            jsonHolder = new JSONObject(responseBody.getData().toString());
+            System.out.println(jsonHolder.get("userId"));
+//            property.load(in);
+            String userId = jsonHolder.get("userId").toString();
+            property.setProperty("userId", userId);
+            property.store(fwrite, "loggedIn user");
+
+        }else if(Integer.parseInt(responseBody.getStatus()) == 400){
             System.out.println("user");
             System.out.println(responseBody.getMessage());
             startClient();
         }
-        System.out.println("Status: " +responseBody.getStatus());
-        System.out.println("Status: " +responseBody.getData());
-
 //        }
 //        else{
 //            System.out.println("An error occurred behind your screen");

@@ -1,4 +1,4 @@
-package Utils;
+package utils;
 import java.io.Serializable;
 public class ResponseStatus implements Serializable {
     private Integer status;
