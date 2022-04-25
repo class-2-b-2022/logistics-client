@@ -1,11 +1,10 @@
 package views.Inventory;
 
 import utils.*;
+import formats.*;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import formats.*;
-import utils.ConnectToServer;
 
 import java.util.ArrayList;
 import java.util.Arrays;

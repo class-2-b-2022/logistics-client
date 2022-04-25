@@ -1,7 +1,5 @@
 package views;
 import utils.*;
-import formats.RequestBody;
-import formats.ResponseBody;
 import formats.*;
 
 import java.util.Scanner;

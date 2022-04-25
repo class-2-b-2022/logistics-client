@@ -37,7 +37,6 @@ public class CompanySendtoServer {
         json.put("companyEmail", companyEmail);
         json.put("companyType", companyType);
         json.put("companyPhone", companyPhone);
-        json.put("companyDescription", companyDescription);
 
         writer.write(json + "\n");
         writer.flush();

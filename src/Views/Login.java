@@ -6,6 +6,8 @@ import java.util.Properties;
 import java.util.Scanner;
 
 import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import org.json.JSONObject;
 import utils.*;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,6 +26,7 @@ public class Login {
     public void startClient() throws Exception {
 //        socket = new Socket("192.168.1.235", 5450   );
 //        output = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
+        JSONObject jsonHolder = new JSONObject();
         ParserObj parserObj = new ParserObj();
         ObjectMapper objectMapper = new ObjectMapper();
         String email;
@@ -53,18 +56,15 @@ public class Login {
         if(Integer.parseInt(responseBody.getStatus()) == 200) {
             System.out.println("Login successfully");
             Properties property = new Properties();
-            InputStream in = getClass().getResourceAsStream("config.properties");
-//            System.out.println();
-//            User user = parserObj.parseData(responseBody.getData(), User.class);
-//            JsonNode jsonNode = objectMapper.readTree((byte[]) responseBody.getData());
-//            byte[] dataToparse = objectMapper.writeValueAsBytes(jsonNode);
-            Object datat = responseBody.getData();
-            System.out.println(responseBody.getData());//
-            User user = objectMapper.readValue((JsonParser) datat, User.class);
-            System.out.println(user.getEmail());
-            System.out.println(user.getUserId());
+//            InputStream in = getClass().getClassLoader().getResourceAsStream("config.properties");
+            FileWriter fwrite = new FileWriter("C:\\apps\\projects\\logisticsProject\\logistics-client\\config.properties");
+            jsonHolder = new JSONObject(responseBody.getData().toString());
+            System.out.println(jsonHolder.get("userId"));
 //            property.load(in);
-//            property.setProperty("userId", )
+            String userId = jsonHolder.get("userId").toString();
+            property.setProperty("userId", userId);
+            property.store(fwrite, "loggedIn user");
+
         }else if(Integer.parseInt(responseBody.getStatus()) == 400){
             System.out.println("user");
             System.out.println(responseBody.getMessage());

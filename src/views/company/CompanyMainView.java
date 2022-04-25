@@ -1,4 +1,4 @@
-package views.company;
+package Views.company;
 
 import utils.Colors;
 
@@ -41,7 +41,7 @@ public class CompanyMainView {
                     companyView = false;
                     break;
                 case "2":
-                    ReadCompanyView readCompanyView = new ReadCompanyView(this.socket);
+                    views.company.ReadCompanyView readCompanyView = new views.company.ReadCompanyView(this.socket);
                     readCompanyView.view();
                     break;
                 case "3":
