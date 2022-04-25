@@ -12,6 +12,7 @@ import utils.*;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import formats.*;
+import views.Dashboard.DashboardView;
 
 public class Login {
     public static final String ANSI_RESET="\u001B[0m";
@@ -49,21 +50,19 @@ public class Login {
         requestBody.setData(data);
 //        data.
         //yvesisite@gmail.com
-        System.out.println("Data  " + " {" + " Email : " + '"' + data.email + '"' + ", "+ " Password " + data.password + "}");
-        ConnectToServer connectToServer=new ConnectToServer();
-        ResponseBody responseBody=connectToServer.connectToServer(requestBody);
+//        System.out.println("Data  " + " {" + " Email : " + '"' + data.email + '"' + ", "+ " Password " + data.password + "}");
+        LoginHelper loginHelper=new LoginHelper();
+        ResponseBody responseBody=loginHelper.login(requestBody);
 
         if(Integer.parseInt(responseBody.getStatus()) == 200) {
-            System.out.println("Login successfully");
             Properties property = new Properties();
-//            InputStream in = getClass().getClassLoader().getResourceAsStream("config.properties");
             FileWriter fwrite = new FileWriter("C:\\apps\\projects\\logisticsProject\\logistics-client\\config.properties");
             jsonHolder = new JSONObject(responseBody.getData().toString());
-            System.out.println(jsonHolder.get("userId"));
-//            property.load(in);
             String userId = jsonHolder.get("userId").toString();
             property.setProperty("userId", userId);
             property.store(fwrite, "loggedIn user");
+            System.lineSeparator().repeat(100);
+            DashboardView.mainMethod();
 
         }else if(Integer.parseInt(responseBody.getStatus()) == 400){
             System.out.println("user");

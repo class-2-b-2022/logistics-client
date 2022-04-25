@@ -1,6 +1,7 @@
 package views;
 import formats.Vehicle;
 import logic.VehicleManager;
+import views.Dashboard.DashboardView;
 
 import java.util.List;
 import java.util.Scanner;
@@ -108,6 +109,8 @@ public class DeliveryModel {
         System.out.println(ANSI_MAG +"\t\t\t\t                                       "+ANSI_RESET);
         System.out.println(ANSI_MAG +"\t\t\t\t ________    2. Tracking    _______"+ANSI_RESET);
         System.out.println(ANSI_MAG +"\t\t\t\t                                       "+ANSI_RESET);
+        System.out.println(ANSI_MAG +"\t\t\t\t ________    3. Back to Dashboard   _______"+ANSI_RESET);
+        System.out.println(ANSI_MAG +"\t\t\t\t                                       "+ANSI_RESET);
         System.out.println(ANSI_MAG +"\tEnter your choice:      "+ANSI_RESET);
         choice = scanner.nextInt();
         switch (choice){
@@ -121,11 +124,19 @@ public class DeliveryModel {
             case 2:
                 System.out.println(ANSI_MAG +"\t\t\t\t -----------  TRACK YOUR PRODUCTS ---------------  "+ANSI_RESET);
                 // Tracking();
+                break;
+            case 3:
+                DashboardView.mainMethod();
             default:
+                DashboardView.mainMethod();
                 System.out.println(ANSI_MAG +"\t\t\t\t No option seleted "+ANSI_RESET);
         }
     }
-    public static void main(String[] args) throws Exception {
+//    public static void main(String[] args) throws Exception {
+//        Delivery();
+//        Start();
+//    }
+    public static void mainMethod() throws Exception{
         Delivery();
         Start();
     }
