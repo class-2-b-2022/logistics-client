@@ -1,4 +1,4 @@
-package Views;
+package views;
 import formats.Vehicle;
 import logic.VehicleManager;
 

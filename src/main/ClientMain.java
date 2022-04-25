@@ -1,19 +1,16 @@
 package main;
 
-import Views.billing.BillingView;
+import views.Product.Product;
+import views.billing.BillingView;
 
 import java.util.Scanner;
-import Views.DeliveryModel;
+import views.DeliveryModel;
 import logic.VehicleManager;
 
-import Views.Inventory.Inventory;
+import views.Inventory.Inventory;
 
 
-import Views.*;
-import logic.TestingServerConnecting;
-import logic.VehicleManager;
-
-import java.util.Scanner;
+import views.*;
 
 
 public class ClientMain {
@@ -23,7 +20,7 @@ public class ClientMain {
     Scanner scanner = new Scanner(System.in);
     public static void welcomeScreen(){
         /**
-         * @author: Niyigena Yves
+         * @author: Niyigena Yves   
          */
         System.out.println("\n");
 
@@ -79,11 +76,15 @@ public class ClientMain {
         System.out.print("\t\t\t\t\t\t       1.Login\t\t");
         System.out.print("2.Billing\t\t");
 
-        System.out.print("3.Inventory");
-        System.out.print("\t\t\t\t\t\t");
+        System.out.print("3.Inventory\t\t");
+    
 //        DistributorWalletView distView = new DistributorWalletView();
+        System.out.print("4.Products\t\t\t\t");
+        System.out.print("5.Register user\t\t\t\t");
+
         choice = scanner.nextInt();
         switch(choice){
+        
             case 1:
                 login.mainMethod();
                 break;
@@ -92,6 +93,12 @@ public class ClientMain {
                break;
             case 3:
                 Inventory.Inventory();
+                break;
+            case 4:
+               Product.productManagement();
+                break;
+            case 5:
+                RegisterUser.mainMethod();
                 break;
             default:
                 System.out.println("Choice not available");

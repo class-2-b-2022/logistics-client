@@ -1,14 +1,15 @@
-package Views;
+package views;
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Properties;
 import java.util.Scanner;
-import Utils.*;
+
+import com.fasterxml.jackson.core.JsonParser;
+import utils.*;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import formats.*;
-import utils.ConnectToServer;
 
 public class Login {
     public static final String ANSI_RESET="\u001B[0m";
@@ -23,6 +24,7 @@ public class Login {
     public void startClient() throws Exception {
 //        socket = new Socket("192.168.1.235", 5450   );
 //        output = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
+        ParserObj parserObj = new ParserObj();
         ObjectMapper objectMapper = new ObjectMapper();
         String email;
         String password;
@@ -52,12 +54,16 @@ public class Login {
             System.out.println("Login successfully");
             Properties property = new Properties();
             InputStream in = getClass().getResourceAsStream("config.properties");
-            JsonNode jsonNode = objectMapper.readTree((byte[]) responseBody.getData());
-            byte[] dataToparse = objectMapper.writeValueAsBytes(jsonNode);
-            Users user = objectMapper.readValue(dataToparse, Users.class);
+//            System.out.println();
+//            User user = parserObj.parseData(responseBody.getData(), User.class);
+//            JsonNode jsonNode = objectMapper.readTree((byte[]) responseBody.getData());
+//            byte[] dataToparse = objectMapper.writeValueAsBytes(jsonNode);
+            Object datat = responseBody.getData();
+            System.out.println(responseBody.getData());//
+            User user = objectMapper.readValue((JsonParser) datat, User.class);
             System.out.println(user.getEmail());
             System.out.println(user.getUserId());
-            property.load(in);
+//            property.load(in);
 //            property.setProperty("userId", )
         }else if(Integer.parseInt(responseBody.getStatus()) == 400){
             System.out.println("user");

@@ -1,6 +1,4 @@
-package Views.billing;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import formats.ClientRequest;
+package views.billing;
 import formats.Wallet;
 import logic.BillingManager;
 import logic.TestingServerConnecting;

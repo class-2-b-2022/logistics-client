@@ -1,9 +1,8 @@
-package Views;
-import Utils.*;
+package views;
+import utils.*;
 import formats.RequestBody;
 import formats.ResponseBody;
-import formats.Users;
-import utils.ConnectToServer;
+import formats.*;
 
 import java.util.Scanner;
 
@@ -13,7 +12,7 @@ public class RegisterUser {
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_RESET = "\u001B[0m";
 
-    public static void main(String[] args) throws Exception {
+    public static void mainMethod() throws Exception {
         Selection();
     }
 
@@ -64,14 +63,14 @@ public class RegisterUser {
             Form(role);
         }
 
-        long phone=0;
+        int phone=0;
         String password="";
 
         try{
             System.out.print("\tPHONE NUMBER : (250) ");
             phone = scan.nextInt();
 
-            if(Long.toString(phone).length()<9){
+            if(Integer.toString(phone).length()<9){
                 System.out.print("\n\tPHONE NUMBER IS SHORT \n");
                 Form(role);
                 return ;
@@ -90,8 +89,8 @@ public class RegisterUser {
         SaveUser(fullname,email,phone, password,role);
     }
 
-    public static void SaveUser(String fullname, String email, long phone, String password,int role) throws Exception {
-        Users user = new Users();
+    public static void SaveUser(String fullname, String email, int phone, String password,int role) throws Exception {
+        User user = new User();
         user.setNames(fullname);
         user.setPhone(phone);
         user.setEmail(email);
@@ -113,7 +112,6 @@ public class RegisterUser {
 //        System.out.println(responseBody);
 //        json = objectMapper.writeValueAsString(clientRequest);
 //        responseBody = new ClientServerConnector().serverClientConnnector(json);
-        System.out.println(responseBody);
 
 //        Socket socket = new Socket("192.168.0.95", 5450);
 //
