@@ -1,6 +1,8 @@
 package formats;
 
-public class Wallet {
+import java.io.Serializable;
+
+public class Wallet implements Serializable {
     private int id;
     private int userId;
     private String dateOfCreation;

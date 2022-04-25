@@ -1,22 +1,11 @@
-package Views.Inventory;
+package views.Inventory;
 
-<<<<<<< HEAD
+import utils.*;
 import formats.*;
-=======
-import Utils.ClientServerConnector;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationFeature;
->>>>>>> master
 import com.fasterxml.jackson.databind.ObjectMapper;
-import formats.InventoryModel;
-<<<<<<< HEAD
-import Utils.ConnectToServer;
-=======
-import formats.ProductModel;
-import formats.ResponseBody;
->>>>>>> master
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -30,7 +19,8 @@ public class Inventory {
     public static final String ANSI_MAG = "\u001b[1;35m";
 
     ObjectMapper objectMapper = new ObjectMapper();
-    ClientRequest clientRequest = new ClientRequest();
+    RequestBody clientRequest = new RequestBody();
+    ConnectToServer connectToServer = new ConnectToServer();
     ResponseBody responseBody;
     String json = "";
 
@@ -79,9 +69,9 @@ public class Inventory {
             clientRequest.setRoute("/inventory");
             clientRequest.setAction("GET");
             clientRequest.setData(branchId);
-
-            json = objectMapper.writeValueAsString(clientRequest);
-            responseBody = new ClientServerConnector().serverClientConnnector(json);
+//
+//            json = objectMapper.writeValueAsString(clientRequest);
+            responseBody = connectToServer.connectToServer(clientRequest);
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             List<InventoryModel> inventories = Arrays.asList(objectMapper.readValue((JsonParser) responseBody.getData(), InventoryModel[].class));
 
@@ -166,8 +156,8 @@ public class Inventory {
             clientRequest.setRoute("/inventory");
             clientRequest.setAction("POST");
             clientRequest.setData(inventoryModel);
-            json = objectMapper.writeValueAsString(clientRequest);
-            responseBody = new ClientServerConnector().serverClientConnnector(json);
+//            json = objectMapper.writeValueAsString(clientRequest);
+            responseBody = connectToServer.connectToServer(clientRequest);
             System.out.println(ANSI_GREEN + responseBody.getStatus() + ANSI_RESET);
         }catch (Exception e){
             e.printStackTrace();
@@ -192,8 +182,8 @@ public class Inventory {
             clientRequest.setRoute("/inventory");
             clientRequest.setAction("UPDATE");
             clientRequest.setData(inventoryModel);
-            json = objectMapper.writeValueAsString(clientRequest);
-            responseBody = new ClientServerConnector().serverClientConnnector(json);
+//            json = objectMapper.writeValueAsString(clientRequest);
+            responseBody = connectToServer.connectToServer(clientRequest);
             System.out.println(responseBody.getStatus());
         }catch (Exception e){
             e.printStackTrace();
@@ -203,12 +193,12 @@ public class Inventory {
         try{
             System.out.println("Enter your inventory id to delete Inventory: ");
             int inventoryId = scanner.nextInt();
-            ClientRequest clientRequest2 = new ClientRequest();
+            RequestBody clientRequest2 = new RequestBody();
             clientRequest2.setRoute("/inventory");
             clientRequest2.setAction("DELETE");
             clientRequest2.setData(inventoryId);
             json = objectMapper.writeValueAsString(clientRequest2);
-            responseBody = new ClientServerConnector().serverClientConnnector(json);
+            responseBody = connectToServer.connectToServer(clientRequest2);
             System.out.println("Message: " + responseBody.getMessage() + " status: " +responseBody.getStatus() + " data: "+ responseBody.getData());
         }catch (Exception e){
             e.printStackTrace();
@@ -225,7 +215,7 @@ public class Inventory {
         int resultQuantity = 0;
         try{
             json = objectMapper.writeValueAsString(clientRequest);
-            responseBody = new ClientServerConnector().serverClientConnnector(json);
+            responseBody = connectToServer.connectToServer(clientRequest);
 
             String responseFromServer = (String) responseBody.getData();
             String[] number =  responseFromServer.split("\"");

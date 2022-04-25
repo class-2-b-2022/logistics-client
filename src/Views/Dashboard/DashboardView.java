@@ -1,4 +1,4 @@
-package Views.Dashboard;
+package views.Dashboard;
 
 import java.util.Scanner;
 /* Author: Niyigena Yves*/

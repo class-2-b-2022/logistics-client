@@ -1,6 +1,6 @@
-package Views;
+package views;
 
-import Utils.ConnectToServer;
+import utils.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import formats.*;

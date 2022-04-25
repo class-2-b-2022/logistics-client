@@ -1,24 +1,20 @@
 package main;
+import views.Product.Product;
+import views.billing.BillingView;
 
-<<<<<<< HEAD
+import java.util.Scanner;
+import views.*;
 import views.Login;
 import views.billing.BillingView;
-=======
-import Views.Product.Product;
-import Views.billing.BillingView;
->>>>>>> master
+
 
 import java.util.Scanner;
 import logic.VehicleManager;
 
-import Views.Inventory.Inventory;
+import views.Inventory.Inventory;
 
 
-import Views.*;
-import logic.TestingServerConnecting;
-import logic.VehicleManager;
-
-import java.util.Scanner;
+import views.*;
 
 
 public class ClientMain {
@@ -88,6 +84,8 @@ public class ClientMain {
     
 //        DistributorWalletView distView = new DistributorWalletView();
         System.out.print("4.Products\t\t\t\t");
+        System.out.print("5.Register user\t\t\t\t");
+
         choice = scanner.nextInt();
         switch(choice){
         
@@ -102,6 +100,9 @@ public class ClientMain {
                 break;
             case 4:
                Product.productManagement();
+                break;
+            case 5:
+                RegisterUser.mainMethod();
                 break;
             default:
                 System.out.println("Choice not available");

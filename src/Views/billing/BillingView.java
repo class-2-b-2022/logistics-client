@@ -4,11 +4,7 @@ import formats.ClientRequest;
 import formats.Wallet;
 import logic.BillingManager;
 import logic.TestingServerConnecting;
-<<<<<<< HEAD
-import Utils.*;
-=======
-
->>>>>>> master
+import utils.*;
 
 import java.util.Scanner;
 

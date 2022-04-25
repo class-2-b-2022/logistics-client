@@ -1,15 +1,8 @@
 package logic;
-<<<<<<< HEAD
-import Views.*;
+import views.*;
 import formats.*;
-import Utils.*;
-=======
-import Utils.ConnectToServer;
-import Views.DeliveryModel;
+import utils.*;
 import com.fasterxml.jackson.core.JsonParser;
-import formats.*;
->>>>>>> master
-import formats.Vehicle;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Arrays;
 import java.util.List;
