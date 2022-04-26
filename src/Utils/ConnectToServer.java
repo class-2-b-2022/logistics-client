@@ -38,12 +38,13 @@ public class ConnectToServer {
             
 
             String jsonReturned =  in.readUTF();
+            System.out.println("Response got");
             ObjectMapper inputMapper = new ObjectMapper();
             JsonNode jsonNodeRoot = inputMapper.readTree(jsonReturned);
             res.setStatus(jsonNodeRoot.get("status").asText());
             res.setMessage(jsonNodeRoot.get("message").asText());
             res.setData(jsonReturned.split("data\":")[1].split(",\"message\"")[0]);
-
+            System.out.println("Message"+ res.getMessage());
             return res;
         }
         catch (IOException e) {

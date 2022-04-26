@@ -2,6 +2,7 @@ package main;
 
 
 import logic.VehicleManager;
+import views.CompanyModel;
 import views.DeliveryModel;
 import views.Inventory.Inventory;
 import views.Login;
@@ -78,12 +79,14 @@ public class ClientMain {
 //        welcomeScreen();
         System.out.println("\n");
         System.out.print("\t\t\t\t\t\t       1.Login\t\t");
+        System.out.print("\t\t\t\t\t\t       2.Company ");
         System.out.print("2.Billing\t\t");
 
         System.out.print("3.Inventory\t\t");
     
 //        DistributorWalletView distView = new DistributorWalletView();
-        System.out.print("4.Products\t\t\t\t");
+        System.out.println("4.Products\t\t\t\t");
+        System.out.print("Enter your choice::");
         choice = scanner.nextInt();
         switch(choice){
         
@@ -91,12 +94,15 @@ public class ClientMain {
                 login.mainMethod();
                 break;
             case 2:
+                CompanyModel.CompanyManagement();
+                break;
+            case 3:
                 BillingView.mainMethod();
                break;
-            case 3:
+            case 4:
                 Inventory.Inventory();
                 break;
-            case 4:
+            case 5:
                Product.productManagement();
                 break;
             default:
