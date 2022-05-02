@@ -4,6 +4,7 @@ import formats.ClientRequest;
 import formats.Wallet;
 import logic.BillingManager;
 import logic.TestingServerConnecting;
+import views.Dashboard.DashboardView;
 
 import java.util.Scanner;
 
@@ -91,6 +92,8 @@ public class BillingView {
                         test.connect(wallet);
 
                         break;
+                case 5:
+                    DashboardView.mainMethod();
                     default:
                         System.out.println("Please enter a valid choice");
                 }

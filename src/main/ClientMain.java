@@ -1,28 +1,29 @@
 package main;
-
-
-import logic.VehicleManager;
-import views.CompanyModel;
-import views.DeliveryModel;
-import views.Inventory.Inventory;
-import views.Login;
+import Utils.CheckLoggedInStatus;
+import views.Dashboard.DashboardView;
 import views.Product.Product;
 import views.billing.BillingView;
-
 import java.util.Scanner;
+import views.*;
 import logic.TestingServerConnecting;
 import logic.VehicleManager;
-
-import java.util.Scanner;
-
-
-
+import views.Inventory.Inventory;
 
 public class ClientMain {
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_RESET = "\u001B[0m";
     public static final
     Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) throws Exception {
+        if(CheckLoggedInStatus.isLoggedIn()){
+            System.out.println(CheckLoggedInStatus.getLoggedInUser());
+            DashboardView.mainMethod();
+
+            return;
+        }
+        welcomeScreen();
+        mainMethod();
+    }
     public static void welcomeScreen(){
         /**
          * @author: Niyigena Yves   
@@ -67,8 +68,7 @@ public class ClientMain {
         System.out.println("\t\t\t\t ---------------------- OFFERING EXCELLENT LOGISTIC SERVICES --------------------");
 
     }
-    public static void main(String[] args) throws Exception {
-       welcomeScreen();
+    public static void mainMethod() throws Exception {
         int choice;
 
         DeliveryModel delivery = new DeliveryModel();
@@ -79,9 +79,8 @@ public class ClientMain {
 //        welcomeScreen();
         System.out.println("\n");
         System.out.print("\t\t\t\t\t\t       1.Login\t\t");
-        System.out.print("\t\t\t\t\t\t       2.Company ");
+        System.out.print("\t\t\t\t\t\t       2.Company\t\t");
         System.out.print("2.Billing\t\t");
-
         System.out.print("3.Inventory\t\t");
     
 //        DistributorWalletView distView = new DistributorWalletView();
@@ -89,7 +88,6 @@ public class ClientMain {
         System.out.print("Enter your choice::");
         choice = scanner.nextInt();
         switch(choice){
-        
             case 1:
                 login.mainMethod();
                 break;
@@ -106,8 +104,9 @@ public class ClientMain {
                Product.productManagement();
                 break;
             default:
-                System.out.println("Choice not available");
-                System.exit(-1);
+                System.out.println("Invalid choice");
+                ClientMain.mainMethod();
+
         }
 
 

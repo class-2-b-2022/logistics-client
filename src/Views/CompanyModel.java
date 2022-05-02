@@ -163,10 +163,27 @@ public class CompanyModel {
      * @author Impano Alliance
      * */
     public static void deleteCompany(){
+        try{
+            RequestBody clientRequest = new RequestBody();
+            System.out.print("Enter the company pin to delete:::");
+            int companyTIN;
+            companyTIN = scanner.nextInt();
+            Company company = new Company();
+            company.setTIN(companyTIN);
+            clientRequest.setRoute("/company");
+            clientRequest.setAction("DELETE");
+            clientRequest.setData(company);
+            json = objectMapper.writeValueAsString(clientRequest);
+            ResponseBody responseBody = connect.connectToServer(clientRequest);
+            System.out.println(responseBody.getStatus());
 
+        }catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
     public static void updateCompany(){
         try{
+            RequestBody clientRequest = new RequestBody();
             System.out.println("Enter your company TIN to update Company Info: ");
             int companyTIN;
             companyTIN = scanner.nextInt();
@@ -181,7 +198,8 @@ public class CompanyModel {
             clientRequest.setAction("UPDATE");
             clientRequest.setData(company);
             json = objectMapper.writeValueAsString(clientRequest);
-            responseBody = new ClientServerConnector().serverClientConnnector(json);
+            responseBody = connect.connectToServer(clientRequest);
+//            responseBody = new ClientServerConnector().serverClientConnnector(json);
             System.out.println(responseBody.getStatus());
         }catch (Exception e){
             e.printStackTrace();

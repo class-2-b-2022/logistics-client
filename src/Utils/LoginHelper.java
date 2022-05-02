@@ -1,5 +1,6 @@
 package Utils;
 
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -14,9 +15,9 @@ import formats.*;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class ConnectToServer {
+public class LoginHelper {
     public ResponseBody res = new ResponseBody();
-    public ResponseBody connectToServer(RequestBody clientRequest)throws Exception
+    public ResponseBody login(RequestBody clientRequest)throws Exception
     {
         // establish a connection by providing host and port
         // number
@@ -30,18 +31,19 @@ public class ConnectToServer {
             // sending the user input to server
             ObjectMapper objectMapper = new ObjectMapper();
             String json = objectMapper.writeValueAsString(clientRequest);
-          System.out.print("Sent to server");
+
             List<String> dt = new ArrayList<>();
             dt.add(json);
             out.writeObject(dt);
             String jsonReturned =  in.readUTF();
-            System.out.println("Response got");
             ObjectMapper inputMapper = new ObjectMapper();
             JsonNode jsonNodeRoot = inputMapper.readTree(jsonReturned);
             res.setStatus(jsonNodeRoot.get("status").asText());
             res.setMessage(jsonNodeRoot.get("message").asText());
             res.setData(jsonReturned.split("data\":")[1].split(",\"message\"")[0]);
-            System.out.println("Message"+ res.getMessage());
+            if(res.getData().toString().endsWith("}}")){
+                res.setData((Object) removeLastChar((String) res.getData()));
+            }
             return res;
         }
         catch (IOException e) {

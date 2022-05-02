@@ -76,7 +76,6 @@ public class VehicleManager {
         clientRequest.setAction("view");
         ConnectToServer clientServerConnector = new ConnectToServer();
         ResponseBody responseBody = clientServerConnector.connectToServer(clientRequest);
-        
         List<Vehicle> vehicles = Arrays.asList(inputMapper.readValue((JsonParser) responseBody.getData(), Vehicle[].class));
        return vehicles;
     }
