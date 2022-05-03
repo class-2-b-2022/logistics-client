@@ -2,6 +2,16 @@ package utils;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import formats.RequestBody;
+import formats.ResponseBody;
+
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
+/*import formats.*;*/
 import java.io.*;
 import java.net.Socket;
 import formats.ResponseBody;
@@ -21,16 +31,15 @@ public class ConnectToServer {
             // sending the user input to server
             ObjectMapper objectMapper = new ObjectMapper();
             String json = objectMapper.writeValueAsString(clientRequest);
-            out.writeObject(json);
+
+            List<String> dt = new ArrayList<>();
+            dt.add(json);
+            out.writeObject(dt);
             String jsonReturned =  in.readUTF();
-
-
-
             ObjectMapper inputMapper = new ObjectMapper();
             JsonNode jsonNodeRoot = inputMapper.readTree(jsonReturned);
             res.setMessage(jsonNodeRoot.get("status").asText());
             res.setData(jsonReturned.split("data\":")[1].split(",\"message\"")[0]);
-            res.setStatus((jsonNodeRoot.get("message").asText()));
             return res;
         }
         catch (IOException e) {
