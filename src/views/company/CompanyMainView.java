@@ -1,4 +1,4 @@
-package Views.company;
+package views.company;
 
 import utils.Colors;
 

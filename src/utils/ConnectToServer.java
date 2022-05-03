@@ -12,15 +12,17 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 /*import formats.*;*/
+import java.io.*;
+import java.net.Socket;
+import formats.ResponseBody;
+import formats.RequestBody;
 
 public class ConnectToServer {
     public ResponseBody res = new ResponseBody();
     public ResponseBody connectToServer(RequestBody clientRequest)throws Exception
     {
-        // establish a connection by providing host and port
-        // number
-        try (Socket socket = new Socket("localhost", 5450)) {
 
+        try (Socket socket = new Socket("localhost", 5450)) {
             ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
 
             // reading from server
@@ -36,10 +38,8 @@ public class ConnectToServer {
             String jsonReturned =  in.readUTF();
             ObjectMapper inputMapper = new ObjectMapper();
             JsonNode jsonNodeRoot = inputMapper.readTree(jsonReturned);
-            res.setStatus(jsonNodeRoot.get("status").asText());
-            res.setMessage(jsonNodeRoot.get("message").asText());
+            res.setMessage(jsonNodeRoot.get("status").asText());
             res.setData(jsonReturned.split("data\":")[1].split(",\"message\"")[0]);
-
             return res;
         }
         catch (IOException e) {
