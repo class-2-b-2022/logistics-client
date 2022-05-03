@@ -80,4 +80,7 @@ public class ReportView {
         Reports();
         Start();
     }
+    public static void main(String[] args) throws Exception {
+        mainMethod();
+    }
 }
