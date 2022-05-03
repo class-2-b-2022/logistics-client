@@ -1,7 +1,6 @@
 package views;
 
 import formats.ReportModel;
-import formats.Vehicle;
 import logic.ReportManager;
 import views.Dashboard.DashboardView;
 
@@ -35,16 +34,13 @@ public class ReportView {
 
         switch (reportManagementChoice){
             case 1:
-                System.out.println(ANSI_MAG +"\t\t\t\t List of all vehicles "+ANSI_RESET);
+                System.out.println(ANSI_MAG +"\t\t\t\t List of all reports "+ANSI_RESET);
                 List<ReportModel> reportModels = reportManager.viewReports();
-                System.out.format("+-----------------+---------------------+%n");
-                System.out.format("| #Date    | Product   | Status       | Quantity  | Company Name |");
-                System.out.format("+-----------------+------+%n");
+                System.out.format("\t\t   | Product \t  | Status \t    | Quantity \t | Company Name |\n");
                 for ( ReportModel reportModel: reportModels) {
-                    String line = String.format("  %s   |   %d    |   %s   | %d  | %s   ",reportModel.getDate(),reportModel.getProduct(),reportModel.getStatus(),reportModel.getQuantity(),reportModel.getCompanyName());
+                    String line = String.format("  |   %s    |   %s   | %s  | %s   ",reportModel.getProduct(),reportModel.getStatus(),reportModel.getQuantity(),reportModel.getCompanyName());
                     System.out.format(leftAlignFormat, line,2,3);
                 }
-                System.out.format("+-----------------+---------------------+%n");
                 break;
         }
     }

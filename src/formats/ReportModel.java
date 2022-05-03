@@ -1,22 +1,23 @@
 package formats;
 
-import java.sql.Date;
-
 public class ReportModel {
-    private Date date;
+
+    private Long date;
     private String companyName;
     private String status;
     private String  product;
     private Integer quantity;
 
-    public Date getDate() {
-        return date;
+    public Long getDate(Long date) {
+        return this.date;
     }
 
-    public Date setDate(Date date) {
+    public void setDate(Long date) {
         this.date = date;
-        return date;
     }
+
+
+
 
     public String getCompanyName() {
         return companyName;
@@ -35,7 +36,7 @@ public class ReportModel {
     }
 
     public String getProduct() {
-        return product;
+        return this.product;
     }
 
     public void setProduct(String product) {

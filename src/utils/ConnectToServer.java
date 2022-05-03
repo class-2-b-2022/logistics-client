@@ -4,6 +4,9 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
+
 import formats.ResponseBody;
 import formats.RequestBody;
 
@@ -21,7 +24,9 @@ public class ConnectToServer {
             // sending the user input to server
             ObjectMapper objectMapper = new ObjectMapper();
             String json = objectMapper.writeValueAsString(clientRequest);
-            out.writeObject(json);
+            List<String> req = new ArrayList<>();
+            req.add(json);
+            out.writeObject(req);
             String jsonReturned =  in.readUTF();
 
 

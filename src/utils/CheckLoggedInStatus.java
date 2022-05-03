@@ -20,7 +20,7 @@ public class CheckLoggedInStatus {
 
     static {
         try {
-            fileReader = new FileReader("C:\\apps\\projects\\logisticsProject\\logistics-client\\config.properties");
+            fileReader = new FileReader("C:\\Users\\butera#odreille\\Dropbox\\PC\\Documents\\GitHub\\logistics-client\\logistics-client\\src\\config.properties");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
