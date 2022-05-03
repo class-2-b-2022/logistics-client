@@ -30,11 +30,14 @@ public class ConnectToServer {
             // sending the user input to server
             ObjectMapper objectMapper = new ObjectMapper();
             String json = objectMapper.writeValueAsString(clientRequest);
-          System.out.print("Sent to server");
+
             List<String> dt = new ArrayList<>();
             dt.add(json);
             out.writeObject(dt);
+            System.out.print("Sent to server");
             String jsonReturned =  in.readUTF();
+            System.out.println(jsonReturned);
+            System.out.println("a must to get response");
             System.out.println("Response got");
             ObjectMapper inputMapper = new ObjectMapper();
             JsonNode jsonNodeRoot = inputMapper.readTree(jsonReturned);
