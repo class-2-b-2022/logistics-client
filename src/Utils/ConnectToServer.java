@@ -2,6 +2,8 @@ package utils;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import formats.RequestBody;
+import formats.ResponseBody;
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -9,10 +11,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
-import formats.*;
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+/*import formats.*;*/
 
 public class ConnectToServer {
     public ResponseBody res = new ResponseBody();
@@ -30,7 +29,7 @@ public class ConnectToServer {
             // sending the user input to server
             ObjectMapper objectMapper = new ObjectMapper();
             String json = objectMapper.writeValueAsString(clientRequest);
-          
+
             List<String> dt = new ArrayList<>();
             dt.add(json);
             out.writeObject(dt);
@@ -40,14 +39,12 @@ public class ConnectToServer {
             res.setStatus(jsonNodeRoot.get("status").asText());
             res.setMessage(jsonNodeRoot.get("message").asText());
             res.setData(jsonReturned.split("data\":")[1].split(",\"message\"")[0]);
+
             return res;
         }
         catch (IOException e) {
             e.printStackTrace();
         }
         return null;
-    }
-    public static String removeLastChar(String str){
-        return str.substring(0, str.length() -1);
     }
 }
