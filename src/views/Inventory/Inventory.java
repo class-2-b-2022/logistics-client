@@ -1,8 +1,8 @@
 package views.Inventory;
 
 import formats.*;
-import Utils.*;
-import Utils.ClientServerConnector;
+import utils.*;
+import utils.ClientServerConnector;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import formats.ClientRequest;
 import formats.InventoryModel;

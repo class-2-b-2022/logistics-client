@@ -1,5 +1,5 @@
 package views;
-import Utils.*;
+import utils.*;
 import formats.*;
 
 import java.util.Scanner;

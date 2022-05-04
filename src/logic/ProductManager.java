@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import formats.ProductModel;
 
-import Utils.*;
+import utils.*;
 import formats.RequestBody;
 import formats.ResponseBody;
 

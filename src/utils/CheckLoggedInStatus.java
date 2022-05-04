@@ -1,4 +1,4 @@
-package Utils;
+package utils;
 
 import formats.RequestBody;
 import formats.ResponseBody;

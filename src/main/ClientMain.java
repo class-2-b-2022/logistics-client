@@ -1,5 +1,6 @@
 package main;
-import Utils.CheckLoggedInStatus;
+//import logic.VehicleManager;
+import utils.CheckLoggedInStatus;
 import views.Dashboard.DashboardView;
 import views.Product.Product;
 import views.billing.BillingView;
@@ -24,6 +25,7 @@ public class ClientMain {
         welcomeScreen();
         mainMethod();
     }
+
     public static void welcomeScreen(){
         /**
          * @author: Niyigena Yves   
@@ -85,6 +87,8 @@ public class ClientMain {
     
 //        DistributorWalletView distView = new DistributorWalletView();
         System.out.println("4.Products\t\t\t\t");
+        System.out.print("5.Register\t\t");
+        System.out.println("6. Reports\t\t");
         System.out.print("Enter your choice::");
         choice = scanner.nextInt();
         switch(choice){
@@ -102,6 +106,9 @@ public class ClientMain {
                 break;
             case 5:
                Product.productManagement();
+                break;
+            case 6:
+                ReportView.mainMethod();
                 break;
             default:
                 System.out.println("Invalid choice");

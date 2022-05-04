@@ -1,13 +1,20 @@
 package logic;
 
 import views.DeliveryModel;
-import formats.*;
-import Utils.*;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import views.*;
+import formats.*;
+import utils.*;
 import com.fasterxml.jackson.core.JsonParser;
 
 import formats.Vehicle;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.DataInput;
+import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -76,9 +83,23 @@ public class VehicleManager {
         clientRequest.setAction("view");
         ConnectToServer clientServerConnector = new ConnectToServer();
         ResponseBody responseBody = clientServerConnector.connectToServer(clientRequest);
-        List<Vehicle> vehicles = Arrays.asList(inputMapper.readValue((JsonParser) responseBody.getData(), Vehicle[].class));
+        JSONArray jsonArray = new JSONArray(responseBody.getData().toString());
+        List<Vehicle> vehicles = new ArrayList<>();
+
+        for(int i=0; i<jsonArray.length(); i++){
+            JSONObject json = jsonArray.getJSONObject(i);
+            Vehicle vehicle = new Vehicle();
+            vehicle.setBrand((String) json.get("brand"));
+            vehicle.setVehicleId((Integer) json.get("vehicleId"));
+            vehicle.setOwner(json.get("owner").toString());
+            vehicle.setDescription(json.get("description").toString());
+            vehicle.setPlateNbr(json.get("plateNbr").toString());
+            vehicle.setCreatedAt(BigInteger.valueOf((Long) json.get("createdAt")));
+            vehicle.setModel(json.get("model").toString());
+            vehicles.add(vehicle);
+
+        }
+        //        List<Vehicle> vehicles = Arrays.asList(inputMapper.readValue((JsonParser) responseBody.getData(), Vehicle[].class));
        return vehicles;
     }
 }
-
-

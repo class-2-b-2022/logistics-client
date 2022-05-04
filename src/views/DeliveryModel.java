@@ -57,6 +57,7 @@ public class DeliveryModel {
                     System.out.format(leftAlignFormat, " AUDI A40   | AUDI  | COMPANY |  Healthy  |", i*125);
                 }
                 System.out.format("+-----------------+------+%n");
+                DashboardView.mainMethod();
                 break;
             case 2:
                 System.out.println(ANSI_MAG +"\t\t\t\t List of all vehicles "+ANSI_RESET);
@@ -69,6 +70,7 @@ public class DeliveryModel {
                     System.out.format(leftAlignFormat, line,2,3);
                 }
                 System.out.format("+-----------------+---------------------+%n");
+                DashboardView.mainMethod();
                 break;
             case 3:
                 System.out.println(ANSI_MAG +"\t\t\t\t Edited successfully "+ANSI_RESET);
@@ -80,6 +82,7 @@ public class DeliveryModel {
                     System.out.format(leftAlignFormat, " AUDI A40   | AUDI  | COMPANY |  Healthy  |", i+1);
                 }
                 System.out.format("+-----------------+------+%n");
+                DashboardView.mainMethod();
                 break;
             case 4:
                 System.out.println(ANSI_MAG +"\t\t\t\t Deleted successfully "+ANSI_RESET);
@@ -91,6 +94,7 @@ public class DeliveryModel {
                     System.out.format(leftAlignFormat, " AUDI A40   | AUDI  | COMPANY |  Healthy  |", i*125);
                 }
                 System.out.format("+-----------------+------+%n");
+                DashboardView.mainMethod();
                 break;
             default:
                 System.out.println(ANSI_MAG +"\t\t\t\t No option seleted "+ANSI_RESET);
