@@ -51,7 +51,7 @@ public class ReportView {
         System.out.println(ANSI_MAG +"\t\t\t\t  --------    Select an Option    -----"+ANSI_RESET);
         System.out.println(ANSI_MAG +"\t\t\t\t                                       "+ANSI_RESET);
         System.out.println(ANSI_MAG +"\t\t\t\t ________    1. Reports Management _______"+ANSI_RESET);
-       System.out.println(ANSI_MAG +"\t\t\t\t                                       "+ANSI_RESET);
+        System.out.println(ANSI_MAG +"\t\t\t\t                                       "+ANSI_RESET);
         System.out.println(ANSI_MAG +"\t\t\t\t ________    3. Back to Dashboard   _______"+ANSI_RESET);
         System.out.println(ANSI_MAG +"\t\t\t\t                                       "+ANSI_RESET);
         System.out.println(ANSI_MAG +"\tEnter your choice:      "+ANSI_RESET);

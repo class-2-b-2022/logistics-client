@@ -1,18 +1,20 @@
 package formats;
 
+import java.sql.Date;
+
 public class ReportModel {
 
-    private Long date;
+    private Date date;
     private String companyName;
     private String status;
     private String  product;
     private Integer quantity;
 
-    public Long getDate(Long date) {
+    public Date getDate() {
         return this.date;
     }
 
-    public void setDate(Long date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

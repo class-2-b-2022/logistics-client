@@ -90,7 +90,6 @@ public class ClientMain {
         System.out.println("\n");
         System.out.print("\t\t\t\t\t\t       1.Login\t\t");
         System.out.print("2.Register\t\t");
-        System.out.println("3. Reports\t\t");
         choice = scanner.nextInt();
         switch(choice){
             case 1:

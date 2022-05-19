@@ -6,7 +6,7 @@ import utils.CheckLoggedInStatus;
 import views.DeliveryModel;
 import views.Inventory.Inventory;
 import views.billing.BillingView;
-
+import views.ReportView;
 import java.io.IOException;
 import java.util.Scanner;
 /* Author: Niyigena Yves*/
@@ -58,6 +58,7 @@ public class DashboardView {
                 DeliveryModel.mainMethod();
                 break;
             case 7:
+                ReportView.mainMethod();
                 break;
             case 8:
                 CheckLoggedInStatus.logout();
