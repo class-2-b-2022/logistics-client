@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
 
+import org.json.JSONException;
+
 public class CompanyMainView {
     private Socket socket;
     public CompanyMainView() {}
@@ -14,7 +16,7 @@ public class CompanyMainView {
         this.socket = socket;
     }
 
-    public void view() throws IOException, ClassNotFoundException {
+    public void view() throws IOException, ClassNotFoundException, JSONException {
         boolean companyView = false;
         do{
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t1. Register New Company");

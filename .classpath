@@ -7,5 +7,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="libs/jackson-databind-2.12.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/eclipse-workspace/logistics/client/logistics-client/libs/com.fasterxml.jackson.core.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/eclipse-workspace/logistics/client/logistics-client/libs/org.json.jar"/>
 	<classpathentry kind="output" path="out/production/logistics-client"/>
 </classpath>
