@@ -7,8 +7,8 @@ import views.DeliveryModel;
 import views.Inventory.Inventory;
 import views.billing.BillingView;
 
-import java.io.IOException;
 import java.util.Scanner;
+
 /* Author: Niyigena Yves*/
 public class DashboardView {
     public static final String ANSI_BLUE = "\u001B[34m";

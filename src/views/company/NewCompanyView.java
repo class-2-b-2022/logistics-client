@@ -1,5 +1,6 @@
 package views.company;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import services.CompanyService;
 
@@ -16,7 +17,7 @@ public class NewCompanyView {
     public NewCompanyView(Socket socket){
         this.socket = socket;
     }
-    public void view() throws IOException, ClassNotFoundException {
+    public void view() throws IOException, ClassNotFoundException, JSONException {
         JSONObject json = new JSONObject();
         Scanner scan = new Scanner(System.in);
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));

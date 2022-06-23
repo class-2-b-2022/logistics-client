@@ -1,4 +1,6 @@
 package logic;
+
+import views.DeliveryModel;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -6,6 +8,8 @@ import views.*;
 import formats.*;
 import utils.*;
 import com.fasterxml.jackson.core.JsonParser;
+
+import formats.Vehicle;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.DataInput;

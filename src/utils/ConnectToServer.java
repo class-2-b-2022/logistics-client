@@ -35,11 +35,16 @@ public class ConnectToServer {
             List<String> dt = new ArrayList<>();
             dt.add(json);
             out.writeObject(dt);
+            System.out.print("Sent to server");
             String jsonReturned =  in.readUTF();
+            System.out.println(jsonReturned);
+            System.out.println("a must to get response");
+            System.out.println("Response got");
             ObjectMapper inputMapper = new ObjectMapper();
             JsonNode jsonNodeRoot = inputMapper.readTree(jsonReturned);
             res.setMessage(jsonNodeRoot.get("status").asText());
             res.setData(jsonReturned.split("data\":")[1].split(",\"message\"")[0]);
+            System.out.println("Message"+ res.getMessage());
             return res;
         }
         catch (IOException e) {

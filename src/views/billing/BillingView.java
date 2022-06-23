@@ -4,7 +4,6 @@ import formats.ClientRequest;
 import formats.Wallet;
 import logic.BillingManager;
 import logic.TestingServerConnecting;
-import utils.*;
 import views.Dashboard.DashboardView;
 
 import java.util.Scanner;

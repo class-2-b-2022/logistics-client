@@ -1,23 +1,14 @@
 package main;
+//import logic.VehicleManager;
 import utils.CheckLoggedInStatus;
 import views.Dashboard.DashboardView;
 import views.Product.Product;
 import views.billing.BillingView;
-
 import java.util.Scanner;
 import views.*;
-import views.Login;
-import views.billing.BillingView;
-
-
-import java.util.Scanner;
+import logic.TestingServerConnecting;
 import logic.VehicleManager;
-
 import views.Inventory.Inventory;
-
-
-import views.*;
-
 
 public class ClientMain {
     public static final String ANSI_BLUE = "\u001B[34m";
@@ -34,6 +25,7 @@ public class ClientMain {
         welcomeScreen();
         mainMethod();
     }
+
     public static void welcomeScreen(){
         /**
          * @author: Niyigena Yves   
@@ -89,17 +81,33 @@ public class ClientMain {
 //        welcomeScreen();
         System.out.println("\n");
         System.out.print("\t\t\t\t\t\t       1.Login\t\t");
-        System.out.print("2.Register\t\t");
-        System.out.println("3. Reports\t\t");
+        System.out.print("\t\t\t\t\t\t       2.Company\t\t");
+        System.out.print("2.Billing\t\t");
+        System.out.print("3.Inventory\t\t");
+    
+//        DistributorWalletView distView = new DistributorWalletView();
+        System.out.println("4.Products\t\t\t\t");
+        System.out.print("5.Register\t\t");
+        System.out.println("6. Reports\t\t");
+        System.out.print("Enter your choice::");
         choice = scanner.nextInt();
         switch(choice){
             case 1:
                 login.mainMethod();
                 break;
             case 2:
-                BillingView.mainMethod();
+                CompanyModel.CompanyManagement();
                 break;
             case 3:
+                BillingView.mainMethod();
+               break;
+            case 4:
+                Inventory.Inventory();
+                break;
+            case 5:
+               Product.productManagement();
+                break;
+            case 6:
                 ReportView.mainMethod();
                 break;
             default:
