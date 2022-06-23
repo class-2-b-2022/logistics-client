@@ -6,7 +6,7 @@ import utils.ClientServerConnector;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import formats.ClientRequest;
 import formats.InventoryModel;
-import logic.TestingServerConnecting;;
+import logic.TestingServerConnecting;
 import formats.ProductModel;
 import formats.ResponseBody;
 import com.fasterxml.jackson.core.JsonParser;
